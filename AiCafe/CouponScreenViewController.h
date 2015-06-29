@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface CouponScreenViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
-
+#import "Side_menu.h"
+@interface CouponScreenViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,Slide_menu_delegate>
+{
+    Side_menu *sidemenu;
+}
 
 - (IBAction)side_menu:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIView *baseView;
 
 
 @end

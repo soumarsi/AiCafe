@@ -22,6 +22,8 @@
     
     [super viewDidLoad];
     
+    //Debarun
+    // TextField Padding ....
     
     UIView *paddingTxtfieldView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 42)];
     UIView *paddingTxtfieldView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 42)];
@@ -92,51 +94,114 @@
             [_email resignFirstResponder];
             [_password resignFirstResponder];
             
-    NSString *urlstring=[NSString stringWithFormat:@"%@login.php?email=%@&password=%@",App_Domain_Url,_email.text,_password.text];
+//    NSString *urlstring=[NSString stringWithFormat:@"%@login.php?email=%@&password=%@",App_Domain_Url,_email.text,_password.text];
+//            
+//        [globalobj GlobalDict:urlstring Globalstr:@"array" Withblock:^(id result, NSError *error)
+//            {
+//                
+//                if (result)
+//                {
+//                  NSLog(@"result-- %@",result);
+//                    
+//                    if ([[result objectForKey:@"auth"] isEqualToString:@"login success"])
+//                    {
+//                      
+//            NSMutableDictionary *get_result=[[result objectForKey:@"details" ]mutableCopy];
+//                        
+//            NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+//                        
+//            [UserData setObject:[get_result objectForKey:@"id"] forKey:@"Login_User_id"];
+//            [UserData setObject:[get_result objectForKey:@"name"] forKey:@"User_name"];
+//            [UserData setObject:[get_result objectForKey:@"photo_thumb"] forKey:@"user_photo"];
+//            [UserData setObject:[get_result objectForKey:@"sex"] forKey:@"user_sex"];
+//            [UserData setObject:[get_result objectForKey:@"business"] forKey:@"user_business"];
+//            [UserData setObject:[get_result objectForKey:@"about"] forKey:@"user_about"];
+//                    
+//            [UserData synchronize];
+//           
+//                        
+//                ViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Main_Page"];
+//                    [self.navigationController pushViewController:Pushobj animated:YES];
+//                        
+//                    }
+//                    else
+//                    {
+//                       UIAlertView *Alert = [[UIAlertView alloc]initWithTitle:nil message:@"Login Failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//                        [Alert show];
+//                        
+//                        
+//                    _login_btn.userInteractionEnabled=YES;
+//                        
+//                       // _email.text = @"";
+//                        _password.text = @"";
+//                        
+//
+//                    }
+//                }
+//                
+//            }];
             
-        [globalobj GlobalDict:urlstring Globalstr:@"array" Withblock:^(id result, NSError *error)
+            NSString *urlstring=[NSString stringWithFormat:@"http://203.196.159.37/lab9/aiCafe/iosapp/login.php"];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+            
+            [request setHTTPMethod:@"POST"];
+            
+            NSString *postData = [NSString stringWithFormat:@"email=%@&password=%@",_email.text,_password.text];
+            
+            [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+            
+            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            
+[globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+        {
+            
+      if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+      {
+          
+      }
+            else
             {
-                
-                if (result)
+                if([[result objectForKey:@"auth"] isEqualToString:@"login failed"])
                 {
-                  NSLog(@"result-- %@",result);
                     
-                    if ([[result objectForKey:@"auth"] isEqualToString:@"login success"])
+                }
+                else
+                {
+                    NSLog(@"result...%@",[result objectForKey:@"auth"]);
+                    if([[result objectForKey:@"auth"] isEqualToString:@"login success"])
                     {
-                      
-            NSMutableDictionary *get_result=[[result objectForKey:@"details" ]mutableCopy];
+                        NSMutableDictionary *get_result=[[result objectForKey:@"details" ]mutableCopy];
                         
-            NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+                        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
                         
-            [UserData setObject:[get_result objectForKey:@"id"] forKey:@"Login_User_id"];
-            [UserData setObject:[get_result objectForKey:@"name"] forKey:@"User_name"];
-            [UserData setObject:[get_result objectForKey:@"photo_thumb"] forKey:@"user_photo"];
-            [UserData setObject:[get_result objectForKey:@"sex"] forKey:@"user_sex"];
-            [UserData setObject:[get_result objectForKey:@"business"] forKey:@"user_business"];
-            [UserData setObject:[get_result objectForKey:@"about"] forKey:@"user_about"];
-                    
-            [UserData synchronize];
+                        [UserData setObject:[get_result objectForKey:@"id"] forKey:@"Login_User_id"];
+                        [UserData setObject:[get_result objectForKey:@"name"] forKey:@"User_name"];
+                        [UserData setObject:[get_result objectForKey:@"photo_thumb"] forKey:@"user_photo"];
+                        [UserData setObject:[get_result objectForKey:@"sex"] forKey:@"user_sex"];
+                        [UserData setObject:[get_result objectForKey:@"business"] forKey:@"user_business"];
+                        [UserData setObject:[get_result objectForKey:@"about"] forKey:@"user_about"];
                         
-                ViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Main_Page"];
-                    [self.navigationController pushViewController:Pushobj animated:YES];
-                        
+                        [UserData synchronize];
+                        ViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Main_Page"];
+                        [self.navigationController pushViewController:Pushobj animated:YES];
                     }
                     else
                     {
-                       UIAlertView *Alert = [[UIAlertView alloc]initWithTitle:nil message:@"Login Failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                        UIAlertView *Alert = [[UIAlertView alloc]initWithTitle:nil message:@"Login Failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                         [Alert show];
                         
-                        
-                    _login_btn.userInteractionEnabled=YES;
-                        
-                       // _email.text = @"";
+                        _login_btn.userInteractionEnabled=YES;
+                        // _email.text = @"";
                         _password.text = @"";
-                        
-
                     }
                 }
-                
-            }];
+            }
+          
+            
+  
+                 
+             }];
             
             
             

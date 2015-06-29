@@ -8,14 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "PTPusherDelegate.h"
+@interface AppDelegate : UIResponder <UIApplicationDelegate>{
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+     NSString *PUSHER_API_KEY;
+     NSString *PUSHER_CHANNEL;
+     NSString *PUSHER_EVENT;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong) PTPusher *pusherClient;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
