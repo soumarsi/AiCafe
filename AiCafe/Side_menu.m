@@ -7,18 +7,16 @@
 //
 
 #import "Side_menu.h"
-#import "SettingViewController.h"
 
 @implementation Side_menu
-@synthesize SlideDelegate;
 
 /*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
 
 
 -(id)initWithFrame:(CGRect)frame
@@ -32,17 +30,4 @@
 }
 
 
-
-- (IBAction)Slide_button_tap:(UIButton *)sender {
-    
-    NSLog(@"Slide button tapped");
-    if ([SlideDelegate respondsToSelector:@selector(action_method:)])
-    {
-        NSLog(@"##### %ld",(long)sender.tag);
-        
-        [SlideDelegate action_method:sender];
-        
-    }
-    
-}
 @end

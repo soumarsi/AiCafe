@@ -7,40 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5AF20BB81B3BDF7400824C69 /* stickercell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF20BB71B3BDF7400824C69 /* stickercell.m */; };
-		5AF20BC21B3BDFF500824C69 /* 1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BBA1B3BDFF500824C69 /* 1@2x.png */; };
-		5AF20BC31B3BDFF500824C69 /* 2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BBB1B3BDFF500824C69 /* 2@2x.png */; };
-		5AF20BC41B3BDFF500824C69 /* 3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BBC1B3BDFF500824C69 /* 3@2x.png */; };
-		5AF20BC51B3BDFF500824C69 /* 4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BBD1B3BDFF500824C69 /* 4@2x.png */; };
-		5AF20BC61B3BDFF500824C69 /* 5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BBE1B3BDFF500824C69 /* 5@2x.png */; };
-		5AF20BC71B3BDFF500824C69 /* 6@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BBF1B3BDFF500824C69 /* 6@2x.png */; };
-		5AF20BC81B3BDFF500824C69 /* 7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BC01B3BDFF500824C69 /* 7@2x.png */; };
-		5AF20BC91B3BDFF500824C69 /* 8@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BC11B3BDFF500824C69 /* 8@2x.png */; };
-		5AF20BCC1B3C1BFC00824C69 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF20BCA1B3C1BFC00824C69 /* AVFoundation.framework */; };
-		5AF20BCD1B3C1BFC00824C69 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF20BCB1B3C1BFC00824C69 /* AVKit.framework */; };
-		5AF20BD11B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BD01B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 */; };
-		81DAFF4B1B2AA1D900485B68 /* ChatInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF4A1B2AA1D900485B68 /* ChatInboxTableViewCell.m */; };
-		81DAFF4E1B2AA30E00485B68 /* ChatInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF4D1B2AA30E00485B68 /* ChatInboxViewController.m */; };
-		81DAFF511B2AA49300485B68 /* CouponFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF501B2AA49300485B68 /* CouponFilterViewController.m */; };
-		81DAFF541B2AA51C00485B68 /* CouponFilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF531B2AA51C00485B68 /* CouponFilterTableViewCell.m */; };
-		81DAFF571B2AA5B800485B68 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF561B2AA5B800485B68 /* AboutUsViewController.m */; };
-		81DAFF601B2AAA9A00485B68 /* LoyaltiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF591B2AAA9A00485B68 /* LoyaltiViewController.m */; };
-		81DAFF611B2AAA9A00485B68 /* PrivacySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF5B1B2AAA9A00485B68 /* PrivacySettingViewController.m */; };
-		81DAFF621B2AAA9A00485B68 /* SecuritySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF5D1B2AAA9A00485B68 /* SecuritySettingViewController.m */; };
-		81DAFF631B2AAA9A00485B68 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF5F1B2AAA9A00485B68 /* SettingViewController.m */; };
-		81DAFF681B2AAF6000485B68 /* RedeemSuccess.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81DAFF671B2AAF6000485B68 /* RedeemSuccess.xib */; };
-		81DAFF6A1B2AB1B100485B68 /* RedeemFailure.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81DAFF691B2AB1B100485B68 /* RedeemFailure.xib */; };
-		81DAFF6D1B2AD5C200485B68 /* StoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF6C1B2AD5C200485B68 /* StoreInfoViewController.m */; };
-		81DAFF701B2ADACE00485B68 /* CouponRedeemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF6F1B2ADACE00485B68 /* CouponRedeemViewController.m */; };
-		81DB9E9F1B3C16B1009340BF /* FriendRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DB9E9E1B3C16B1009340BF /* FriendRequestViewController.m */; };
-		81DB9EA21B3C16EC009340BF /* FriendRequestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DB9EA11B3C16EC009340BF /* FriendRequestTableViewCell.m */; };
-		81DC03611B318A0F004E27A5 /* UserLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DC03601B318A0F004E27A5 /* UserLikeTableViewCell.m */; };
-		81DC03641B318B08004E27A5 /* UserLikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DC03631B318B08004E27A5 /* UserLikeViewController.m */; };
 		84B35B4B1B20631D00F5B6FE /* LoyaltiDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B35B4A1B20631D00F5B6FE /* LoyaltiDetailsViewController.m */; };
 		84B35B4E1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B35B4D1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.m */; };
 		84B35B511B20700600F5B6FE /* CouponScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B35B501B20700600F5B6FE /* CouponScreenViewController.m */; };
 		84B35B541B20704E00F5B6FE /* CouponScreenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B35B531B20704E00F5B6FE /* CouponScreenTableViewCell.m */; };
-		8FC8AD4E1B3C0BB60095641B /* AiCafeFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8AD4D1B3C0BB60095641B /* AiCafeFriendsViewController.m */; };
 		99FF4B96359A7A7A8F6B59D5 /* libPods-AiCafe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A05A2D642E8BB9B3DA8B5A5C /* libPods-AiCafe.a */; };
 		A5DB6DB01B254EC000B2A6A0 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB6DAF1B254EC000B2A6A0 /* ChatViewController.m */; };
 		F927AD3E1B0DD7A900F0BC34 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F927AD3D1B0DD7A900F0BC34 /* SignupViewController.m */; };
@@ -87,51 +57,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5AF20BB61B3BDF7400824C69 /* stickercell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stickercell.h; sourceTree = "<group>"; };
-		5AF20BB71B3BDF7400824C69 /* stickercell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stickercell.m; sourceTree = "<group>"; };
-		5AF20BBA1B3BDFF500824C69 /* 1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1@2x.png"; sourceTree = "<group>"; };
-		5AF20BBB1B3BDFF500824C69 /* 2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2@2x.png"; sourceTree = "<group>"; };
-		5AF20BBC1B3BDFF500824C69 /* 3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "3@2x.png"; sourceTree = "<group>"; };
-		5AF20BBD1B3BDFF500824C69 /* 4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "4@2x.png"; sourceTree = "<group>"; };
-		5AF20BBE1B3BDFF500824C69 /* 5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "5@2x.png"; sourceTree = "<group>"; };
-		5AF20BBF1B3BDFF500824C69 /* 6@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "6@2x.png"; sourceTree = "<group>"; };
-		5AF20BC01B3BDFF500824C69 /* 7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "7@2x.png"; sourceTree = "<group>"; };
-		5AF20BC11B3BDFF500824C69 /* 8@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "8@2x.png"; sourceTree = "<group>"; };
-		5AF20BCA1B3C1BFC00824C69 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		5AF20BCB1B3C1BFC00824C69 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
-		5AF20BD01B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sounds-874-gets-in-the-way.mp3"; sourceTree = "<group>"; };
-		81DAFF491B2AA1D900485B68 /* ChatInboxTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInboxTableViewCell.h; sourceTree = "<group>"; };
-		81DAFF4A1B2AA1D900485B68 /* ChatInboxTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInboxTableViewCell.m; sourceTree = "<group>"; };
-		81DAFF4C1B2AA30E00485B68 /* ChatInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInboxViewController.h; sourceTree = "<group>"; };
-		81DAFF4D1B2AA30E00485B68 /* ChatInboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInboxViewController.m; sourceTree = "<group>"; };
-		81DAFF4F1B2AA49300485B68 /* CouponFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponFilterViewController.h; sourceTree = "<group>"; };
-		81DAFF501B2AA49300485B68 /* CouponFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponFilterViewController.m; sourceTree = "<group>"; };
-		81DAFF521B2AA51C00485B68 /* CouponFilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponFilterTableViewCell.h; sourceTree = "<group>"; };
-		81DAFF531B2AA51C00485B68 /* CouponFilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponFilterTableViewCell.m; sourceTree = "<group>"; };
-		81DAFF551B2AA5B800485B68 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
-		81DAFF561B2AA5B800485B68 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
-		81DAFF581B2AAA9A00485B68 /* LoyaltiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoyaltiViewController.h; sourceTree = "<group>"; };
-		81DAFF591B2AAA9A00485B68 /* LoyaltiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoyaltiViewController.m; sourceTree = "<group>"; };
-		81DAFF5A1B2AAA9A00485B68 /* PrivacySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacySettingViewController.h; sourceTree = "<group>"; };
-		81DAFF5B1B2AAA9A00485B68 /* PrivacySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacySettingViewController.m; sourceTree = "<group>"; };
-		81DAFF5C1B2AAA9A00485B68 /* SecuritySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecuritySettingViewController.h; sourceTree = "<group>"; };
-		81DAFF5D1B2AAA9A00485B68 /* SecuritySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecuritySettingViewController.m; sourceTree = "<group>"; };
-		81DAFF5E1B2AAA9A00485B68 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
-		81DAFF5F1B2AAA9A00485B68 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
-		81DAFF671B2AAF6000485B68 /* RedeemSuccess.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedeemSuccess.xib; sourceTree = "<group>"; };
-		81DAFF691B2AB1B100485B68 /* RedeemFailure.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RedeemFailure.xib; sourceTree = "<group>"; };
-		81DAFF6B1B2AD5C200485B68 /* StoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreInfoViewController.h; sourceTree = "<group>"; };
-		81DAFF6C1B2AD5C200485B68 /* StoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreInfoViewController.m; sourceTree = "<group>"; };
-		81DAFF6E1B2ADACE00485B68 /* CouponRedeemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponRedeemViewController.h; sourceTree = "<group>"; };
-		81DAFF6F1B2ADACE00485B68 /* CouponRedeemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponRedeemViewController.m; sourceTree = "<group>"; };
-		81DB9E9D1B3C16B1009340BF /* FriendRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestViewController.h; sourceTree = "<group>"; };
-		81DB9E9E1B3C16B1009340BF /* FriendRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestViewController.m; sourceTree = "<group>"; };
-		81DB9EA01B3C16EC009340BF /* FriendRequestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendRequestTableViewCell.h; sourceTree = "<group>"; };
-		81DB9EA11B3C16EC009340BF /* FriendRequestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendRequestTableViewCell.m; sourceTree = "<group>"; };
-		81DC035F1B318A0F004E27A5 /* UserLikeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLikeTableViewCell.h; sourceTree = "<group>"; };
-		81DC03601B318A0F004E27A5 /* UserLikeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLikeTableViewCell.m; sourceTree = "<group>"; };
-		81DC03621B318B08004E27A5 /* UserLikeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLikeViewController.h; sourceTree = "<group>"; };
-		81DC03631B318B08004E27A5 /* UserLikeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLikeViewController.m; sourceTree = "<group>"; };
 		84B35B491B20631D00F5B6FE /* LoyaltiDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoyaltiDetailsViewController.h; sourceTree = "<group>"; };
 		84B35B4A1B20631D00F5B6FE /* LoyaltiDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoyaltiDetailsViewController.m; sourceTree = "<group>"; };
 		84B35B4C1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoyaltiDetailsTableViewCell.h; sourceTree = "<group>"; };
@@ -141,8 +66,6 @@
 		84B35B521B20704E00F5B6FE /* CouponScreenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponScreenTableViewCell.h; sourceTree = "<group>"; };
 		84B35B531B20704E00F5B6FE /* CouponScreenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponScreenTableViewCell.m; sourceTree = "<group>"; };
 		8C4F9D4E4F746EA3B1152A21 /* Pods-AiCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AiCafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AiCafe/Pods-AiCafe.debug.xcconfig"; sourceTree = "<group>"; };
-		8FC8AD4C1B3C0BB60095641B /* AiCafeFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiCafeFriendsViewController.h; sourceTree = "<group>"; };
-		8FC8AD4D1B3C0BB60095641B /* AiCafeFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AiCafeFriendsViewController.m; sourceTree = "<group>"; };
 		A05A2D642E8BB9B3DA8B5A5C /* libPods-AiCafe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AiCafe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5DB6DAE1B254EC000B2A6A0 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		A5DB6DAF1B254EC000B2A6A0 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
@@ -227,8 +150,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AF20BCC1B3C1BFC00824C69 /* AVFoundation.framework in Frameworks */,
-				5AF20BCD1B3C1BFC00824C69 /* AVKit.framework in Frameworks */,
 				99FF4B96359A7A7A8F6B59D5 /* libPods-AiCafe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,86 +166,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		5AF20BB91B3BDFE400824C69 /* sticker */ = {
-			isa = PBXGroup;
-			children = (
-				5AF20BBA1B3BDFF500824C69 /* 1@2x.png */,
-				5AF20BBB1B3BDFF500824C69 /* 2@2x.png */,
-				5AF20BBC1B3BDFF500824C69 /* 3@2x.png */,
-				5AF20BBD1B3BDFF500824C69 /* 4@2x.png */,
-				5AF20BBE1B3BDFF500824C69 /* 5@2x.png */,
-				5AF20BBF1B3BDFF500824C69 /* 6@2x.png */,
-				5AF20BC01B3BDFF500824C69 /* 7@2x.png */,
-				5AF20BC11B3BDFF500824C69 /* 8@2x.png */,
-			);
-			name = sticker;
-			sourceTree = "<group>";
-		};
 		7995D52815568D62FFAF5AFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5AF20BCA1B3C1BFC00824C69 /* AVFoundation.framework */,
-				5AF20BCB1B3C1BFC00824C69 /* AVKit.framework */,
 				A05A2D642E8BB9B3DA8B5A5C /* libPods-AiCafe.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		81DAFF641B2AADDE00485B68 /* SideMenu */ = {
-			isa = PBXGroup;
-			children = (
-				F9C2A28D1B1860920039976A /* Side_menu.h */,
-				F9C2A28E1B1860920039976A /* Side_menu.m */,
-				F9C2A28B1B1850510039976A /* SideMenu.xib */,
-			);
-			name = SideMenu;
-			sourceTree = "<group>";
-		};
-		81DAFF651B2AAE7E00485B68 /* RedeemFailure */ = {
-			isa = PBXGroup;
-			children = (
-				81DAFF691B2AB1B100485B68 /* RedeemFailure.xib */,
-			);
-			name = RedeemFailure;
-			sourceTree = "<group>";
-		};
-		81DAFF661B2AAE9D00485B68 /* RedeemSuccess */ = {
-			isa = PBXGroup;
-			children = (
-				81DAFF671B2AAF6000485B68 /* RedeemSuccess.xib */,
-			);
-			name = RedeemSuccess;
-			sourceTree = "<group>";
-		};
 		F927AD3B1B0DD76F00F0BC34 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5AF20BD01B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 */,
-				81DB9E9D1B3C16B1009340BF /* FriendRequestViewController.h */,
-				81DB9E9E1B3C16B1009340BF /* FriendRequestViewController.m */,
-				8FC8AD4C1B3C0BB60095641B /* AiCafeFriendsViewController.h */,
-				8FC8AD4D1B3C0BB60095641B /* AiCafeFriendsViewController.m */,
-				5AF20BB91B3BDFE400824C69 /* sticker */,
-				81DC03621B318B08004E27A5 /* UserLikeViewController.h */,
-				5AF20BB61B3BDF7400824C69 /* stickercell.h */,
-				5AF20BB71B3BDF7400824C69 /* stickercell.m */,
-				81DC03631B318B08004E27A5 /* UserLikeViewController.m */,
-				81DAFF581B2AAA9A00485B68 /* LoyaltiViewController.h */,
-				81DAFF591B2AAA9A00485B68 /* LoyaltiViewController.m */,
-				81DAFF5A1B2AAA9A00485B68 /* PrivacySettingViewController.h */,
-				81DAFF5B1B2AAA9A00485B68 /* PrivacySettingViewController.m */,
-				81DAFF5C1B2AAA9A00485B68 /* SecuritySettingViewController.h */,
-				81DAFF5D1B2AAA9A00485B68 /* SecuritySettingViewController.m */,
-				81DAFF5E1B2AAA9A00485B68 /* SettingViewController.h */,
-				81DAFF5F1B2AAA9A00485B68 /* SettingViewController.m */,
-				81DAFF551B2AA5B800485B68 /* AboutUsViewController.h */,
-				81DAFF561B2AA5B800485B68 /* AboutUsViewController.m */,
-				81DAFF4F1B2AA49300485B68 /* CouponFilterViewController.h */,
-				81DAFF501B2AA49300485B68 /* CouponFilterViewController.m */,
-				81DAFF4C1B2AA30E00485B68 /* ChatInboxViewController.h */,
-				81DAFF4D1B2AA30E00485B68 /* ChatInboxViewController.m */,
-				F95556071B0A034F0013B260 /* ViewController.h */,
-				F95556081B0A034F0013B260 /* ViewController.m */,
 				F927AD3C1B0DD7A900F0BC34 /* SignupViewController.h */,
 				F927AD3D1B0DD7A900F0BC34 /* SignupViewController.m */,
 				F927AD3F1B0DF0FA00F0BC34 /* MainScreenViewController.h */,
@@ -339,10 +191,6 @@
 				84B35B501B20700600F5B6FE /* CouponScreenViewController.m */,
 				A5DB6DAE1B254EC000B2A6A0 /* ChatViewController.h */,
 				A5DB6DAF1B254EC000B2A6A0 /* ChatViewController.m */,
-				81DAFF6B1B2AD5C200485B68 /* StoreInfoViewController.h */,
-				81DAFF6C1B2AD5C200485B68 /* StoreInfoViewController.m */,
-				81DAFF6E1B2ADACE00485B68 /* CouponRedeemViewController.h */,
-				81DAFF6F1B2ADACE00485B68 /* CouponRedeemViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -416,6 +264,8 @@
 				F927AD3B1B0DD76F00F0BC34 /* View Controllers */,
 				F95556011B0A034F0013B260 /* AppDelegate.h */,
 				F95556021B0A034F0013B260 /* AppDelegate.m */,
+				F95556071B0A034F0013B260 /* ViewController.h */,
+				F95556081B0A034F0013B260 /* ViewController.m */,
 				F955560A1B0A034F0013B260 /* Main.storyboard */,
 				F955560D1B0A034F0013B260 /* Images.xcassets */,
 				F955560F1B0A034F0013B260 /* LaunchScreen.xib */,
@@ -483,9 +333,9 @@
 		F9C2A28A1B18503F0039976A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				81DAFF661B2AAE9D00485B68 /* RedeemSuccess */,
-				81DAFF651B2AAE7E00485B68 /* RedeemFailure */,
-				81DAFF641B2AADDE00485B68 /* SideMenu */,
+				F9C2A28B1B1850510039976A /* SideMenu.xib */,
+				F9C2A28D1B1860920039976A /* Side_menu.h */,
+				F9C2A28E1B1860920039976A /* Side_menu.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -493,14 +343,6 @@
 		F9E40BA11B0E0C1B00937B5D /* Tableview Cell Classes */ = {
 			isa = PBXGroup;
 			children = (
-				81DB9EA01B3C16EC009340BF /* FriendRequestTableViewCell.h */,
-				81DB9EA11B3C16EC009340BF /* FriendRequestTableViewCell.m */,
-				81DC035F1B318A0F004E27A5 /* UserLikeTableViewCell.h */,
-				81DC03601B318A0F004E27A5 /* UserLikeTableViewCell.m */,
-				81DAFF521B2AA51C00485B68 /* CouponFilterTableViewCell.h */,
-				81DAFF531B2AA51C00485B68 /* CouponFilterTableViewCell.m */,
-				81DAFF491B2AA1D900485B68 /* ChatInboxTableViewCell.h */,
-				81DAFF4A1B2AA1D900485B68 /* ChatInboxTableViewCell.m */,
 				F9E40BA21B0E0C4300937B5D /* AddFriendTableViewCell.h */,
 				F9E40BA31B0E0C4300937B5D /* AddFriendTableViewCell.m */,
 				84B35B4C1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.h */,
@@ -544,7 +386,6 @@
 				TargetAttributes = {
 					F95555F91B0A034F0013B260 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = HVFEBCENV9;
 					};
 				};
 			};
@@ -576,25 +417,14 @@
 				F955563A1B0A13A50013B260 /* OpenSans-SemiboldItalic.ttf in Resources */,
 				F955560C1B0A034F0013B260 /* Main.storyboard in Resources */,
 				F95556381B0A13A50013B260 /* OpenSans-Regular.ttf in Resources */,
-				5AF20BD11B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 in Resources */,
 				F95556351B0A13A50013B260 /* OpenSans-Italic.ttf in Resources */,
 				F95556341B0A13A50013B260 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
-				5AF20BC81B3BDFF500824C69 /* 7@2x.png in Resources */,
-				5AF20BC71B3BDFF500824C69 /* 6@2x.png in Resources */,
 				F95556111B0A034F0013B260 /* LaunchScreen.xib in Resources */,
-				5AF20BC21B3BDFF500824C69 /* 1@2x.png in Resources */,
-				5AF20BC31B3BDFF500824C69 /* 2@2x.png in Resources */,
-				5AF20BC41B3BDFF500824C69 /* 3@2x.png in Resources */,
 				F95556371B0A13A50013B260 /* OpenSans-LightItalic.ttf in Resources */,
 				F95556311B0A13A50013B260 /* OpenSans-BoldItalic.ttf in Resources */,
 				F955560E1B0A034F0013B260 /* Images.xcassets in Resources */,
 				F95556361B0A13A50013B260 /* OpenSans-Light.ttf in Resources */,
-				81DAFF6A1B2AB1B100485B68 /* RedeemFailure.xib in Resources */,
 				F95556321B0A13A50013B260 /* OpenSans-CondLightItalic.ttf in Resources */,
-				5AF20BC51B3BDFF500824C69 /* 4@2x.png in Resources */,
-				5AF20BC61B3BDFF500824C69 /* 5@2x.png in Resources */,
-				5AF20BC91B3BDFF500824C69 /* 8@2x.png in Resources */,
-				81DAFF681B2AAF6000485B68 /* RedeemSuccess.xib in Resources */,
 				F95556331B0A13A50013B260 /* OpenSans-ExtraBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -642,47 +472,30 @@
 				F95159891B12EAAF00448913 /* UIImageView+HighlightedWebCache.m in Sources */,
 				F95159801B12EAAF00448913 /* SDWebImageDecoder.m in Sources */,
 				F951598A1B12EAAF00448913 /* UIImageView+WebCache.m in Sources */,
-				81DAFF541B2AA51C00485B68 /* CouponFilterTableViewCell.m in Sources */,
 				F9C2A28F1B1860920039976A /* Side_menu.m in Sources */,
 				84B35B511B20700600F5B6FE /* CouponScreenViewController.m in Sources */,
-				81DAFF6D1B2AD5C200485B68 /* StoreInfoViewController.m in Sources */,
 				F9E40BA01B0E09DF00937B5D /* AddFriendsViewController.m in Sources */,
 				84B35B541B20704E00F5B6FE /* CouponScreenTableViewCell.m in Sources */,
 				F95159821B12EAAF00448913 /* SDWebImageDownloaderOperation.m in Sources */,
 				F951598E1B12F29D00448913 /* UserInfoViewController.m in Sources */,
-				81DAFF4E1B2AA30E00485B68 /* ChatInboxViewController.m in Sources */,
 				F95159831B12EAAF00448913 /* SDWebImageManager.m in Sources */,
 				F95556031B0A034F0013B260 /* AppDelegate.m in Sources */,
 				F95556001B0A034F0013B260 /* main.m in Sources */,
-				81DAFF4B1B2AA1D900485B68 /* ChatInboxTableViewCell.m in Sources */,
-				81DB9EA21B3C16EC009340BF /* FriendRequestTableViewCell.m in Sources */,
-				81DAFF621B2AAA9A00485B68 /* SecuritySettingViewController.m in Sources */,
-				81DC03611B318A0F004E27A5 /* UserLikeTableViewCell.m in Sources */,
 				F95159811B12EAAF00448913 /* SDWebImageDownloader.m in Sources */,
 				F951597C1B12EAAF00448913 /* MKAnnotationView+WebCache.m in Sources */,
 				A5DB6DB01B254EC000B2A6A0 /* ChatViewController.m in Sources */,
 				F951597F1B12EAAF00448913 /* SDWebImageCompat.m in Sources */,
 				F95159841B12EAAF00448913 /* SDWebImagePrefetcher.m in Sources */,
-				81DAFF571B2AA5B800485B68 /* AboutUsViewController.m in Sources */,
-				8FC8AD4E1B3C0BB60095641B /* AiCafeFriendsViewController.m in Sources */,
-				81DAFF601B2AAA9A00485B68 /* LoyaltiViewController.m in Sources */,
 				F951598B1B12EAAF00448913 /* UIView+WebCacheOperation.m in Sources */,
-				81DAFF611B2AAA9A00485B68 /* PrivacySettingViewController.m in Sources */,
 				F95159871B12EAAF00448913 /* UIImage+MultiFormat.m in Sources */,
-				81DAFF631B2AAA9A00485B68 /* SettingViewController.m in Sources */,
 				84B35B4B1B20631D00F5B6FE /* LoyaltiDetailsViewController.m in Sources */,
 				84B35B4E1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.m in Sources */,
 				F95556091B0A034F0013B260 /* ViewController.m in Sources */,
 				F927AD411B0DF0FA00F0BC34 /* MainScreenViewController.m in Sources */,
 				F95159851B12EAAF00448913 /* UIButton+WebCache.m in Sources */,
 				F95556061B0A034F0013B260 /* AiCafe.xcdatamodeld in Sources */,
-				5AF20BB81B3BDF7400824C69 /* stickercell.m in Sources */,
 				F951597E1B12EAAF00448913 /* SDImageCache.m in Sources */,
 				F9A1D5321B0EE48500E7F622 /* RS_JsonClass.m in Sources */,
-				81DAFF701B2ADACE00485B68 /* CouponRedeemViewController.m in Sources */,
-				81DB9E9F1B3C16B1009340BF /* FriendRequestViewController.m in Sources */,
-				81DAFF511B2AA49300485B68 /* CouponFilterViewController.m in Sources */,
-				81DC03641B318B08004E27A5 /* UserLikeViewController.m in Sources */,
 				F927AD3E1B0DD7A900F0BC34 /* SignupViewController.m in Sources */,
 				F9E40BA41B0E0C4300937B5D /* AddFriendTableViewCell.m in Sources */,
 				F95159861B12EAAF00448913 /* UIImage+GIF.m in Sources */,
@@ -730,8 +543,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -753,7 +566,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "8472c90d-3d29-4d60-92db-d37aa3687680";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -775,8 +588,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -791,7 +604,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8472c90d-3d29-4d60-92db-d37aa3687680";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -802,13 +615,13 @@
 			baseConfigurationReference = 8C4F9D4E4F746EA3B1152A21 /* Pods-AiCafe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AiCafe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8472c90d-3d29-4d60-92db-d37aa3687680";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -817,13 +630,13 @@
 			baseConfigurationReference = AA5657C87C981A01D7827752 /* Pods-AiCafe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AiCafe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8472c90d-3d29-4d60-92db-d37aa3687680";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

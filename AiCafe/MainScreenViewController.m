@@ -12,20 +12,9 @@
 #import "Side_menu.h"
 #import "LoyaltiDetailsViewController.h"
 #import "CouponScreenViewController.h"
-#import "ChatInboxViewController.h"
-#import "Side_menu.h"
-#import "ViewController.h"
-#import "AiCafeFriendsViewController.h"
-#import "ChatInboxViewController.h"
-#import "FriendRequestViewController.h"
 
+@interface MainScreenViewController ()
 
-@interface MainScreenViewController ()<Slide_menu_delegate>
-{
-    BOOL flag;
-    NSMutableArray *Friend_list;
-}
-@property (strong, nonatomic) IBOutlet UILabel *numberoffriends;
 @end
 
 @implementation MainScreenViewController
@@ -37,9 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    flag=YES;
     
-    obj = [[RS_JsonClass alloc]init];
     
     if ([UIScreen mainScreen].bounds.size.width>320)
     {
@@ -100,57 +87,15 @@
 
     
     _user_business.text=user_business_info;
-    
-    obj = [[RS_JsonClass alloc]init];
-    
-    NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
-    NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
-    
-    NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@",App_Domain_Url,Login_user_Id];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
-    
-    [request setHTTPMethod:@"POST"];
-    
-    [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    
-    
-    [obj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
-    {
-        if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
-        {
-            
-        }
-        else
-        {
-            Friend_list=[[result objectForKey:@"details"] mutableCopy];
-            NSLog(@"Array is:------>%@",result);
-            NSLog(@"Array is:------>%@",Friend_list);
-            _numberoffriends.text = [NSString stringWithFormat:@"%ld  friends",(long)[Friend_list count]];
-        }
-        
-       
-    }];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
 
-    if(flag==YES)
-    {
-        flag=YES;
-        sidemenu=[[Side_menu alloc]init];
-        sidemenu.frame=CGRectMake(-sidemenu.frame.size.width,0,sidemenu.frame.size.width,[UIScreen mainScreen].bounds.size.height);
-        sidemenu.hidden=YES;
-        sidemenu.SlideDelegate=self;
-        [self.view addSubview:sidemenu];
-    }
-    else
-    {
-        flag=NO;
-    }
-
+    sidemenu=[[Side_menu alloc]init];
+    sidemenu.frame=CGRectMake(-sidemenu.frame.size.width,0,sidemenu.frame.size.width,[UIScreen mainScreen].bounds.size.height);
+    sidemenu.hidden=YES;
+    [self.view addSubview:sidemenu];
 
 }
 
@@ -172,222 +117,27 @@
 
 - (IBAction)Add_friend_button:(id)sender
 {
-    AiCafeFriendsViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"aicafefriends"];
-    
+    MainScreenViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Addfriend_Page"];
     [self.navigationController pushViewController:Pushobj animated:YES];
 }
 - (IBAction)Side_button:(id)sender
 {
     
-    
-    if(flag==YES)
-    {
-        flag=NO;
-        sidemenu.hidden=NO;
-        
-
-        [UIView animateWithDuration:0.9 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.6
-                            options:1 animations:^{
-                                
-                        
-                          
-    [sidemenu setFrame:CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width*0.7f,[UIScreen mainScreen].bounds.size.height)];
-                                
-        _baseView.frame=CGRectMake(([UIScreen mainScreen].bounds.size.width*0.7f)-21,_baseView.frame.origin.y,_baseView.frame.size.width,_baseView.frame.size.height);
-
-                                
-                            }
-         
-                         completion:^(BOOL finished)
-         {
-             
-             
-             
-         }];
-
-        
-        
-        
-    }
-    else
-    {
-        flag=YES;
-        
-        
-        
-        [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.6
-                            options:1 animations:^{
-                                
-                                
-        sidemenu.frame=CGRectMake(-[UIScreen mainScreen].bounds.size.width*0.7f,0,sidemenu.frame.size.width,[UIScreen mainScreen].bounds.size.height);
-                                
-        _baseView.frame=CGRectMake(([UIScreen mainScreen].bounds.size.width-[UIScreen mainScreen].bounds.size.width)-20,_baseView.frame.origin.y,_baseView.frame.size.width,_baseView.frame.size.height);
-                                
-                                
-                            }
-         
-                         completion:^(BOOL finished)
-         {
-             
-             
-             
-         }];
-        
-    }
-
+//
+//  sidemenu.hidden=NO;
+//    
+//  sidemenu.frame=CGRectMake(0,0,[UIScreen mainScreen].bounds.size.width*0.7f,[UIScreen mainScreen].bounds.size.height);
+//    
+//     _baseView.frame=CGRectMake(([UIScreen mainScreen].bounds.size.width*0.7f)-21,_baseView.frame.origin.y,_baseView.frame.size.width,_baseView.frame.size.height);
     
 }
 - (IBAction)PushToLoyaltiDetails:(id)sender {
     MainScreenViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Loyalti_Details"];
-    //[self.navigationController pushViewController:Pushobj animated:YES];
-    [self PushViewController:Pushobj WithAnimation:kCAMediaTimingFunctionEaseIn];
-
-}
-- (IBAction)PushToCouponScreen:(id)sender {
-//    MainScreenViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Coupon_Screen"];
-//    //[self.navigationController pushViewController:Pushobj animated:YES];
-//    [self PushViewController:Pushobj WithAnimation:kCAMediaTimingFunctionEaseIn];
-}
-
--(void)action_method:(UIButton *)sender
-{
-    NSLog(@"##### test mode...%ld",(long)sender.tag);
-    NSLog(@"action_method");
-    
-    //    [UIView transitionWithView:sidemenu
-    //                      duration:0.5f
-    //                       options:UIViewAnimationOptionTransitionNone
-    //                    animations:^{
-    //
-    //                       // overlay.hidden=YES;
-    //                        sidemenu.frame=CGRectMake([UIScreen mainScreen].bounds.size.width,0,sidemenu.frame.size.width,[UIScreen mainScreen].bounds.size.height);
-    //
-    //                    }
-    //
-    //                    completion:^(BOOL finished)
-    //     {
-    //
-    //         sidemenu.hidden=YES;
-    //        overlay.userInteractionEnabled=NO;
-    
-    
-    //         if (sender.tag==1)
-    //         {
-    //             MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"Invite_Friend"];
-    //             [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-    //         }
-    //sidemenu.hidden=YES;
-    if (sender.tag==7)
-    {
-        
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"settingviewcontroller"];
-       
-        //[self presentViewController:obj animated:YES completion:nil];
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-        
-    }
-    else if (sender.tag==8)
-    {
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"aboutviewcontroller"];
-        
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-    }
-    
-    else if (sender.tag==1)
-    {
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"Main_Page"];
-        
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-    }
-    
-    else if (sender.tag==5)
-    {
-//        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"addcoupon"];
-//        
-//        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-    }
-    
-    else if (sender.tag==2)
-    {
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"storeinformation"];
-        
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-    }
-    else if (sender.tag==6)
-    {
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"frndrequest"];
-        
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-    }
-    else if (sender.tag==9)
-    {
-        //MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"aboutviewcontroller"];
-        
-        //[self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-        NSLog(@"##### test mode...%ld",(long)sender.tag);
-        RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
-        
-        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
-        NSString *senderid = [UserData stringForKey:@"Login_User_id"];
-        
-        NSString *urlstring=[NSString stringWithFormat:@"http://203.196.159.37/lab9/aiCafe/iosapp/logout.php"];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
-        
-        [request setHTTPMethod:@"POST"];
-        
-        NSString *postData = [NSString stringWithFormat:@"id=%@",senderid];
-        
-        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-        
-        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
-         {
-            
-             if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
-             {
-                 
-             }
-             else
-             {
-                 NSLog(@"result...%@",[result objectForKey:@"auth"]);
-                 if([[result objectForKey:@"auth"] isEqualToString:@"logout success"])
-                 {
-                     ViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Login_Page"];
-                     Pushobj.password.text=@"";
-                     [self.navigationController pushViewController:Pushobj animated:YES];
-                     
-                 }
-
-             }
-             
-             
-             
-         }];
-        
-        
-    }
-
-    
-    
-    //}];
-}
--(void)PushViewController:(UIViewController *)viewController WithAnimation:(NSString *)AnimationType
-{
-    CATransition *Transition=[CATransition animation];
-    [Transition setDuration:0.4f];
-    [Transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-    [Transition setType:AnimationType];
-    [[[[self navigationController] view] layer] addAnimation:Transition forKey:nil];
-    [[self navigationController] pushViewController:viewController animated:NO];
-}
-
-- (IBAction)MoveToInbox:(id)sender
-{
-    ChatInboxViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"inbox"];
     [self.navigationController pushViewController:Pushobj animated:YES];
 }
-
+- (IBAction)PushToCouponScreen:(id)sender {
+    MainScreenViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Coupon_Screen"];
+    [self.navigationController pushViewController:Pushobj animated:YES];
+}
 
 @end

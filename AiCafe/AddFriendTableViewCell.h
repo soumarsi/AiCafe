@@ -13,7 +13,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *user_name;
 @property (strong, nonatomic) IBOutlet UILabel *descriptiohn;
 @property (strong, nonatomic) IBOutlet UILabel *time;
-@property (weak, nonatomic) IBOutlet UIButton *ChatBtn;
-@property (weak, nonatomic) IBOutlet UIButton *AddFriendBtn;
 
 @end

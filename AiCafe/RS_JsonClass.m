@@ -20,14 +20,14 @@
     
 }
 
--(void)GlobalDict:(NSMutableURLRequest *)parameter Globalstr:(NSString *)parametercheck Withblock:(Urlresponceblock)responce
+-(void)GlobalDict:(NSString *)parameter Globalstr:(NSString *)parametercheck Withblock:(Urlresponceblock)responce
 {
     
-
+    NSLog(@"Main URL --- %@", parameter);
     
-    //NSURL *url = [NSURL URLWithString:parameter];
-    //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    connection = [[NSURLConnection alloc] initWithRequest:parameter delegate:self];
+    NSURL *url = [NSURL URLWithString:parameter];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
     check  = parametercheck;
     connection=nil;
@@ -38,7 +38,7 @@
 -(NSString *) GlobalDict_image:(NSString *)parameter Globalstr_image:(NSString *)parametercheck globalimage:(NSData *)imageparameter
 {
     
- 
+    NSLog(@"Main URL --- %@", parameter);
 
     
   //  check  = parametercheck;
@@ -111,20 +111,19 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     
-  if([check isEqualToString:@"array"])
+    if ([check  isEqual: @"array"])
     {
-        
         id result=[NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:nil];
-        NSLog(@"Result...%@",result);
         _responce(result,nil);
     }
-    if ([check isEqualToString:@"string"])
+    else
     {
-        id  result = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-        NSLog(@"Result...%@",result);
+        id result = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
         _responce(result,nil);
     }
-
+    
+    
+    
 }
 
 -(void)Userdict:(NSDictionary *)userdetails

@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import <PushKit/PushKit.h>
-#import <Pusher/Pusher.h>
+
 @interface AppDelegate ()
 
 @end
@@ -21,48 +20,6 @@
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     
     // Override point for customization after application launch.
-    
-    // register device for push notification using pusher
-    PUSHER_API_KEY =@"41813a24537106ffbb74";
-    PUSHER_CHANNEL = @"test_channel";
-    PUSHER_EVENT = @"my_event";
-    
-    
-    self.pusherClient = [PTPusher pusherWithKey:PUSHER_API_KEY delegate:self encrypted:YES];
-    
-    // connect to pusher
-    
-    [self.pusherClient connect];
-    
-    // Declare the pusher channel to subscribe
-    
-    PTPusherChannel *channel   = [self.pusherClient subscribeToChannelNamed:PUSHER_CHANNEL];
-    
-    // bind the pusher channel
-    
-    
-    
-    [channel bindToEventNamed:PUSHER_EVENT handleWithBlock:^(PTPusherEvent *channelEvent) {
-        
-        // Pusher binded, now chaeck the incomming data
-        
-        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
-        NSString *login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
-        
-        
-        NSLog(@"chanel.data....... :%@.....+++++,.........%@",[channelEvent.data objectForKey:@"rec_id"],login_user_id);
-        
-        
-        if([[NSString stringWithFormat:@"%@",[channelEvent.data objectForKey:@"rec_id"]] isEqualToString:login_user_id]){
-            
-             NSLog(@"same id....%@++++++++%@",[channelEvent.data objectForKey:@"rec_id"],login_user_id);
-        
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"DataEdited" object:self];
-        }
-        
-        
-    
-       }];
     return YES;
 }
 

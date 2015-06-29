@@ -13,20 +13,6 @@
     AddFriendTableViewCell *cell;
     
     NSMutableArray *Friend_list;
-    //NSString *User_Id;
-    NSString *friendstr;
-    
-    NSInteger custom_index;
-    
-    NSIndexPath *myindex;
-    
-    UIButton *AddFriendBtn;
-    NSMutableArray *remove_array;
-    UIButton *ChatBtn;
-    UILabel *user_name;
-    UILabel *descriptiohn;
-    UILabel *time;
-    UIImageView *user_profile_image;
 }
 @property (strong, nonatomic) IBOutlet UITableView *Friends_Table;
 
