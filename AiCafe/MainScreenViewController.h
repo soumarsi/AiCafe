@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Side_menu.h"
 #import "RS_JsonClass.h"
-
+#import "ChatRoomViewController.h"
 
 @interface MainScreenViewController : UIViewController<Slide_menu_delegate>
 {
