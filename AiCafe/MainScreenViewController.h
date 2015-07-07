@@ -13,7 +13,7 @@
 
 @interface MainScreenViewController : UIViewController<Slide_menu_delegate>
 {
-    NSString *user_image_data,*user_name_info,*user_business_info,*user_sex_info;
+    NSString *user_image_data,*userDP,*user_name_info,*user_business_info,*user_sex_info;
     
     Side_menu *sidemenu;
     RS_JsonClass *obj;

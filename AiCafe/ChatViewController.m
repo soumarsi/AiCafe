@@ -11,7 +11,7 @@
 #import "RS_JsonClass.h"
 #import "stickercell.h"
 
-@interface ChatViewController ()<UITextFieldDelegate>
+@interface ChatViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
     NSInteger flag;
     NSInteger charcount;
@@ -30,6 +30,16 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
+    
+    
+    _chat_table.userInteractionEnabled=YES;
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
+    gestureRecognizer.delegate=self;
+    [self.chat_table addGestureRecognizer:gestureRecognizer];
+    
+    
+    
     flag=1;
     myflag=0;
     i=5;
@@ -44,9 +54,9 @@
     
     _chatbox.autocorrectionType = UITextAutocorrectionTypeNo;
     
-    
-     [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height,_chatbox.frame.size.width,_send_button.frame.size.height)];
-    
+//    
+//     [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height,_chatbox.frame.size.width,_send_button.frame.size.height)];
+//    
     
     RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
     
@@ -223,7 +233,9 @@
         
         [_stickerCollection setHidden:YES];
         
-        if ([UIScreen mainScreen].bounds.size.width>320)
+        //_chatbox.frame.origin.y-_chat_table.frame.origin.y
+        
+       /* if ([UIScreen mainScreen].bounds.size.width>320)
         {
             _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,276);
             
@@ -234,7 +246,7 @@
             _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,174);
             
             
-        }
+        }*/
         
      
             
@@ -246,6 +258,23 @@
             
     [_smly setFrame:CGRectMake(_smly.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_smly.frame.size.height-kwheight-2,_smly.frame.size.width,_smly.frame.size.height)];
             flag=0;
+        
+       
+        if ([UIScreen mainScreen].bounds.size.width>320)
+        {
+            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chatbox.frame.origin.y-_chat_table.frame.origin.y);
+            
+            
+        }
+        else
+        {
+            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chatbox.frame.origin.y-_chat_table.frame.origin.y);
+            
+            
+        }
+        
+  
+        
         
         
         
@@ -759,9 +788,12 @@
 - (IBAction)send_button:(id)sender
 {
     keyboard=0;
-    [_chatbox resignFirstResponder];
     
-    [UIView animateWithDuration:0.5 animations:^{
+    [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_chatbox.frame.size.height-kwheight-2,_chatbox.frame.size.width, _chatbox.frame.size.height)];
+    
+    //[_chatbox resignFirstResponder];
+    
+  /*  [UIView animateWithDuration:0.5 animations:^{
         
         [_stickerCollection setHidden:YES];
         
@@ -787,6 +819,7 @@
         _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,435);
         
     }
+   */
     
     
     [self Load_url];
@@ -795,15 +828,24 @@
 -(void)Load_url
 {
     
+   
+    
     NSString *chattext=_chatbox.text;
     
     if ([chattext stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
     {
+       
         
         
     }
     else
     {
+       
+        
+        
+//        [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_chatbox.frame.size.height-kwheight-2,_chatbox.frame.size.width, _chatbox.frame.size.height)];
+//
+        
         NSData *data = [_chatbox.text dataUsingEncoding:NSNonLossyASCIIStringEncoding];
       //  NSString *goodValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
@@ -815,11 +857,13 @@
         NSLog(@"### Url Data ......%@",chattext);
         
         
-        [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-56,_chatbox.frame.size.width,_send_button.frame.size.height)];
         
-        [_send_button setFrame:CGRectMake(_send_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height,_send_button.frame.size.width, _send_button.frame.size.height)];
         
-        [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-56,27,56)];
+       // [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-56,_chatbox.frame.size.width,_send_button.frame.size.height)];
+        
+        //[_send_button setFrame:CGRectMake(_send_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height,_send_button.frame.size.width, _send_button.frame.size.height)];
+        
+        //[_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-56,27,56)];
         
         
         NSString *urlstring=[NSString stringWithFormat:@"%@sendChatUser.php",App_Domain_Url];
@@ -956,6 +1000,65 @@
     return flowLayout.itemSize;
     
 }
+
+
+
+
+
+-(void)hideKeyboard
+{
+    
+    
+    [self.view endEditing:YES];
+    
+    [_chatbox resignFirstResponder];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [_stickerCollection setHidden:YES];
+        
+        [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height,_chatbox.frame.size.width,_send_button.frame.size.height)];
+        
+        [_send_button setFrame:CGRectMake(_send_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height- _send_button.frame.size.height,_send_button.frame.size.width,_send_button.frame.size.height)];
+        
+        //     [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height,27,56)];
+        
+        [_smly setFrame:CGRectMake(_smly.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_smly.frame.size.height,_smly.frame.size.width,_smly.frame.size.height)];
+        
+       _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chatbox.frame.origin.y-_chat_table.frame.origin.y);
+        
+    }];
+    
+    
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+    [super touchesBegan:touches withEvent:event];
+    
+    [self.view endEditing:YES];
+    
+    [_chatbox resignFirstResponder];
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        [_stickerCollection setHidden:YES];
+        
+        [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height,_chatbox.frame.size.width,_send_button.frame.size.height)];
+        
+        [_send_button setFrame:CGRectMake(_send_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height- _send_button.frame.size.height,_send_button.frame.size.width,_send_button.frame.size.height)];
+        
+        //     [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height,27,56)];
+        
+        [_smly setFrame:CGRectMake(_smly.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_smly.frame.size.height,_smly.frame.size.width,_smly.frame.size.height)];
+        
+         _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chatbox.frame.origin.y-_chat_table.frame.origin.y);
+        
+    }];
+    
+}
+
 
 
 

@@ -294,7 +294,7 @@
     
     NSLog(@"##########...%@",str);
         
-        if ([str isEqualToString:@"1success"])
+        if ([str isEqualToString:@"success"])
         {
             
             UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Ai Cafe Account Successfully Created " delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];

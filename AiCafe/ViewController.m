@@ -178,6 +178,8 @@
                         [UserData setObject:[get_result objectForKey:@"id"] forKey:@"Login_User_id"];
                         [UserData setObject:[get_result objectForKey:@"name"] forKey:@"User_name"];
                         [UserData setObject:[get_result objectForKey:@"photo_thumb"] forKey:@"user_photo"];
+                        [UserData setObject:[get_result objectForKey:@"photo"] forKey:@"user_photo_mainScreen"];
+                        
                         [UserData setObject:[get_result objectForKey:@"sex"] forKey:@"user_sex"];
                         [UserData setObject:[get_result objectForKey:@"business"] forKey:@"user_business"];
                         [UserData setObject:[get_result objectForKey:@"about"] forKey:@"user_about"];

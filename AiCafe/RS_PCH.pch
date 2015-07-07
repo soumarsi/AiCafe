@@ -15,7 +15,7 @@
 
 #define App_Domain_Url @"http://www.esolz.co.in//lab9/aiCafe/iosapp/"
 
-#define Image_Domain_Url @"http://203.196.159.37/lab9/aiCafe/"
+#define Image_Domain_Url @"http://www.esolz.co.in//lab9/aiCafe/"
 
 
 #endif

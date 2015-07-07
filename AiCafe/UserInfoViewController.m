@@ -131,7 +131,7 @@
 {
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
     NSString *senderid = [UserData stringForKey:@"Login_User_id"];
-    RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+    globalobj=[[RS_JsonClass alloc]init];
     NSString *receiverid=[user_details objectForKey:@"id"];
     //NSLog(@"sender id...%@",senderid);
     NSString *urlstring=[NSString stringWithFormat:@"%@add_friend.php",App_Domain_Url];
@@ -148,21 +148,47 @@
     [globalobj GlobalDict:request Globalstr:@"string" Withblock:^(id result, NSError *error)
      {
          
-         if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
-         {
+         NSLog(@"Result..... %@",(NSArray *)result);
+         
+        // NSArray *checkArray=(NSArray *)result;
+         
+//         if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+        // if(checkArray.count==0)
+         //{
              
-         }
-         else
-         {
+             //handle array empty issue
+             
+        // }
+        // else
+         //{
              NSString *friendstr;
              friendstr=result;
              NSLog(@"result-- %@",friendstr);
-             UIAlertView *message = [[UIAlertView alloc] initWithTitle:friendstr
+         if([result isEqualToString:@"already send"])
+         {
+         
+             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Friend request already sent"
                                                                message:Nil
                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
              
              [message show];
+             
          }
+         
+         else if([friendstr isEqualToString:@"success"])
+         {
+         
+            
+             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Friend request sent"
+                                                               message:Nil
+                                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             
+             [message show];
+         
+         }
+         
+         
+         //}
          
        
      }];
