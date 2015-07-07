@@ -19,6 +19,8 @@
 		5AF20BCC1B3C1BFC00824C69 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF20BCA1B3C1BFC00824C69 /* AVFoundation.framework */; };
 		5AF20BCD1B3C1BFC00824C69 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AF20BCB1B3C1BFC00824C69 /* AVKit.framework */; };
 		5AF20BD11B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5AF20BD01B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 */; };
+		5B9D6CDF1B427AC100367471 /* ChatRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D6CDB1B427AC000367471 /* ChatRoomViewController.m */; };
+		5B9D6CE01B427AC100367471 /* FriendCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9D6CDE1B427AC100367471 /* FriendCollectionViewCell.m */; };
 		81DAFF4B1B2AA1D900485B68 /* ChatInboxTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF4A1B2AA1D900485B68 /* ChatInboxTableViewCell.m */; };
 		81DAFF4E1B2AA30E00485B68 /* ChatInboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF4D1B2AA30E00485B68 /* ChatInboxViewController.m */; };
 		81DAFF511B2AA49300485B68 /* CouponFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DAFF501B2AA49300485B68 /* CouponFilterViewController.m */; };
@@ -100,6 +102,10 @@
 		5AF20BCA1B3C1BFC00824C69 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5AF20BCB1B3C1BFC00824C69 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		5AF20BD01B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "sounds-874-gets-in-the-way.mp3"; sourceTree = "<group>"; };
+		5B9D6CDB1B427AC000367471 /* ChatRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatRoomViewController.m; sourceTree = "<group>"; };
+		5B9D6CDC1B427AC100367471 /* ChatRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatRoomViewController.h; sourceTree = "<group>"; };
+		5B9D6CDD1B427AC100367471 /* FriendCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendCollectionViewCell.h; sourceTree = "<group>"; };
+		5B9D6CDE1B427AC100367471 /* FriendCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendCollectionViewCell.m; sourceTree = "<group>"; };
 		81DAFF491B2AA1D900485B68 /* ChatInboxTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInboxTableViewCell.h; sourceTree = "<group>"; };
 		81DAFF4A1B2AA1D900485B68 /* ChatInboxTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatInboxTableViewCell.m; sourceTree = "<group>"; };
 		81DAFF4C1B2AA30E00485B68 /* ChatInboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatInboxViewController.h; sourceTree = "<group>"; };
@@ -299,6 +305,10 @@
 		F927AD3B1B0DD76F00F0BC34 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5B9D6CDB1B427AC000367471 /* ChatRoomViewController.m */,
+				5B9D6CDC1B427AC100367471 /* ChatRoomViewController.h */,
+				5B9D6CDD1B427AC100367471 /* FriendCollectionViewCell.h */,
+				5B9D6CDE1B427AC100367471 /* FriendCollectionViewCell.m */,
 				5AF20BD01B3C202800824C69 /* sounds-874-gets-in-the-way.mp3 */,
 				81DB9E9D1B3C16B1009340BF /* FriendRequestViewController.h */,
 				81DB9E9E1B3C16B1009340BF /* FriendRequestViewController.m */,
@@ -675,6 +685,7 @@
 				F95556091B0A034F0013B260 /* ViewController.m in Sources */,
 				F927AD411B0DF0FA00F0BC34 /* MainScreenViewController.m in Sources */,
 				F95159851B12EAAF00448913 /* UIButton+WebCache.m in Sources */,
+				5B9D6CE01B427AC100367471 /* FriendCollectionViewCell.m in Sources */,
 				F95556061B0A034F0013B260 /* AiCafe.xcdatamodeld in Sources */,
 				5AF20BB81B3BDF7400824C69 /* stickercell.m in Sources */,
 				F951597E1B12EAAF00448913 /* SDImageCache.m in Sources */,
@@ -688,6 +699,7 @@
 				F95159861B12EAAF00448913 /* UIImage+GIF.m in Sources */,
 				F951597D1B12EAAF00448913 /* NSData+ImageContentType.m in Sources */,
 				F95159881B12EAAF00448913 /* UIImage+WebP.m in Sources */,
+				5B9D6CDF1B427AC100367471 /* ChatRoomViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

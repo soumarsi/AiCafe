@@ -280,24 +280,24 @@
     if (sender.tag==7)
     {
         
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"settingviewcontroller"];
+        MainScreenViewController *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"settingviewcontroller"];
        
         //[self presentViewController:obj animated:YES completion:nil];
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
+        [self PushViewController:obj1 WithAnimation:kCAMediaTimingFunctionEaseIn];
         
     }
     else if (sender.tag==8)
     {
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"aboutviewcontroller"];
+        MainScreenViewController *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"aboutviewcontroller"];
         
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
+        [self PushViewController:obj1 WithAnimation:kCAMediaTimingFunctionEaseIn];
     }
     
     else if (sender.tag==1)
     {
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"Main_Page"];
+        MainScreenViewController *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"Main_Page"];
         
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
+        [self PushViewController:obj1 WithAnimation:kCAMediaTimingFunctionEaseIn];
     }
     
     else if (sender.tag==5)
@@ -309,15 +309,21 @@
     
     else if (sender.tag==2)
     {
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"storeinformation"];
+        MainScreenViewController *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"storeinformation"];
         
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
+        [self PushViewController:obj1 WithAnimation:kCAMediaTimingFunctionEaseIn];
+    }
+    else if (sender.tag==3)
+    {
+        ChatRoomViewController *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"ChatRoomViewControllersid"];
+        
+        [self PushViewController:obj1 WithAnimation:kCAMediaTimingFunctionEaseIn];
     }
     else if (sender.tag==6)
     {
-        MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"frndrequest"];
+        MainScreenViewController *obj1=[self.storyboard instantiateViewControllerWithIdentifier:@"frndrequest"];
         
-        [self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
+        [self PushViewController:obj1 WithAnimation:kCAMediaTimingFunctionEaseIn];
     }
     else if (sender.tag==9)
     {

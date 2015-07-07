@@ -23,6 +23,8 @@
     AVAudioPlayer *player;
     
     BOOL keyboard;
+    
+    NSMutableAttributedString *aAttrString1;
 }
 - (IBAction)openStickerview:(id)sender;
 @property (strong, nonatomic) IBOutlet UICollectionView *stickerCollection;
