@@ -23,7 +23,7 @@
 -(void)GlobalDict:(NSMutableURLRequest *)parameter Globalstr:(NSString *)parametercheck Withblock:(Urlresponceblock)responce
 {
     
-
+    
     
     //NSURL *url = [NSURL URLWithString:parameter];
     //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];

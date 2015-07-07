@@ -121,12 +121,27 @@
          }
          else
          {
-           //  NSLog(@"All User Data....%@",request);
              
              Friend_list_array=[[NSMutableArray alloc]init];
              Friend_list_array=[[result objectForKey:@"details"] mutableCopy];
              
              [FriendGroupCollectionView reloadData];
+             
+             alluserID=[[NSString alloc]init];
+             
+             for (int idloop=0; idloop<Friend_list_array.count; idloop++)
+             {
+                 if (alluserID.length==0)
+                 {
+                     alluserID=[NSString stringWithFormat:@"%@",[[Friend_list_array objectAtIndex:idloop]objectForKey:@"id"]];
+                 }
+                 else
+                 {
+                      alluserID=[NSString stringWithFormat:@"%@,%@",alluserID,[[Friend_list_array objectAtIndex:idloop]objectForKey:@"id"]];
+                 }
+             }
+             
+            // NSLog(@"All User id....%@",alluserID);
              
          }
          
@@ -251,7 +266,7 @@
     
 //    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=@""&start=0&end=250&type=s&stickername=%@",login_user_id,Login_user_Id,[NSString stringWithFormat:@"%ld.png",indexPath.row+1]];
         
-        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=hello&type=s&stickername=%@&chat_type=G",login_user_id,Login_user_Id,[NSString stringWithFormat:@"%ld.png",indexPath.row+1]];
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=hello&type=s&stickername=%@&chat_type=G",login_user_id,alluserID,[NSString stringWithFormat:@"%ld.png",indexPath.row+1]];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
@@ -380,7 +395,7 @@
         
        // NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m",login_user_id,@"20",chattext];
         
-         NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&type=m&stickername=abc&chat_type=G",login_user_id,Login_user_Id,chattext];
+         NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&type=m&stickername=abc&chat_type=G",login_user_id,alluserID,chattext];
         
         [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         
@@ -608,7 +623,7 @@
     
     [request setHTTPMethod:@"POST"];
     
-    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=1&end=250",login_user_id,Login_user_Id];
+    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=1&end=250",login_user_id,alluserID];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     

@@ -36,6 +36,8 @@
     CGFloat kwheight;
     NSInteger i;
     NSInteger up;
+    
+    NSString *alluserID;
 }
 - (IBAction)ChatSendClick:(id)sender;
 
