@@ -15,7 +15,8 @@
 
 @implementation ChatRoomViewController
 @synthesize ChatTable,FriendGroupCollectionView,txtVwWriteChat,btnSend,btnSmly,stickerCollection;
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     NSLog(@"View did load...");
     
@@ -517,9 +518,8 @@
 }
 -(void)ReceiveNotification
 {
+    NSLog(@"######## hit");
     [self playMusic];
-    
-    
     [self viewDidLoad];
     
 }
@@ -699,7 +699,6 @@
         }else{
             
             
-             NSLog(@"Here in the condition...");
             
             
             chat_person_image=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-chat_person_image.frame.size.width,+10, 75,75)];

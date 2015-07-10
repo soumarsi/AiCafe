@@ -54,21 +54,13 @@
         if([[NSString stringWithFormat:@"%@",[channelEvent.data objectForKey:@"rec_id"]] isEqualToString:login_user_id])
         {
             
-            NSString *type_check=[NSString stringWithFormat:@"%@",[channelEvent.data objectForKey:@"chat_type"]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"DataEdited" object:self];
             
-            if ([type_check isEqualToString:@"G"])
-            {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"GroupDataEdited" object:self];
-
-            }
-            else
-            {
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"DataEdited" object:self];
-
-            }
-        
-            
-            
+        }
+        else
+        {
+           
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"GroupDataEdited" object:self];
         }
         
         

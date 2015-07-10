@@ -213,6 +213,7 @@
 }
 -(void)ReceiveNotification
 {
+    
     [self playMusic];
     [self viewDidLoad];
     
