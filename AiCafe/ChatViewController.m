@@ -204,17 +204,16 @@
 }
 - (void)playMusic
 {
-    NSLog(@"playingg.....");
+    
     NSString *path = [[NSBundle mainBundle] pathForResource:@"sounds-874-gets-in-the-way" ofType:@"mp3"];
     NSError *error = nil;
     NSURL *url = [NSURL fileURLWithPath:path];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
     [player play];
 }
--(void)ReceiveNotification{
+-(void)ReceiveNotification
+{
     [self playMusic];
-    
-    
     [self viewDidLoad];
     
 }

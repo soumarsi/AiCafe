@@ -326,38 +326,6 @@
     }
 
     
-//    [txtVwWriteChat resignFirstResponder];
-//    
-//    [UIView animateWithDuration:0.5 animations:^{
-//        
-//        [stickerCollection setHidden:YES];
-//        
-//        [txtVwWriteChat setFrame:CGRectMake(txtVwWriteChat.frame.origin.x,[UIScreen mainScreen].bounds.size.height-btnSend.frame.size.height,txtVwWriteChat.frame.size.width,btnSend.frame.size.height)];
-//        
-//        [btnSend setFrame:CGRectMake(btnSend.frame.origin.x,[UIScreen mainScreen].bounds.size.height- btnSend.frame.size.height,btnSend.frame.size.width,btnSend.frame.size.height)];
-//        
-//   //     [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height,27,56)];
-//        
-//        [btnSmly setFrame:CGRectMake(btnSmly.frame.origin.x,[UIScreen mainScreen].bounds.size.height-btnSmly.frame.size.height,btnSmly.frame.size.width,btnSmly.frame.size.height)];
-//        
-//        ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,txtVwWriteChat.frame.origin.y-(FriendGroupCollectionView.frame.origin.y+FriendGroupCollectionView.frame.size.height));
-//        
-//    }];
-    
-    
-    
-    /*
-    if ([UIScreen mainScreen].bounds.size.width>320)
-    {
-        ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width, 530);
-        
-    }
-    else
-    {
-        ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,435);
-        
-    }
-    */
     
 }
 -(void)Load_url
@@ -534,26 +502,27 @@
 }
 -(void)viewWillAppear:(BOOL)animated{
     
-   // [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ReceiveNotification) name:@"DataEdited" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ReceiveNotification) name:@"GroupDataEdited" object:nil];
     
     
 }
-//- (void)playMusic
-//{
-//    NSLog(@"playingg.....");
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"sounds-874-gets-in-the-way" ofType:@"mp3"];
-//    NSError *error = nil;
-//    NSURL *url = [NSURL fileURLWithPath:path];
-//    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-//[player play];
-//}
-//-(void)ReceiveNotification{
-//    [self playMusic];
-//    
-//    
-//    [self viewDidLoad];
-//    
-//}
+- (void)playMusic
+{
+    NSLog(@"playingg.....");
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"sounds-874-gets-in-the-way" ofType:@"mp3"];
+    NSError *error = nil;
+    NSURL *url = [NSURL fileURLWithPath:path];
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    [player play];
+}
+-(void)ReceiveNotification
+{
+    [self playMusic];
+    
+    
+    [self viewDidLoad];
+    
+}
 
 - (void)keyboardWillShow:(NSNotification *)notification
 {

@@ -19,7 +19,8 @@
 
 #define kPUSHER_HOST @"ws.pusherapp.com"
 
-typedef NS_ENUM(NSUInteger, PTPusherAutoReconnectMode) {
+typedef NS_ENUM(NSUInteger, PTPusherAutoReconnectMode)
+{
   PTPusherAutoReconnectModeNoReconnect,
   PTPusherAutoReconnectModeReconnectImmediately,
   PTPusherAutoReconnectModeReconnectWithConfiguredDelay,

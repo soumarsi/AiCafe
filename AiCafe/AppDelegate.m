@@ -49,15 +49,26 @@
         NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
         NSString *login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
         
+        NSLog(@"Getting Cloud Data .......%@",channelEvent.data);
         
-        NSLog(@"chanel.data....... :%@.....+++++,.........%@",[channelEvent.data objectForKey:@"rec_id"],login_user_id);
-        
-        
-        if([[NSString stringWithFormat:@"%@",[channelEvent.data objectForKey:@"rec_id"]] isEqualToString:login_user_id]){
+        if([[NSString stringWithFormat:@"%@",[channelEvent.data objectForKey:@"rec_id"]] isEqualToString:login_user_id])
+        {
             
-             NSLog(@"same id....%@++++++++%@",[channelEvent.data objectForKey:@"rec_id"],login_user_id);
+            NSString *type_check=[NSString stringWithFormat:@"%@",[channelEvent.data objectForKey:@"chat_type"]];
+            
+            if ([type_check isEqualToString:@"G"])
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"GroupDataEdited" object:self];
+
+            }
+            else
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"DataEdited" object:self];
+
+            }
         
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"DataEdited" object:self];
+            
+            
         }
         
         
