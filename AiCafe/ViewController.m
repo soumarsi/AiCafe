@@ -156,14 +156,18 @@
 [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
         {
             
+            _login_btn.userInteractionEnabled=YES;
+            
       if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
       {
-          
+          UIAlertView *Alert = [[UIAlertView alloc]initWithTitle:nil message:@"Login Failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+          [Alert show];
+          _login_btn.userInteractionEnabled=YES;
       }
-            else
-            {
-                if([[result objectForKey:@"auth"] isEqualToString:@"login failed"])
-                {
+    else
+        {
+            if([[result objectForKey:@"auth"] isEqualToString:@"login failed"])
+        {
                     
                 }
                 else

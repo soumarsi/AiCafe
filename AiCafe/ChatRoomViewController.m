@@ -727,51 +727,121 @@
         {
             
             
-            chat_person_image=[[UIImageView alloc]initWithFrame:CGRectMake(0,+10, 75,75)];
+            
+            UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
+            
+            NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
+            
+            
+            
+           NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] attributes: arialDict];
+            
+            
+            
+            CGRect rect;
+            
+            
+            
+            rect =[aAttrString1 boundingRectWithSize:CGSizeMake(290, 800) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+
+            
+            UIView *chatBackView = [[UIView alloc]initWithFrame:CGRectMake(80, 7.5f, [UIScreen mainScreen].bounds.size.width-85, rect.size.height+70)];
+            
+            [chatBackView setBackgroundColor:[UIColor colorWithRed:(59.0f/255.0f) green:(37.0f/255.0f) blue:(13.0f / 255.0f) alpha:0.7f]];
+            
+            [celltbl addSubview:chatBackView];
+            
+            UIBezierPath *maskPath;
+            
+            maskPath = [UIBezierPath bezierPathWithRoundedRect:chatBackView.bounds
+                        
+                                             byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight|UIRectCornerBottomRight)
+                        
+                                                   cornerRadii:CGSizeMake(10.0, 10.0)];
+            
+            
+            
+            CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+            
+            maskLayer.frame = self.view.bounds;
+            
+            maskLayer.path = maskPath.CGPath;
+            
+            chatBackView.layer.mask = maskLayer;
+            
+            
+            
+            
+            
+            
+            
+            UIImageView *imageCorner = [[UIImageView alloc]initWithFrame:CGRectMake(55, rect.size.height+70-52.5f, 25, 60)];
+            
+            [imageCorner setImage:[UIImage imageNamed:@"cornerimageown"]];
+            
+            [celltbl addSubview:imageCorner];
+            
+            
+            chat_person_image=[[UIImageView alloc]initWithFrame:CGRectMake(0,rect.size.height+70-69, 75,75)];
             chat_person_image.layer.cornerRadius=(75.0f/2.0f);
             chat_person_image.clipsToBounds=YES;
             chat_person_image.contentMode=UIViewContentModeScaleAspectFill;
-            
             [celltbl addSubview:chat_person_image];
-            
-            
             [chat_person_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
             
             
-            chat_design=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x+55,5,[UIScreen mainScreen].bounds.size.width-60,80)];
-            
-            [celltbl addSubview:chat_design];
-            
-            
-            chat_design.image=[UIImage imageNamed:@"chat_design_img"];
+//            chat_design=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x+55,5,[UIScreen mainScreen].bounds.size.width-60,80)];
+//            
+//            [celltbl addSubview:chat_design];
+//            
+//            
+//            chat_design.image=[UIImage imageNamed:@"chat_design_img"];
             
             
             
             user_name=[[UILabel alloc]initWithFrame:CGRectMake(47,5, 150, 20)];
+            
             user_name.textColor=[UIColor colorWithRed:(204.0f/255.0f) green:(162.0f/255.0f) blue:(102.0f/255.0f) alpha:1];
+            
             user_name.font=[UIFont fontWithName:@"OpenSans-Semibold" size:17];
+            
             user_name.textAlignment=NSTextAlignmentLeft;
+            
             user_name.text=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"name"]];
-            [chat_design addSubview:user_name];
             
+            [chatBackView addSubview:user_name];
             
-        //    time=[[UILabel alloc]initWithFrame:CGRectMake(chat_design.frame.size.width-60,5, 150, 20)];
-             time=[[UILabel alloc]initWithFrame:CGRectMake(chat_design.frame.origin.x+chat_design.frame.size.width-150,5, 150, 20)];
+            //
+            
+            time=[[UILabel alloc]initWithFrame:CGRectMake(chatBackView.frame.size.width-90,5, 150, 20)];
+            
             time.textColor=[UIColor colorWithRed:(204.0f/255.0f) green:(162.0f/255.0f) blue:(102.0f/255.0f) alpha:1];
+            
             time.font=[UIFont fontWithName:@"OpenSans-Semibold" size:15];
+            
             time.textAlignment=NSTextAlignmentLeft;
+            
             time.text=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"chat_date"]];
-            [chat_design addSubview:time];
+            
+            [chatBackView addSubview:time];
             
             
-            message=[[UILabel alloc]initWithFrame:CGRectMake(47,45, 150, 20)];
+            
+            message=[[UILabel alloc]initWithFrame:CGRectMake(47,25, 230, rect.size.height+50)];
+            
             message.textColor=[UIColor whiteColor];
-            message.font=[UIFont fontWithName:@"OpenSans-Semibold" size:16];
-            message.textAlignment=NSTextAlignmentLeft;
-            message.text=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]];
-            NSLog(@"Message: %@",message.text);
-            [chat_design addSubview:message];
             
+            message.numberOfLines =0;
+            
+            message.clipsToBounds = YES;
+            
+            message.attributedText = aAttrString1;
+            
+            message.font=[UIFont fontWithName:@"OpenSans-Semibold" size:16];
+            
+            message.textAlignment=NSTextAlignmentLeft;
+            
+            [chatBackView addSubview:message];
             
             
             
@@ -779,47 +849,143 @@
         else
         {
             
-            chat_person_image=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-chat_person_image.frame.size.width,+10, 75,75)];
+            UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
+            
+            NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
+            
+            NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] attributes: arialDict];
+            
+            
+            
+            CGRect rect;
+            
+            
+            
+            rect =[aAttrString1 boundingRectWithSize:CGSizeMake(290, 800) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+            
+            UIView *chatBackView = [[UIView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x+5, 7.5f, [UIScreen mainScreen].bounds.size.width-85, rect.size.height+70)];
+            
+            [chatBackView setBackgroundColor:[UIColor colorWithRed:(250.0f/255.0f) green:(250.0f/255.0f) blue:(250.0f / 255.0f) alpha:0.8f]];
+            
+            [celltbl addSubview:chatBackView];
+            
+            UIBezierPath *maskPath;
+            
+            maskPath = [UIBezierPath bezierPathWithRoundedRect:chatBackView.bounds
+                        
+                                             byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight|UIRectCornerBottomLeft)
+                        
+                                                   cornerRadii:CGSizeMake(10.0, 10.0)];
+            
+            
+            
+            CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+            
+            maskLayer.frame = self.view.bounds;
+            
+            maskLayer.path = maskPath.CGPath;
+            
+            chatBackView.layer.mask = maskLayer;
+            
+            
+            
+            
+            
+            
+            
+            UIImageView *imageCorner = [[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-80, rect.size.height+70-52.5f, 25, 60)];
+            
+            [imageCorner setImage:[UIImage imageNamed:@"cornerimagewhite"]];
+            
+            [celltbl addSubview:imageCorner];
+            
+            
+            
+            
+            
+            chat_person_image=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-chat_person_image.frame.size.width,rect.size.height+70-69, 75,75)];
+            
             chat_person_image.layer.cornerRadius=(75.0f/2.0f);
+            
             chat_person_image.clipsToBounds=YES;
+            
             chat_person_image.contentMode=UIViewContentModeScaleAspectFill;
+            
+            
             
             [celltbl addSubview:chat_person_image];
             
             
-            [chat_person_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
             
             
-            chat_design=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x+5,5,[UIScreen mainScreen].bounds.size.width-60,80)];
             
-            [celltbl addSubview:chat_design];
+            [chat_person_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options: (0) == 0?SDWebImageRefreshCached : 0];
             
-            chat_design.image=[UIImage imageNamed:@"chat_design_img2"];
+            
+            
+            
+            
+            //            chat_design=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x+5,5,[UIScreen mainScreen].bounds.size.width-60,80)];
+            
+            //
+            
+            //            [celltbl addSubview:chat_design];
+            
+            
+            
+            
+            
+            
+            
             
             
             user_name=[[UILabel alloc]initWithFrame:CGRectMake(15,5, 150, 20)];
+            
             user_name.textColor=[UIColor colorWithRed:(204.0f/255.0f) green:(162.0f/255.0f) blue:(102.0f/255.0f) alpha:1];
+            
             user_name.font=[UIFont fontWithName:@"OpenSans-Semibold" size:17];
+            
             user_name.textAlignment=NSTextAlignmentLeft;
+            
             user_name.text=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"name"]];
-            [chat_design addSubview:user_name];
             
-            message=[[UILabel alloc]initWithFrame:CGRectMake(15,45, 150, 20)];
+            [chatBackView addSubview:user_name];
+            
+            
+            
+            message=[[UILabel alloc]initWithFrame:CGRectMake(15,30, 230, rect.size.height+55)];
+            
             message.textColor=[UIColor blackColor];
+            
             message.font=[UIFont fontWithName:@"OpenSans-Semibold" size:16];
+            
             message.textAlignment=NSTextAlignmentLeft;
-            message.text=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]];
-            NSLog(@"Message: %@",message.text);
-            [chat_design addSubview:message];
+            
+            message.numberOfLines = 0;
+            
+            message.clipsToBounds = YES;
+            
+            message.attributedText =aAttrString1;
+            
+            [chatBackView addSubview:message];
             
             
-             time=[[UILabel alloc]initWithFrame:CGRectMake(chat_design.frame.origin.x+chat_design.frame.size.width-150,5, 150, 20)];
-          //  time=[[UILabel alloc]initWithFrame:CGRectMake(chat_design.frame.size.width-80,5, 150, 20)];
+            
+            
+            
+            
+            
+            time=[[UILabel alloc]initWithFrame:CGRectMake(chatBackView.frame.size.width-90,5, 150, 20)];
+            
             time.textColor=[UIColor colorWithRed:(204.0f/255.0f) green:(162.0f/255.0f) blue:(102.0f/255.0f) alpha:1];
+            
             time.font=[UIFont fontWithName:@"OpenSans-Semibold" size:15];
+            
             time.textAlignment=NSTextAlignmentLeft;
+            
             time.text=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"chat_date"]];
-            [chat_design addSubview:time];
+            
+            [chatBackView addSubview:time];
             
         }
         
@@ -836,7 +1002,20 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
+    
+    NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
+    
+    NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] attributes: arialDict];
+    
+    
+    
+    CGRect rect;
+    
+    
+    
+    rect =[aAttrString1 boundingRectWithSize:CGSizeMake(290, 800) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    return rect.size.height+80;
 }
 
 - (IBAction)BackClick:(id)sender
