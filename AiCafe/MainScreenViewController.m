@@ -238,6 +238,31 @@
 
     
 }
+-(void)viewDidDisappear:(BOOL)animated
+{
+    flag=YES;
+    
+    
+    
+    [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:0.6
+                        options:1 animations:^{
+                            
+                            
+                            sidemenu.frame=CGRectMake(-[UIScreen mainScreen].bounds.size.width*0.7f,0,sidemenu.frame.size.width,[UIScreen mainScreen].bounds.size.height);
+                            
+                            _baseView.frame=CGRectMake(([UIScreen mainScreen].bounds.size.width-[UIScreen mainScreen].bounds.size.width)-20,_baseView.frame.origin.y,_baseView.frame.size.width,_baseView.frame.size.height);
+                            
+                            
+                        }
+     
+                     completion:^(BOOL finished)
+     {
+         
+         
+         
+     }];
+
+}
 - (IBAction)PushToLoyaltiDetails:(id)sender {
     MainScreenViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Loyalti_Details"];
     //[self.navigationController pushViewController:Pushobj animated:YES];

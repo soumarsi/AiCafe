@@ -20,6 +20,14 @@
     [super viewDidLoad];
     NSLog(@"View did load...");
     
+    
+    FriendGroupCollectionView.layer.masksToBounds = NO;
+    FriendGroupCollectionView.layer.cornerRadius = 8;
+    FriendGroupCollectionView.layer.shadowOffset = CGSizeMake(-19,12);
+    FriendGroupCollectionView.layer.shadowRadius = 4;
+    FriendGroupCollectionView.layer.shadowOpacity = 0.4;
+    
+    
     ChatTable.userInteractionEnabled=YES;
     
     UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
@@ -89,7 +97,7 @@
          [self allUserUrl];
          if(chat_Data_array.count > 0){
              
-             [ChatTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+             [ChatTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
              
          }
      }];
@@ -696,10 +704,9 @@
             [celltbl addSubview:cmngimg];
             
             
-        }else{
-            
-            
-            
+        }
+        else
+        {
             
             chat_person_image=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-chat_person_image.frame.size.width,+10, 75,75)];
             chat_person_image.layer.cornerRadius=(75.0f/2.0f);
@@ -773,8 +780,6 @@
             
             
             
-            
-            
             UIImageView *imageCorner = [[UIImageView alloc]initWithFrame:CGRectMake(55, rect.size.height+70-52.5f, 25, 60)];
             
             [imageCorner setImage:[UIImage imageNamed:@"cornerimageown"]];
@@ -799,7 +804,7 @@
             
             
             
-            user_name=[[UILabel alloc]initWithFrame:CGRectMake(47,5, 150, 20)];
+            user_name=[[UILabel alloc]initWithFrame:CGRectMake(28,5, 150, 20)];
             
             user_name.textColor=[UIColor colorWithRed:(204.0f/255.0f) green:(162.0f/255.0f) blue:(102.0f/255.0f) alpha:1];
             
@@ -827,7 +832,7 @@
             
             
             
-            message=[[UILabel alloc]initWithFrame:CGRectMake(47,25, 230, rect.size.height+50)];
+            message=[[UILabel alloc]initWithFrame:CGRectMake(28,25, 230, rect.size.height+50)];
             
             message.textColor=[UIColor whiteColor];
             
@@ -1020,7 +1025,16 @@
 
 - (IBAction)BackClick:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self POPViewController];
+}
+-(void)POPViewController
+{
+    CATransition *Transition=[CATransition animation];
+    [Transition setDuration:0.7f];
+    [Transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    [Transition setType:kCAMediaTimingFunctionEaseOut];
+    [[[[self navigationController] view] layer] addAnimation:Transition forKey:nil];
+    [[self navigationController] popViewControllerAnimated:NO];
 }
 
 

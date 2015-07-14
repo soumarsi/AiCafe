@@ -97,7 +97,7 @@
          
          if(chat_Data_array.count > 0){
              
-             [_chat_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+             [_chat_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
              
          }
      }];
@@ -900,8 +900,20 @@
 }
 - (IBAction)back_button:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self POPViewController];
 }
+
+-(void)POPViewController
+{
+    CATransition *Transition=[CATransition animation];
+    [Transition setDuration:0.7f];
+    [Transition setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    [Transition setType:kCAMediaTimingFunctionEaseOut];
+    [[[[self navigationController] view] layer] addAnimation:Transition forKey:nil];
+    [[self navigationController] popViewControllerAnimated:NO];
+}
+
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
