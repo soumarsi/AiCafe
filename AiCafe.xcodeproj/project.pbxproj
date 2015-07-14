@@ -305,6 +305,7 @@
 		F927AD3B1B0DD76F00F0BC34 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5AF20BB91B3BDFE400824C69 /* sticker */,
 				5B9D6CDB1B427AC000367471 /* ChatRoomViewController.m */,
 				5B9D6CDC1B427AC100367471 /* ChatRoomViewController.h */,
 				5B9D6CDD1B427AC100367471 /* FriendCollectionViewCell.h */,
@@ -314,7 +315,6 @@
 				81DB9E9E1B3C16B1009340BF /* FriendRequestViewController.m */,
 				8FC8AD4C1B3C0BB60095641B /* AiCafeFriendsViewController.h */,
 				8FC8AD4D1B3C0BB60095641B /* AiCafeFriendsViewController.m */,
-				5AF20BB91B3BDFE400824C69 /* sticker */,
 				81DC03621B318B08004E27A5 /* UserLikeViewController.h */,
 				5AF20BB61B3BDF7400824C69 /* stickercell.h */,
 				5AF20BB71B3BDF7400824C69 /* stickercell.m */,
@@ -817,7 +817,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AiCafe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -832,7 +832,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AiCafe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

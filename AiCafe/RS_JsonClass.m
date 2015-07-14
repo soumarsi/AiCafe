@@ -27,19 +27,16 @@
     
     //NSURL *url = [NSURL URLWithString:parameter];
     //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
-    connection = [[NSURLConnection alloc] initWithRequest:parameter delegate:self];
     
+    connection = [[NSURLConnection alloc] initWithRequest:parameter delegate:self];
     check  = parametercheck;
     connection=nil;
     _responce=[responce copy];
     
 }
 
--(NSString *) GlobalDict_image:(NSString *)parameter Globalstr_image:(NSString *)parametercheck globalimage:(NSData *)imageparameter
+-(void) GlobalDict_image:(NSString *)parameter Globalstr_image:(NSString *)parametercheck globalimage:(NSData *)imageparameter Withblock:(Urlresponceblock)responce
 {
-    
- 
-
     
   //  check  = parametercheck;
     
@@ -79,18 +76,11 @@
         
         
     }
-
     
-    NSURLResponse *response = nil;
-    NSError *error;
-    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-  
-    
-    
-    NSString *result = [[NSString alloc]initWithData:returnData encoding:NSUTF8StringEncoding];
-
-    
-    return result;
+    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    check  = parametercheck;
+    connection=nil;
+    _responce=[responce copy];
     
 }
 - (void)connection:(NSURLConnection*)connection didReceiveResponse:(NSURLResponse *)response

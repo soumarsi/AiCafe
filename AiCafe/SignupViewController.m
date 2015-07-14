@@ -238,18 +238,47 @@
     [_confirm_password resignFirstResponder];
     [_current_business resignFirstResponder];
     
+    UIColor *placeholder_color=[UIColor redColor];
     
-    if ([_email.text isEqualToString:@""])
+    
+    if ([_name.text isEqualToString:@""])
+    {
+        _name.text=@"";
+        _name.placeholder=@"Please enter your name !";
+        
+        [_name setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+        
+    }
+    else if ([_name.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
+    {
+        _name.text=@"";
+        _name.placeholder=@"Please enter your name !";
+        
+        [_name setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+    }
+    else if ([_sex.text isEqualToString:@""])
+    {
+        
+        _sex.placeholder=@"Please select your gender !";
+        
+        [_sex setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+
+    }
+    else if ([_email.text isEqualToString:@""])
     {
         
         _email.placeholder=@"Please enter email !";
+        
+        [_email setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
     }
+
     else if (![ self NSStringIsValidEmail:_email.text])
     {
         
         UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Not a valid email !" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
         
         [loginAlert show];
+        
     }
     else if ([_email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
     {
@@ -257,29 +286,23 @@
         
         [loginAlert show];
     }
-    else if ([_name.text isEqualToString:@""])
-    {
-        _name.text=@"";
-      _name.placeholder=@"Please enter your name !";
-    }
-    else if ([_name.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
-    {
-        _name.text=@"";
-        _name.placeholder=@"Please enter your name !";
-    }
-
     else if ([_password.text isEqualToString:@""])
     {
         _password.placeholder=@"Please enter password !";
+        
+        [_password setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
     }
     else if (![_password.text isEqualToString:_confirm_password.text])
     {
         _confirm_password.text=@"";
         _confirm_password.placeholder=@"Password does not match !";
+        
+         [_password setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
     }
     else
         
     {
+        
 
      [_mainScroll setContentOffset:CGPointMake(0,0) animated:YES];
     
@@ -289,29 +312,45 @@
     
     NSString *urlString=[NSString stringWithFormat:@"%@registration.php?name=%@&sex=%@&email=%@&password=%@&about=%@&business=%@&dob=%@",App_Domain_Url,_name.text,_sex.text,_email.text,_confirm_password.text,_about_you.text,_current_business.text,_DOB.text];
     
- NSString *str=[globalobj GlobalDict_image:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] Globalstr_image:@"string" globalimage:data];
-  
-    
-    NSLog(@"##########...%@",str);
         
-        if ([str isEqualToString:@"success"])
+        [globalobj GlobalDict_image:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] Globalstr_image:@"array" globalimage:data Withblock:^(id result, NSError *error)
         {
+        
+            if([[result objectForKey:@"status"] isEqualToString:@"success"])
+            {
+                NSMutableDictionary *get_result=[[result objectForKey:@"details" ]mutableCopy];
+                
+                NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+                
+                [UserData setObject:[get_result objectForKey:@"id"] forKey:@"Login_User_id"];
+                [UserData setObject:[get_result objectForKey:@"name"] forKey:@"User_name"];
+                [UserData setObject:[get_result objectForKey:@"photo_thumb"] forKey:@"user_photo"];
+                [UserData setObject:[get_result objectForKey:@"photo"] forKey:@"user_photo_mainScreen"];
+                
+                [UserData setObject:[get_result objectForKey:@"sex"] forKey:@"user_sex"];
+                [UserData setObject:[get_result objectForKey:@"business"] forKey:@"user_business"];
+                [UserData setObject:[get_result objectForKey:@"about"] forKey:@"user_about"];
+                
+                [UserData synchronize];
+                
+           UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Ai Cafe Account Successfully Created " delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             
-            UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Ai Cafe Account Successfully Created " delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-            
-            [loginAlert show];
-            
-            
-            SignupViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Login_Page"];
-            [self.navigationController pushViewController:Pushobj animated:YES];
+                [loginAlert show];
 
-        }
-        else
-        {
-            UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Sign Up Failed !" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+                
+                SignupViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Main_Page"];
+                [self.navigationController pushViewController:Pushobj animated:YES];
+            }
+            else
+            {
+                UIAlertView *Alert = [[UIAlertView alloc]initWithTitle:nil message:@"Sign Up Failed !" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [Alert show];
+                
+            }
             
-            [loginAlert show];
-        }
+         }];
+
+   
         
     }
     

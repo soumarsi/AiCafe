@@ -141,7 +141,7 @@
 //                
 //            }];
             
-            NSString *urlstring=[NSString stringWithFormat:@"http://203.196.159.37/lab9/aiCafe/iosapp/login.php"];
+            NSString *urlstring=[NSString stringWithFormat:@"%@login.php",App_Domain_Url];
             
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
             
