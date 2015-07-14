@@ -41,12 +41,18 @@
     
     obj = [[RS_JsonClass alloc]init];
     
-    if ([UIScreen mainScreen].bounds.size.width>320)
+    if ([UIScreen mainScreen].bounds.size.width>400)
+    {
+        _row_view1.frame=CGRectMake(_row_view1.frame.origin.x,_row_view1.frame.origin.y+6,_row_view1.frame.size.width,_row_view1.frame.size.height+10);
+          _row_view2.frame=CGRectMake(_row_view2.frame.origin.x,_row_view2.frame.origin.y+8,_row_view2.frame.size.width,_row_view2.frame.size.height+9);
+         _row_view3.frame=CGRectMake(_row_view3.frame.origin.x,_row_view3.frame.origin.y+1,_row_view3.frame.size.width,_row_view3.frame.size.height+8);
+    }
+   else if ([UIScreen mainScreen].bounds.size.width>320)
     {
         _row_view1.frame=CGRectMake(_row_view1.frame.origin.x,_row_view1.frame.origin.y-7,_row_view1.frame.size.width,_row_view1.frame.size.height+7);
-          _row_view2.frame=CGRectMake(_row_view2.frame.origin.x,_row_view2.frame.origin.y+1,_row_view2.frame.size.width,_row_view2.frame.size.height+6);
-         _row_view3.frame=CGRectMake(_row_view3.frame.origin.x,_row_view3.frame.origin.y+1,_row_view3.frame.size.width,_row_view3.frame.size.height+5);
-    }
+        _row_view2.frame=CGRectMake(_row_view2.frame.origin.x,_row_view2.frame.origin.y+1,_row_view2.frame.size.width,_row_view2.frame.size.height+6);
+        _row_view3.frame=CGRectMake(_row_view3.frame.origin.x,_row_view3.frame.origin.y+1,_row_view3.frame.size.width,_row_view3.frame.size.height+5);    }
+
     else
     {
         _row_view1.frame=CGRectMake(_row_view1.frame.origin.x,_row_view1.frame.origin.y-9,_row_view1.frame.size.width,_row_view1.frame.size.height-5);
