@@ -76,6 +76,7 @@
     UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectZero];
     datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.backgroundColor = [UIColor clearColor];
+    [datePicker setMaximumDate:[NSDate date]];
     [datePicker addTarget:self action:@selector(dateUpdated:) forControlEvents:UIControlEventValueChanged];
     self.DOB.inputView = datePicker;
     

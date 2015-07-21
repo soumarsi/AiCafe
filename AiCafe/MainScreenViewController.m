@@ -64,7 +64,7 @@
     /// Getting User Data from NSUserDefaults
     
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    user_image_data= [standardUserDefaults stringForKey:@"user_photo"];
+    user_image_data= [standardUserDefaults stringForKey:@"photo_thumb"];
     userDP=[standardUserDefaults stringForKey:@"user_photo_mainScreen"];//user_photo_mainScreen
     user_name_info= [standardUserDefaults stringForKey:@"User_name"];
     user_sex_info= [standardUserDefaults stringForKey:@"user_sex"];
@@ -81,28 +81,23 @@
     _user_image.contentMode=UIViewContentModeScaleAspectFill;
     
     
-    if ([user_sex_info isEqualToString:@"M"])
-    {
-        [_user_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,userDP]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
-        
-        
-    }
-    else
-    {
-       [_user_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,user_sex_info]] placeholderImage:[UIImage imageNamed:@"PlaceholderF"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
-        
-        
-    }
     
      _user_name.text=user_name_info;
     
     if ([user_sex_info isEqualToString:@"M"])
     {
         _user_sex.text=@"Male";
+        
+        [_user_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,userDP]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+        
     }
     else
     {
         _user_sex.text=@"Female";
+        
+        [_user_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,userDP]] placeholderImage:[UIImage imageNamed:@"PlaceholderF"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+        
+
     }
 
     

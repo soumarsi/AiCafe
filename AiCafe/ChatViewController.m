@@ -385,7 +385,7 @@
     if([[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"type"]  isEqual: @"s"]){
         
         
-        if ([login_user_id isEqualToString:id_string])
+        if (![login_user_id isEqualToString:id_string])
         {
             
             chat_person_image=[[UIImageView alloc]initWithFrame:CGRectMake(0,+10, 75,75)];
@@ -435,7 +435,7 @@
     
     else{
         
-        if ([login_user_id isEqualToString:id_string])
+        if (![login_user_id isEqualToString:id_string])
             
         {
             
@@ -846,10 +846,10 @@
 //        [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_chatbox.frame.size.height-kwheight-2,_chatbox.frame.size.width, _chatbox.frame.size.height)];
 //
         
-        NSData *data = [_chatbox.text dataUsingEncoding:NSNonLossyASCIIStringEncoding];
-      //  NSString *goodValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//        NSData *data = [_chatbox.text stringByReplacingPercentEscapesUsingEncoding:<#(NSStringEncoding)#>];
+//      //  NSString *goodValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
-        NSString *chattext=[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *chattext=[_chatbox.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
         

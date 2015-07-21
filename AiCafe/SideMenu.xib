@@ -43,7 +43,7 @@
                         <action selector="Slide_button_tap:" destination="uyn-XY-m7K" eventType="touchUpInside" id="TOR-n6-1gq"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menu_about" id="QUO-gD-fpJ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logout_icon" id="QUO-gD-fpJ">
                     <rect key="frame" x="35" y="520" width="19" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -202,6 +202,7 @@
     </objects>
     <resources>
         <image name="Profile_icon" width="24" height="24"/>
+        <image name="logout_icon" width="23" height="25"/>
         <image name="menu_about" width="23" height="23"/>
         <image name="menu_add_coupon" width="20" height="11"/>
         <image name="menu_chat_room" width="24" height="22"/>

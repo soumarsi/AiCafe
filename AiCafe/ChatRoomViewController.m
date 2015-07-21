@@ -123,6 +123,7 @@
     
     [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
      {
+        
          
          if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
          {
