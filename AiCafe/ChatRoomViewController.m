@@ -527,9 +527,20 @@
 }
 -(void)ReceiveNotification
 {
-    NSLog(@"######## hit");
-    [self playMusic];
-    [self viewDidLoad];
+    NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+    NSString  *sound_status=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"sound"]];
+    
+    if ([sound_status isEqualToString:@"sound_on"])
+    {
+        
+        [self playMusic];
+        [self viewDidLoad];
+    }
+    else
+    {
+        [self viewDidLoad];
+        
+    }
     
 }
 
@@ -681,7 +692,7 @@
     if([[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"type"]  isEqual: @"s"]){
         
         
-        if ([login_user_id isEqualToString:id_string])
+        if (![login_user_id isEqualToString:id_string])
         {
            
             
@@ -731,7 +742,7 @@
         
     }else{
         
-        if ([login_user_id isEqualToString:id_string])
+        if (![login_user_id isEqualToString:id_string])
         {
             
             

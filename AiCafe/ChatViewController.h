@@ -25,6 +25,8 @@
     BOOL keyboard;
     
     NSMutableAttributedString *aAttrString1;
+    
+    NSString *sound_check;
 }
 - (IBAction)openStickerview:(id)sender;
 @property (strong, nonatomic) IBOutlet UICollectionView *stickerCollection;

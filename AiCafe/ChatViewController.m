@@ -99,6 +99,7 @@
              
              [_chat_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
              
+             
          }
      }];
     
@@ -199,8 +200,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ReceiveNotification) name:@"DataEdited" object:nil];
-    
-    
+
 }
 - (void)playMusic
 {
@@ -213,10 +213,22 @@
 }
 -(void)ReceiveNotification
 {
+    NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+    NSString  *sound_status=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"sound"]];
     
-    [self playMusic];
-    [self viewDidLoad];
+    if ([sound_status isEqualToString:@"sound_on"])
+    {
+        
+        [self playMusic];
+        [self viewDidLoad];
+    }
+    else
+    {
+        [self viewDidLoad];
+
+    }
     
+
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification

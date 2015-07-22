@@ -38,12 +38,16 @@
 		81DB9EA21B3C16EC009340BF /* FriendRequestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DB9EA11B3C16EC009340BF /* FriendRequestTableViewCell.m */; };
 		81DC03611B318A0F004E27A5 /* UserLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DC03601B318A0F004E27A5 /* UserLikeTableViewCell.m */; };
 		81DC03641B318B08004E27A5 /* UserLikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DC03631B318B08004E27A5 /* UserLikeViewController.m */; };
+		81E909FA1B5E699F0008D2EA /* NotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E909F91B5E699F0008D2EA /* NotificationSettingViewController.m */; };
+		81E909FD1B5E6D290008D2EA /* BlockListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E909FC1B5E6D290008D2EA /* BlockListViewController.m */; };
+		81E90A001B5E6FB30008D2EA /* BlockListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E909FF1B5E6FB30008D2EA /* BlockListTableViewCell.m */; };
 		84B35B4B1B20631D00F5B6FE /* LoyaltiDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B35B4A1B20631D00F5B6FE /* LoyaltiDetailsViewController.m */; };
 		84B35B4E1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B35B4D1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.m */; };
 		84B35B511B20700600F5B6FE /* CouponScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B35B501B20700600F5B6FE /* CouponScreenViewController.m */; };
 		84B35B541B20704E00F5B6FE /* CouponScreenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B35B531B20704E00F5B6FE /* CouponScreenTableViewCell.m */; };
 		8FC8AD4E1B3C0BB60095641B /* AiCafeFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8AD4D1B3C0BB60095641B /* AiCafeFriendsViewController.m */; };
 		99FF4B96359A7A7A8F6B59D5 /* libPods-AiCafe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A05A2D642E8BB9B3DA8B5A5C /* libPods-AiCafe.a */; };
+		A50F4E391B5E2D4F0023D578 /* SoundSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A50F4E381B5E2D4F0023D578 /* SoundSettingsViewController.m */; };
 		A5DB6DB01B254EC000B2A6A0 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5DB6DAF1B254EC000B2A6A0 /* ChatViewController.m */; };
 		F927AD3E1B0DD7A900F0BC34 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F927AD3D1B0DD7A900F0BC34 /* SignupViewController.m */; };
 		F927AD411B0DF0FA00F0BC34 /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F927AD401B0DF0FA00F0BC34 /* MainScreenViewController.m */; };
@@ -138,6 +142,12 @@
 		81DC03601B318A0F004E27A5 /* UserLikeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLikeTableViewCell.m; sourceTree = "<group>"; };
 		81DC03621B318B08004E27A5 /* UserLikeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLikeViewController.h; sourceTree = "<group>"; };
 		81DC03631B318B08004E27A5 /* UserLikeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLikeViewController.m; sourceTree = "<group>"; };
+		81E909F81B5E699F0008D2EA /* NotificationSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationSettingViewController.h; sourceTree = "<group>"; };
+		81E909F91B5E699F0008D2EA /* NotificationSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSettingViewController.m; sourceTree = "<group>"; };
+		81E909FB1B5E6D290008D2EA /* BlockListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockListViewController.h; sourceTree = "<group>"; };
+		81E909FC1B5E6D290008D2EA /* BlockListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockListViewController.m; sourceTree = "<group>"; };
+		81E909FE1B5E6FB30008D2EA /* BlockListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockListTableViewCell.h; sourceTree = "<group>"; };
+		81E909FF1B5E6FB30008D2EA /* BlockListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockListTableViewCell.m; sourceTree = "<group>"; };
 		84B35B491B20631D00F5B6FE /* LoyaltiDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoyaltiDetailsViewController.h; sourceTree = "<group>"; };
 		84B35B4A1B20631D00F5B6FE /* LoyaltiDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoyaltiDetailsViewController.m; sourceTree = "<group>"; };
 		84B35B4C1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoyaltiDetailsTableViewCell.h; sourceTree = "<group>"; };
@@ -150,6 +160,8 @@
 		8FC8AD4C1B3C0BB60095641B /* AiCafeFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AiCafeFriendsViewController.h; sourceTree = "<group>"; };
 		8FC8AD4D1B3C0BB60095641B /* AiCafeFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AiCafeFriendsViewController.m; sourceTree = "<group>"; };
 		A05A2D642E8BB9B3DA8B5A5C /* libPods-AiCafe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AiCafe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A50F4E371B5E2D4F0023D578 /* SoundSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundSettingsViewController.h; sourceTree = "<group>"; };
+		A50F4E381B5E2D4F0023D578 /* SoundSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundSettingsViewController.m; sourceTree = "<group>"; };
 		A5DB6DAE1B254EC000B2A6A0 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
 		A5DB6DAF1B254EC000B2A6A0 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		AA5657C87C981A01D7827752 /* Pods-AiCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AiCafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-AiCafe/Pods-AiCafe.release.xcconfig"; sourceTree = "<group>"; };
@@ -353,6 +365,12 @@
 				81DAFF6C1B2AD5C200485B68 /* StoreInfoViewController.m */,
 				81DAFF6E1B2ADACE00485B68 /* CouponRedeemViewController.h */,
 				81DAFF6F1B2ADACE00485B68 /* CouponRedeemViewController.m */,
+				A50F4E371B5E2D4F0023D578 /* SoundSettingsViewController.h */,
+				A50F4E381B5E2D4F0023D578 /* SoundSettingsViewController.m */,
+				81E909F81B5E699F0008D2EA /* NotificationSettingViewController.h */,
+				81E909F91B5E699F0008D2EA /* NotificationSettingViewController.m */,
+				81E909FB1B5E6D290008D2EA /* BlockListViewController.h */,
+				81E909FC1B5E6D290008D2EA /* BlockListViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -517,6 +535,8 @@
 				84B35B4D1B2063B100F5B6FE /* LoyaltiDetailsTableViewCell.m */,
 				84B35B521B20704E00F5B6FE /* CouponScreenTableViewCell.h */,
 				84B35B531B20704E00F5B6FE /* CouponScreenTableViewCell.m */,
+				81E909FE1B5E6FB30008D2EA /* BlockListTableViewCell.h */,
+				81E909FF1B5E6FB30008D2EA /* BlockListTableViewCell.m */,
 			);
 			name = "Tableview Cell Classes";
 			sourceTree = "<group>";
@@ -554,7 +574,7 @@
 				TargetAttributes = {
 					F95555F91B0A034F0013B260 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = HVFEBCENV9;
+						DevelopmentTeam = WXGENKJWK5;
 					};
 				};
 			};
@@ -670,9 +690,11 @@
 				81DC03611B318A0F004E27A5 /* UserLikeTableViewCell.m in Sources */,
 				F95159811B12EAAF00448913 /* SDWebImageDownloader.m in Sources */,
 				F951597C1B12EAAF00448913 /* MKAnnotationView+WebCache.m in Sources */,
+				A50F4E391B5E2D4F0023D578 /* SoundSettingsViewController.m in Sources */,
 				A5DB6DB01B254EC000B2A6A0 /* ChatViewController.m in Sources */,
 				F951597F1B12EAAF00448913 /* SDWebImageCompat.m in Sources */,
 				F95159841B12EAAF00448913 /* SDWebImagePrefetcher.m in Sources */,
+				81E90A001B5E6FB30008D2EA /* BlockListTableViewCell.m in Sources */,
 				81DAFF571B2AA5B800485B68 /* AboutUsViewController.m in Sources */,
 				8FC8AD4E1B3C0BB60095641B /* AiCafeFriendsViewController.m in Sources */,
 				81DAFF601B2AAA9A00485B68 /* LoyaltiViewController.m in Sources */,
@@ -692,6 +714,8 @@
 				F9A1D5321B0EE48500E7F622 /* RS_JsonClass.m in Sources */,
 				81DAFF701B2ADACE00485B68 /* CouponRedeemViewController.m in Sources */,
 				81DB9E9F1B3C16B1009340BF /* FriendRequestViewController.m in Sources */,
+				81E909FD1B5E6D290008D2EA /* BlockListViewController.m in Sources */,
+				81E909FA1B5E699F0008D2EA /* NotificationSettingViewController.m in Sources */,
 				81DAFF511B2AA49300485B68 /* CouponFilterViewController.m in Sources */,
 				81DC03641B318B08004E27A5 /* UserLikeViewController.m in Sources */,
 				F927AD3E1B0DD7A900F0BC34 /* SignupViewController.m in Sources */,
@@ -765,7 +789,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "8472c90d-3d29-4d60-92db-d37aa3687680";
+				PROVISIONING_PROFILE = "536a7dc0-294b-43b0-b501-1f2aeec3cbed";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -803,7 +827,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8472c90d-3d29-4d60-92db-d37aa3687680";
+				PROVISIONING_PROFILE = "536a7dc0-294b-43b0-b501-1f2aeec3cbed";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -814,13 +838,13 @@
 			baseConfigurationReference = 8C4F9D4E4F746EA3B1152A21 /* Pods-AiCafe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
 				INFOPLIST_FILE = AiCafe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "536a7dc0-294b-43b0-b501-1f2aeec3cbed";
 			};
 			name = Debug;
 		};
@@ -829,13 +853,13 @@
 			baseConfigurationReference = AA5657C87C981A01D7827752 /* Pods-AiCafe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: LCF, INC (WXGENKJWK5)";
 				INFOPLIST_FILE = AiCafe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "536a7dc0-294b-43b0-b501-1f2aeec3cbed";
 			};
 			name = Release;
 		};

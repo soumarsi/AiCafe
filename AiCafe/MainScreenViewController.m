@@ -131,6 +131,51 @@
             _numberoffriends.text = [NSString stringWithFormat:@"%ld  friends",(long)[Friend_list count]];
         }
         
+        RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+        
+        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+      NSString  *login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
+        
+        
+        NSString *urlstring=[NSString stringWithFormat:@"%@show_status.php",App_Domain_Url];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *postData = [NSString stringWithFormat:@"id=%@",login_user_id];
+        
+        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        
+        [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+         {
+             
+             NSMutableDictionary *status_data=[[NSMutableDictionary alloc]init];
+             status_data=[[result objectForKey:@"settings"]mutableCopy];
+             
+             NSString *sound_check2=[NSString stringWithFormat:@"%@",[status_data objectForKey:@"sound"]];
+             
+             if ([sound_check2 isEqualToString:@"Y"])
+             {
+                 NSString *sound_check3=@"sound_on";
+                 [[NSUserDefaults standardUserDefaults] setObject:sound_check3 forKey:@"sound"];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+             }
+             else
+             {
+                 NSString *sound_check3=@"sound_off";
+                 [[NSUserDefaults standardUserDefaults] setObject:sound_check3 forKey:@"sound"];
+                 [[NSUserDefaults standardUserDefaults] synchronize];
+             }
+             
+             
+         }];
+        
+
+        
        
     }];
 
