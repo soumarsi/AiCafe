@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface PrivacySettingViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UISwitch *privacy_switch;
+- (IBAction)privacy_switch_action:(id)sender;
+
+@property(strong,nonatomic)NSString *privacy;
 
 @end

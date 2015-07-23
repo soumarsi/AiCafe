@@ -12,9 +12,9 @@
 #import "ChatViewController.h"
 
 
-@interface UserInfoViewController () <UITextViewDelegate>
+@interface UserInfoViewController () <UITextViewDelegate,UIActionSheetDelegate>
 {
-    UIView *reportoverlayview;
+    UIVisualEffectView *reportoverlayview;
     UITextView *tview;
     RS_JsonClass *globalobj;
     UIAlertView *alert;
@@ -219,40 +219,137 @@
 
 - (IBAction)reportTapped:(id)sender
 {
-    reportoverlayview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
-    reportoverlayview.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:.9];
-    
-    UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width * .83, 80, 20, 20)];
-    [cancel setTitle:@"" forState:UIControlStateNormal];
-    [cancel setBackgroundImage:[UIImage imageNamed:@"cross"] forState:UIControlStateNormal];
-    [cancel addTarget:self action:@selector(cancelTapped) forControlEvents:UIControlEventTouchUpInside];
+    report_menu=[[UIActionSheet alloc]initWithTitle:@"Report,Unfriend or Block Ai-Cafe User" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Block" otherButtonTitles:@"Unfriend",@"Report", nil];
+    [report_menu showInView:self.view];
     
     
-    tview = [[UITextView alloc]initWithFrame:CGRectMake(self.view.frame.size.width*.1, self.view.frame.size.height * .3, self.view.frame.size.width*.8, self.view.frame.size.width* .3)];
-    tview.backgroundColor = [UIColor colorWithRed:235.0f/255.0f green:235.0f/255.0f blue:235.0f/255.0 alpha:1];
-    tview.textColor = [UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0 alpha:1];
-    tview.textColor = [UIColor colorWithRed:47/255 green:28/255 blue:12/255 alpha:1];
-    [tview setFont:[UIFont fontWithName:@"Helvetica" size:15]];
-    tview.delegate = self;
-    
-    UIButton *sendreport = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width * .1, self.view.frame.size.height * .48, self.view.frame.size.width * .8, 40)];
-//    sendreport.backgroundColor = [UIColor colorWithRed:47/255 green:28/255 blue:12/255 alpha:1];
-    [sendreport setBackgroundImage:[UIImage imageNamed:@"App_Main_Background"] forState:UIControlStateNormal];
-    [sendreport setTitle:@"Send" forState:UIControlStateNormal];
-    sendreport.titleLabel.font = [UIFont fontWithName:@"Helvetica-bold" size:18];
-    [sendreport setTitleColor:[UIColor colorWithRed:47/255 green:28/255 blue:12/255 alpha:1] forState:UIControlStateNormal];
-    [sendreport addTarget:self action:@selector(sendReportTapped) forControlEvents:UIControlEventTouchUpInside];
-    
-    [reportoverlayview addSubview:cancel];
-    [reportoverlayview addSubview:tview];
-    [reportoverlayview addSubview:sendreport];
-    [self.view addSubview:reportoverlayview];
     
 }
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex==0)
+    {
+        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+        NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
+        
+        NSString *friend_id=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"id"]];
+        
+        NSLog(@"RSR............%@",friend_id);
+        
+        NSString *urlstr = [NSString stringWithFormat:@"%@block_user.php",App_Domain_Url];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *postData = [NSString stringWithFormat:@"id=%@&block_id=%@",Login_user_Id,friend_id];
+        
+        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [globalobj GlobalDict:request Globalstr:@"string" Withblock:^(id result, NSError *error)
+         {
+             
+                 
+                 alert = [[UIAlertView alloc] initWithTitle:@"" message:@"User Blocked" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                 [alert show];
+                 
+             
+             [self.navigationController popViewControllerAnimated:YES];
+             
+         }];
 
+    }
+    else if (buttonIndex==1)
+    {
+        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+        NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
+        
+        NSString *friend_id=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"id"]];
+        
+        NSLog(@"RSR............%@",friend_id);
+        
+        NSString *urlstr = [NSString stringWithFormat:@"%@friend_request_reject.php",App_Domain_Url];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@",Login_user_Id,friend_id];
+        
+        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [globalobj GlobalDict:request Globalstr:@"string" Withblock:^(id result, NSError *error)
+         {
+             
+             
+             alert = [[UIAlertView alloc] initWithTitle:@"" message:@"User Removed from your Friend List" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             
+             [alert show];
+
+             
+         }];
+
+    }
+    else if (buttonIndex==2)
+    {
+        
+        // Blur effect
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        reportoverlayview = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        [reportoverlayview setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        
+        
+        UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width * .83, 80, 20, 20)];
+        [cancel setTitle:@"" forState:UIControlStateNormal];
+        [cancel setBackgroundImage:[UIImage imageNamed:@"cross"] forState:UIControlStateNormal];
+        [cancel addTarget:self action:@selector(cancelTapped) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        tview = [[UITextView alloc]initWithFrame:CGRectMake(self.view.frame.size.width*.1, self.view.frame.size.height * .3, self.view.frame.size.width*.8, self.view.frame.size.width* .3)];
+        tview.backgroundColor = [[UIColor lightGrayColor]colorWithAlphaComponent:1];
+        tview.textColor = [UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0 alpha:1];
+        tview.textColor = [UIColor colorWithRed:47/255 green:28/255 blue:12/255 alpha:1];
+        [tview setFont:[UIFont fontWithName:@"OpenSans" size:17]];
+         tview.layer.cornerRadius=12.0f;
+        tview.delegate = self;
+        
+        UIButton *sendreport = [[UIButton alloc]initWithFrame:CGRectMake(self.view.frame.size.width * .1, self.view.frame.size.height * .48, self.view.frame.size.width * .8, 40)];
+       
+        sendreport.backgroundColor=[UIColor blackColor];
+        [sendreport setTitle:@"Send" forState:UIControlStateNormal];
+        sendreport.titleLabel.font = [UIFont fontWithName:@"OpenSans-Semibold" size:18];
+        [sendreport setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [sendreport addTarget:self action:@selector(sendReportTapped) forControlEvents:UIControlEventTouchUpInside];
+        sendreport.layer.cornerRadius=10.0f;
+        
+        [reportoverlayview addSubview:cancel];
+        [reportoverlayview addSubview:tview];
+        [reportoverlayview addSubview:sendreport];
+        [self.view addSubview:reportoverlayview];
+
+    }
+    else
+    {
+        
+    }
+}
 -(void)sendReportTapped
 {
+    if ([tview.text isEqualToString:@""])
+    {
+        alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please Provide Some Reason" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+
+    }
+    else
+    {
+    
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
    NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
     
@@ -262,13 +359,13 @@
     
     NSLog(@"RSR............%@",friend_id);
     
-    NSString *urlstr = [NSString stringWithFormat:@"%@report.php?send_id=%@&rec_id=%@&report_reason=%@",App_Domain_Url,Login_user_Id,friend_id,report_text];
+    NSString *urlstr = [NSString stringWithFormat:@"%@report.php",App_Domain_Url];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
     
     [request setHTTPMethod:@"POST"];
     
-    NSString *postData = [NSString stringWithFormat:@"id=%@",Login_user_Id];
+    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&report_reason=%@",Login_user_Id,friend_id,report_text];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
@@ -277,12 +374,7 @@
     [globalobj GlobalDict:request Globalstr:@"string" Withblock:^(id result, NSError *error)
      {
          
-         if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
-         {
-             
-         }
-         else
-         {
+        
              NSString *status = [result mutableCopy];
              NSLog(@"Status is:----->%@",status);
              if([status isEqualToString:@"reported"]){
@@ -297,18 +389,17 @@
              }
              else
              {
-                 alert = [[UIAlertView alloc] initWithTitle:@"" message:@"User Reported" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                 [alert show];
-                 
                  
                  [reportoverlayview removeFromSuperview];
                  
              }
 
-         }
+         
          
         
      }];
+        
+    }
 }
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text

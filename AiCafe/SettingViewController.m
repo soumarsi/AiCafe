@@ -10,6 +10,7 @@
 #import "RS_JsonClass.h"
 #import "SoundSettingsViewController.h"
 #import "BlockListViewController.h"
+#import "PrivacySettingViewController.h"
 @interface SettingViewController ()
 {
     NSMutableArray *marr;
@@ -73,7 +74,8 @@
 }
 - (IBAction)PushToPrivacySettings:(id)sender {
     
-    SettingViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"privacysettingviewcontroller"];
+    PrivacySettingViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"privacysettingviewcontroller"];
+    Pushobj.privacy=[status_data objectForKey:@"visible"];
     [self.navigationController pushViewController:Pushobj animated:YES];
 }
 - (IBAction)BackToMainScreen:(id)sender {

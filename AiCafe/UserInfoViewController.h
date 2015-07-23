@@ -12,6 +12,8 @@
 
 {
     NSMutableDictionary *user_details;
+    
+    UIActionSheet *report_menu;
 }
 - (IBAction)Back_Button:(id)sender;
 

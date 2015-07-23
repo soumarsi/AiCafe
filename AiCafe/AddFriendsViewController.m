@@ -26,9 +26,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-       remove_array =[[NSMutableArray alloc]init];
     
-     RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    
+    remove_array =[[NSMutableArray alloc]init];
+    
+    RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
     
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
     NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
@@ -41,15 +49,15 @@
     [request setHTTPMethod:@"POST"];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-
+    
     
     [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
      {
          
-          if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
-          {
-              
-          }
+         if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+         {
+             
+         }
          else
          {
              NSLog(@"All User Data....%@",request);
@@ -58,7 +66,7 @@
              Friend_list=[[result objectForKey:@"details"] mutableCopy];
              
              [_Friends_Table reloadData];
-
+             
          }
          
          
@@ -69,7 +77,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(Show_Network_Status:)
                                                  name:@"no_internet" object:nil];
-    
+
 }
 
 - (void)Show_Network_Status:(NSNotification *)note

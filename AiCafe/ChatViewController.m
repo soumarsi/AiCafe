@@ -451,7 +451,17 @@
             
         {
             
+            NSString *escapedString = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
             
+            
+            
+            const char *jsonString = [escapedString UTF8String];
+            
+            NSData *jsonData = [NSData dataWithBytes:jsonString length:strlen(jsonString)];
+            
+            NSString *goodMsg = [[NSString alloc] initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
+            
+
             
             UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
             
@@ -459,7 +469,7 @@
             
             
             
-          aAttrString1 = [[NSMutableAttributedString alloc] initWithString:[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] attributes: arialDict];
+          aAttrString1 = [[NSMutableAttributedString alloc] initWithString:goodMsg attributes: arialDict];
             
             
             
@@ -585,13 +595,21 @@
             
         {
             
+            NSString *escapedString = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
             
+            
+            
+            const char *jsonString = [escapedString UTF8String];
+            
+            NSData *jsonData = [NSData dataWithBytes:jsonString length:strlen(jsonString)];
+            
+            NSString *goodMsg = [[NSString alloc] initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
             
             UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
             
             NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
             
-            NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] attributes: arialDict];
+            NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:goodMsg attributes: arialDict];
             
             
             
@@ -854,19 +872,30 @@
     {
        
         
+        NSString *uniText = [NSString stringWithUTF8String:[_chatbox.text UTF8String]];
         
-//        [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_chatbox.frame.size.height-kwheight-2,_chatbox.frame.size.width, _chatbox.frame.size.height)];
-//
+        NSData *msgData = [uniText dataUsingEncoding:NSNonLossyASCIIStringEncoding];
         
-//        NSData *data = [_chatbox.text stringByReplacingPercentEscapesUsingEncoding:<#(NSStringEncoding)#>];
-//      //  NSString *goodValue = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSString *goodMsg = [[NSString alloc] initWithData:msgData encoding:NSUTF8StringEncoding] ;
         
-        NSString *chattext=[_chatbox.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        
+        
+        
+        NSString *escapedString = [goodMsg stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
+        
+        
+        
+        NSLog(@"--=-==- %@", goodMsg);
+        
+        
+        
+        
+        NSLog(@"### Url Data ......%@",escapedString);
         
         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
         
-        
-        NSLog(@"### Url Data ......%@",chattext);
+
         
         
         
@@ -884,7 +913,7 @@
         
         [request setHTTPMethod:@"POST"];
         
-        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m&chat_type=O",login_user_id,_getuser_id,chattext];
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m&chat_type=O",login_user_id,_getuser_id,escapedString];
         
         [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         
