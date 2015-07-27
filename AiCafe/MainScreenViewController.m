@@ -108,7 +108,7 @@
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
     NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
     
-    NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@",App_Domain_Url,Login_user_Id];
+    NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@&start=0&records=10",App_Domain_Url,Login_user_Id];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
     
@@ -120,19 +120,11 @@
     [obj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
     {
         
-        
-        if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+        if ([[result objectForKey:@"auth"]isEqualToString:@"success"])
         {
-            
+                _numberoffriends.text = [NSString stringWithFormat:@"%@  friends",[result objectForKey:@"total"]];
         }
-        else
-        {
-            Friend_list=[[result objectForKey:@"details"] mutableCopy];
-            NSLog(@"Array is:------>%@",result);
-            NSLog(@"Array is:------>%@",Friend_list);
-            _numberoffriends.text = [NSString stringWithFormat:@"%ld  friends",(long)[Friend_list count]];
-        }
-        
+      
         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
         
         NSUserDefaults *UserData = [[NSUserDefaults alloc]init];

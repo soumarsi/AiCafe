@@ -66,8 +66,49 @@
         
     
        }];
+    
+ ///////////////// Getting Device Token ///////////////////
+    
+    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    
+    //NSLog(@"Device unique id no is: %@",uniqueIdentifier);
+    
+    
+  //  NSLog(@"Height: %f",[[UIScreen mainScreen] bounds].size.height);
+    
+   // NSLog(@"Width: %f",[[UIScreen mainScreen] bounds].size.width);
+    
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        NSLog(@"iOS 8 Requesting permission for push notifications..."); // iOS 8
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:
+                                                UIUserNotificationTypeAlert | UIUserNotificationTypeBadge |
+                                                UIUserNotificationTypeSound categories:nil];
+        [UIApplication.sharedApplication registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    } else {
+        NSLog(@"iOS 7 Registering device for push notifications..."); // iOS 7 and earlier
+        [UIApplication.sharedApplication registerForRemoteNotificationTypes:
+         UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeSound];
+    }
+
+    
+    
+    
     return YES;
 }
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    [[NSUserDefaults standardUserDefaults] setObject:token forKey:@"deviceToken"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"-->> TOKEN:%@",token);
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

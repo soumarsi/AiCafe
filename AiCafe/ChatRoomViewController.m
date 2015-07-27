@@ -73,7 +73,7 @@
     
     NSLog(@"Login user id: %@",login_user_id);
     
-        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=1&end=250",login_user_id,Login_user_Id/*@"25,10,21,30"*/];
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&start=0&records=10",login_user_id];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     

@@ -42,10 +42,12 @@
     
     obj = [[RS_JsonClass alloc]init];
     
+    list_value=10;
+    
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
     NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
     
-    NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@",App_Domain_Url,Login_user_Id];
+    NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@&start=0&records=%d",App_Domain_Url,Login_user_Id,list_value];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
     
@@ -93,6 +95,51 @@
     return 100;
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+         
+         NSLog(@">>>>>>>>>>>> %f",_Friends_Table.contentOffset.y);
+    
+    if (_Friends_Table.contentOffset.y>90)
+    {
+        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+        NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
+        
+        NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@&start=0&records=%d",App_Domain_Url,Login_user_Id,list_value+10];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        
+       // [_spinner setHidden:NO];
+      //  [_spinner startAnimating];
+        [obj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+         {
+             if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+             {
+                // [_spinner removeFromSuperview];
+             }
+             else
+             {
+                 Friend_list=[[result objectForKey:@"details"] mutableCopy];
+                 NSLog(@"Array is:------>%@",result);
+                 NSLog(@"Array is:------>%@",Friend_list);
+                 [_Friends_Table reloadData];
+                 
+                 
+                 
+               //  [_spinner setHidden:YES];
+                 
+             }
+             
+         }];
+
+    }
+   
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

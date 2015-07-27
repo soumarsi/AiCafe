@@ -14,6 +14,8 @@
 {
     UITableViewCell *cell;
     RS_JsonClass *obj;
+    
+    int list_value;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *Friends_Table;

@@ -141,13 +141,16 @@
 //                
 //            }];
             
+            NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+            NSString *Device_Token = [UserData stringForKey:@"deviceToken"];
+            
             NSString *urlstring=[NSString stringWithFormat:@"%@login.php",App_Domain_Url];
             
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
             
             [request setHTTPMethod:@"POST"];
             
-            NSString *postData = [NSString stringWithFormat:@"email=%@&password=%@",_email.text,_password.text];
+            NSString *postData = [NSString stringWithFormat:@"email=%@&password=%@&device_type=0&device_token=%@",_email.text,_password.text,Device_Token];
             
             [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
             
