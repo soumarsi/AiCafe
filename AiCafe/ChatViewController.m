@@ -452,15 +452,9 @@
             
         {
             
-            NSString *escapedString = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
+
             
-            
-            
-            const char *jsonString = [escapedString UTF8String];
-            
-            NSData *jsonData = [NSData dataWithBytes:jsonString length:strlen(jsonString)];
-            
-            NSString *goodMsg = [[NSString alloc] initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
+            NSString *goodMsg = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
 
             
@@ -596,21 +590,14 @@
             
         {
             
-            NSString *escapedString = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
             
-            
-            
-            const char *jsonString = [escapedString UTF8String];
-            
-            NSData *jsonData = [NSData dataWithBytes:jsonString length:strlen(jsonString)];
-            
-            NSString *goodMsg = [[NSString alloc] initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
+            NSString *goodMsg = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
             UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
             
             NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
             
-            NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:goodMsg attributes: arialDict];
+           aAttrString1 = [[NSMutableAttributedString alloc] initWithString:goodMsg attributes: arialDict];
             
             
             
@@ -817,16 +804,16 @@
     
     NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
     
-    NSString *msgData=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]];
-    
-    NSData *data = [msgData dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *convertedStr = [[NSString alloc] initWithData:data encoding:NSNonLossyASCIIStringEncoding];
+//    NSString *msgData=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]];
+//    
+//    NSData *data = [msgData dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *convertedStr = [[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    NSLog(@"#### ConvertedData....%@",msgData);
+    NSLog(@"#### ConvertedData....%@",convertedStr);
     
     if (convertedStr.length==0)
     {
-         aAttrString1 = [[NSMutableAttributedString alloc] initWithString:msgData attributes: arialDict];
+         aAttrString1 = [[NSMutableAttributedString alloc] initWithString:convertedStr attributes: arialDict];
     }
     else
     {
@@ -923,20 +910,9 @@
     {
        
         
-        NSString *uniText = [NSString stringWithUTF8String:[_chatbox.text UTF8String]];
+        NSString *uniText = _chatbox.text ;
         
-        NSData *msgData = [uniText dataUsingEncoding:NSNonLossyASCIIStringEncoding];
-        
-        NSString *goodMsg = [[NSString alloc] initWithData:msgData encoding:NSUTF8StringEncoding] ;
-        
-        
-        NSString *escapedString = [goodMsg stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-        
-
-        NSLog(@"--=-==- %@", goodMsg);
-        
-        
-        NSLog(@"### Url Data ......%@",escapedString);
+        NSLog(@"### Url Data ......%@",uniText);
         
         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
     
@@ -946,7 +922,7 @@
         
         [request setHTTPMethod:@"POST"];
         
-        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m&chat_type=O",login_user_id,_getuser_id,escapedString];
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m&chat_type=O",login_user_id,_getuser_id,uniText];
         
         [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         
