@@ -18,7 +18,7 @@
     
     UIImageView *chat_person_image,*chat_design;
     
-    NSMutableArray *chat_Data_array,*Friend_list_array;
+    NSMutableArray *chat_Data_array,*Friend_list_array,*chat_Data_array2;
     
     UIView *chatView;
     
@@ -38,6 +38,8 @@
     NSInteger up;
     
     NSString *alluserID;
+    
+    int data_limite;
 }
 - (IBAction)ChatSendClick:(id)sender;
 

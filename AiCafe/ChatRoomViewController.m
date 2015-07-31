@@ -59,28 +59,22 @@
     
     Login_user_Id = [UserData stringForKey:@"Login_User_id"];
     
-    //    login_user_id=@"10";
-    
-    //NSString *urlstring=[NSString stringWithFormat:@"%@chat_view.php?send_id=%@&rec_id=%@&start=0&end=70",App_Domain_Url,login_user_id,_getuser_id];
-    
     NSString *urlstring=[NSString stringWithFormat:@"%@group_chat_view.php",App_Domain_Url];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
     
     [request setHTTPMethod:@"POST"];
+
     
-//    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=0&end=250",login_user_id,@"20"];
+   data_limite=10;
     
-    NSLog(@"Login user id: %@",login_user_id);
-    
-        NSString *postData = [NSString stringWithFormat:@"send_id=%@&start=0&records=10",login_user_id];
+    NSString *postData = [NSString stringWithFormat:@"send_id=%@&start=0&records=10",login_user_id];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     
-    
-    //nslog(@"Send Chat -- %@",postData);
+
     
     [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
      {
@@ -254,13 +248,15 @@
         
          [stickerCollection setHidden:YES];
         
-        [txtVwWriteChat setFrame:CGRectMake(txtVwWriteChat.frame.origin.x,[UIScreen mainScreen].bounds.size.height-btnSend.frame.size.height,txtVwWriteChat.frame.size.width,btnSend.frame.size.height)];
+        [txtVwWriteChat setFrame:CGRectMake(txtVwWriteChat.frame.origin.x,[UIScreen mainScreen].bounds.size.height-txtVwWriteChat.frame.size.height-stickerCollection.frame.size.height-2,txtVwWriteChat.frame.size.width, txtVwWriteChat.frame.size.height)];
         
-        [btnSend setFrame:CGRectMake(btnSend.frame.origin.x,[UIScreen mainScreen].bounds.size.height- btnSend.frame.size.height,btnSend.frame.size.width,btnSend.frame.size.height)];
+        [btnSend setFrame:CGRectMake(btnSend.frame.origin.x,[UIScreen mainScreen].bounds.size.height-btnSend.frame.size.height-stickerCollection.frame.size.height-2,btnSend.frame.size.width, btnSend.frame.size.height)];
         
-        //     [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height,27,56)];
+        [btnSmly setFrame:CGRectMake(btnSmly.frame.origin.x, [UIScreen mainScreen].bounds.size.height-btnSmly.frame.size.height-stickerCollection.frame.size.height-2,btnSmly.frame.size.width,btnSmly.frame.size.height)];
         
-        [btnSmly setFrame:CGRectMake(btnSmly.frame.origin.x,[UIScreen mainScreen].bounds.size.height-btnSmly.frame.size.height,btnSmly.frame.size.width,btnSmly.frame.size.height)];
+        stickerCollection.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height-stickerCollection.frame.size.height, [UIScreen mainScreen].bounds.size.width,stickerCollection.frame.size.height);
+        
+        [stickerCollection setHidden:NO];
         
         ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,txtVwWriteChat.frame.origin.y-(FriendGroupCollectionView.frame.origin.y+FriendGroupCollectionView.frame.size.height));
         
@@ -293,7 +289,52 @@
          
          
          txtVwWriteChat.text = nil;
-         [self viewDidLoad];
+         
+         
+         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+         
+         NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+         login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
+         
+         Login_user_Id = [UserData stringForKey:@"Login_User_id"];
+         
+         NSString *urlstring=[NSString stringWithFormat:@"%@group_chat_view.php",App_Domain_Url];
+         
+         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+         
+         [request setHTTPMethod:@"POST"];
+         
+         
+         data_limite=10;
+         
+         NSString *postData = [NSString stringWithFormat:@"send_id=%@&start=0&records=10",login_user_id];
+         
+         [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+         
+         [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+         
+         
+         
+         [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+          {
+              
+              chat_Data_array=[[NSMutableArray alloc]init];
+              chat_Data_array=[[result objectForKey:@"details"] mutableCopy];
+              
+              
+              
+              NSLog(@"Chat Data-- %@",chat_Data_array);
+              
+              
+              [ChatTable reloadData];
+              [self allUserUrl];
+              if(chat_Data_array.count > 0){
+                  
+                  [ChatTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+                  
+              }
+          }];
+
          
          
      }];
@@ -433,8 +474,6 @@
         
         [btnSend setFrame:CGRectMake(btnSend.frame.origin.x,[UIScreen mainScreen].bounds.size.height-btnSend.frame.size.height-stickerCollection.frame.size.height-2,btnSend.frame.size.width, btnSend.frame.size.height)];
         
-     //   [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height-_stickerCollection.frame.size.height-2,27,56)];
-        
         [btnSmly setFrame:CGRectMake(btnSmly.frame.origin.x, [UIScreen mainScreen].bounds.size.height-btnSmly.frame.size.height-stickerCollection.frame.size.height-2,btnSmly.frame.size.width,btnSmly.frame.size.height)];
         
         stickerCollection.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height-stickerCollection.frame.size.height, [UIScreen mainScreen].bounds.size.width,stickerCollection.frame.size.height);
@@ -474,12 +513,11 @@
         [txtVwWriteChat setFrame:CGRectMake(txtVwWriteChat.frame.origin.x,[UIScreen mainScreen].bounds.size.height-txtVwWriteChat.frame.size.height-kwheight-2,txtVwWriteChat.frame.size.width, txtVwWriteChat.frame.size.height)];
         
         [btnSend setFrame:CGRectMake(btnSend.frame.origin.x,[UIScreen mainScreen].bounds.size.height-btnSend.frame.size.height-kwheight-2,btnSend.frame.size.width, btnSend.frame.size.height)];
-        
- //       [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height-kwheight-2,27,56)];
+    
         
         [btnSmly setFrame:CGRectMake(btnSmly.frame.origin.x, [UIScreen mainScreen].bounds.size.height-btnSmly.frame.size.height-kwheight-2,btnSmly.frame.size.width,btnSmly.frame.size.height)];
         
-        self.stickerCollection.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height-kwheight, [UIScreen mainScreen].bounds.size.width,220);
+        self.stickerCollection.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height-kwheight, [UIScreen mainScreen].bounds.size.width,stickerCollection.frame.size.height);
         
         [stickerCollection setHidden:NO];
        
@@ -533,7 +571,7 @@
     NSError *error = nil;
     NSURL *url = [NSURL fileURLWithPath:path];
     player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
-    [player play];
+   // [player play];
 }
 -(void)ReceiveNotification
 {
@@ -576,13 +614,13 @@
         
         [btnSmly setFrame:CGRectMake(btnSmly.frame.origin.x, [UIScreen mainScreen].bounds.size.height-btnSmly.frame.size.height-kwheight-2,btnSmly.frame.size.width,btnSmly.frame.size.height)];
         
-         ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,txtVwWriteChat.frame.origin.y-(FriendGroupCollectionView.frame.origin.y+FriendGroupCollectionView.frame.size.height));
+         ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,txtVwWriteChat.frame.origin.y-(FriendGroupCollectionView.frame.origin.y+FriendGroupCollectionView.frame.size.height+20));
         flag=0;
         
         /*
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-          //  ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,230);
+            ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,230);
            
             
             
@@ -614,15 +652,13 @@
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
     login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
     
-    //NSString *urlstring=[NSString stringWithFormat:@"%@chat_view.php?send_id=%@&rec_id=%@&start=0&end=70",App_Domain_Url,login_user_id,_getuser_id];
-    
     NSString *urlstring=[NSString stringWithFormat:@"%@group_chat_view.php",App_Domain_Url];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
     
     [request setHTTPMethod:@"POST"];
     
-    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=1&end=250",login_user_id,alluserID];
+    NSString *postData = [NSString stringWithFormat:@"send_id=%@&start=0&records=10",login_user_id];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
@@ -651,38 +687,38 @@
     
     return YES;
 }
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
-{
-    if ( [text isEqualToString:@"\n"] )
-    {
-        
-        if (i>0)
-        {
-            
-            ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,ChatTable.frame.size.height-25);
-            
-            [ChatTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-            i--;
-        }
-        
-        
-        if (txtVwWriteChat.frame.size.height<150)
-        {
-            
-            [txtVwWriteChat setFrame:CGRectMake(txtVwWriteChat.frame.origin.x, txtVwWriteChat.frame.origin.y-25,txtVwWriteChat.frame.size.width, txtVwWriteChat.frame.size.height+25)];
-        }
-        else
-        {
-            
-        }
-        
-        
-    }
-    
-    
-    
-    return YES;
-}
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+//{
+//    if ( [text isEqualToString:@"\n"] )
+//    {
+//        
+//        if (i>0)
+//        {
+//            
+//            ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,ChatTable.frame.size.height-25);
+//            
+//            [ChatTable scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//            i--;
+//        }
+//        
+//        
+//        if (txtVwWriteChat.frame.size.height<150)
+//        {
+//            
+//            [txtVwWriteChat setFrame:CGRectMake(txtVwWriteChat.frame.origin.x, txtVwWriteChat.frame.origin.y-25,txtVwWriteChat.frame.size.width, txtVwWriteChat.frame.size.height+25)];
+//        }
+//        else
+//        {
+//            
+//        }
+//        
+//        
+//    }
+//    
+//    
+//    
+//    return YES;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -698,6 +734,7 @@
     
     
     NSString *id_string=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"send_from"]];
+    
     
     if([[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"type"]  isEqual: @"s"]){
         
@@ -716,6 +753,13 @@
             
             
             [chat_person_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+            
+            
+            chat_person_image.userInteractionEnabled=YES;
+            chat_person_image.tag=indexPath.row;
+            
+            UITapGestureRecognizer *imageTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ViewProfile:)];
+            [chat_person_image addGestureRecognizer:imageTap];
             
             
             UIImageView *cmngimg=[[UIImageView alloc]initWithFrame:CGRectMake(90,+10, 75,75)];
@@ -739,6 +783,14 @@
             
             
             [chat_person_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+            
+            
+            chat_person_image.userInteractionEnabled=YES;
+            chat_person_image.tag=indexPath.row;
+            
+            UITapGestureRecognizer *imageTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ViewProfile:)];
+            [chat_person_image addGestureRecognizer:imageTap];
+
             
             
             UIImageView *cmngimg=[[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-chat_person_image.frame.size.width-90,+10, 75,75)];
@@ -823,6 +875,13 @@
             chat_person_image.contentMode=UIViewContentModeScaleAspectFill;
             [celltbl addSubview:chat_person_image];
             [chat_person_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+            
+            chat_person_image.userInteractionEnabled=YES;
+            chat_person_image.tag=indexPath.row;
+            
+            UITapGestureRecognizer *imageTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ViewProfile:)];
+            [chat_person_image addGestureRecognizer:imageTap];
+
             
             
 //            chat_design=[[UIImageView alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x+55,5,[UIScreen mainScreen].bounds.size.width-60,80)];
@@ -965,6 +1024,13 @@
             
             [chat_person_image sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[[chat_Data_array objectAtIndex:indexPath.row]objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options: (0) == 0?SDWebImageRefreshCached : 0];
             
+            chat_person_image.userInteractionEnabled=YES;
+            chat_person_image.tag=indexPath.row;
+            
+            UITapGestureRecognizer *imageTap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(ViewProfile:)];
+            [chat_person_image addGestureRecognizer:imageTap];
+
+            
             
             
             
@@ -1041,6 +1107,56 @@
     celltbl.backgroundColor=[UIColor clearColor];
     celltbl.selectionStyle=NO;
     
+    if (ChatTable.contentOffset.y<0)
+    {
+        
+        RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+        
+        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+        login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
+        
+        NSString *urlstring=[NSString stringWithFormat:@"%@group_chat_view.php",App_Domain_Url];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        data_limite=data_limite+10;
+        
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&start=%d&records=10",login_user_id,data_limite];
+        
+        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        
+        //nslog(@"Send Chat -- %@",postData);
+        
+        [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+         {
+             
+             chat_Data_array2=[[NSMutableArray alloc]init];
+             chat_Data_array2=[[result objectForKey:@"details"] mutableCopy];
+             
+             
+             if (!chat_Data_array2.count==0)
+                 
+             {
+                 
+                 chat_Data_array= [[chat_Data_array2 arrayByAddingObjectsFromArray:chat_Data_array]mutableCopy];
+                 
+                 [ChatTable reloadData];
+                 
+             }
+             else
+             {
+                 
+             }
+         }];
+        
+    }
+
+    
     return celltbl;
 }
 
@@ -1097,7 +1213,7 @@
         
         [btnSmly setFrame:CGRectMake(btnSmly.frame.origin.x,[UIScreen mainScreen].bounds.size.height-btnSmly.frame.size.height,btnSmly.frame.size.width,btnSmly.frame.size.height)];
         
-        ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,txtVwWriteChat.frame.origin.y-(FriendGroupCollectionView.frame.origin.y+FriendGroupCollectionView.frame.size.height));
+        ChatTable.frame=CGRectMake(ChatTable.frame.origin.x, ChatTable.frame.origin.y, ChatTable.frame.size.width,txtVwWriteChat.frame.origin.y-(FriendGroupCollectionView.frame.origin.y+FriendGroupCollectionView.frame.size.height+20));
         
     }];
     
@@ -1131,6 +1247,18 @@
 
 
 }
+
+-(void)ViewProfile:(UITapGestureRecognizer *)sender
+{
+    NSLog(@"############.........%@",sender);
+    
+    UserInfoViewController *userVC=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"User_info_page"];
+    
+    userVC.getuser_id=[[chat_Data_array objectAtIndex:sender.view.tag] valueForKey:@"send_from"];
+    
+    [self.navigationController pushViewController:userVC animated:YES];
+}
+
 
 
 @end

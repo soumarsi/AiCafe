@@ -28,7 +28,8 @@
 
 @implementation ChatInboxViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.tabview.delegate=self;
     self.tabview.dataSource=self;
@@ -39,7 +40,7 @@
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
     NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
     
-    NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@",App_Domain_Url,Login_user_Id];
+    NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@&start=0&records=10",App_Domain_Url,Login_user_Id];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
     

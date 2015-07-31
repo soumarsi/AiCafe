@@ -68,6 +68,7 @@
     userDP=[standardUserDefaults stringForKey:@"user_photo_mainScreen"];//user_photo_mainScreen
     user_name_info= [standardUserDefaults stringForKey:@"User_name"];
     user_sex_info= [standardUserDefaults stringForKey:@"user_sex"];
+    _user_age.text=[NSString stringWithFormat:@"Age: %@",[standardUserDefaults stringForKey:@"age"]];
     user_business_info= [standardUserDefaults stringForKey:@"user_business"];
 
     

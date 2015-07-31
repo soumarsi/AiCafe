@@ -31,5 +31,10 @@
 
 @property (strong, nonatomic) IBOutlet UITextView *about_user;
 @property (strong, nonatomic) IBOutlet UIImageView *blueview;
+@property (weak, nonatomic) IBOutlet UIImageView *add_friend_button;
+@property (weak, nonatomic) IBOutlet UILabel *add_friend_title;
+@property (weak, nonatomic) IBOutlet UIButton *add_friend_button2;
+
+
 
 @end

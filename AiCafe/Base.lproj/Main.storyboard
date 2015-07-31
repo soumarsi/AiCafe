@@ -149,7 +149,7 @@
                                         <rect key="frame" x="122" y="87" width="98" height="98"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rahul.test@test.com" placeholder="Email" minimumFontSize="17" background="Textfield_Background" id="5DO-IS-1ol">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Rsr@test.com" placeholder="Email" minimumFontSize="17" background="Textfield_Background" id="5DO-IS-1ol">
                                         <rect key="frame" x="35" y="261" width="255" height="40"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.30588235289999999" green="0.1529411765" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -788,6 +788,9 @@
                     </view>
                     <connections>
                         <outlet property="about_user" destination="VtO-OY-AQc" id="MfW-2W-zrB"/>
+                        <outlet property="add_friend_button" destination="F5G-iD-5lF" id="oBy-NP-xY0"/>
+                        <outlet property="add_friend_button2" destination="GzK-aq-mNn" id="anz-Pv-8HK"/>
+                        <outlet property="add_friend_title" destination="O6V-Ap-PN9" id="6Cn-mp-ep8"/>
                         <outlet property="age" destination="cd7-f9-aM1" id="qtv-R5-aUv"/>
                         <outlet property="blueview" destination="vhg-Ls-f9A" id="iFd-wE-62f"/>
                         <outlet property="business" destination="tF4-m4-2e3" id="UvO-gw-u3i"/>
@@ -894,7 +897,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.30588235289999999" green="0.1529411765" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                 <color key="value" red="0.30588235294117649" green="0.15294117647058825" blue="0.054901960784313725" alpha="1" colorSpace="calibratedRGB"/>
@@ -967,7 +970,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.30588235289999999" green="0.1529411765" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
                                                 <color key="value" red="0.30588235294117649" green="0.15294117647058825" blue="0.054901960784313725" alpha="1" colorSpace="calibratedRGB"/>
@@ -1104,7 +1107,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="funnel" id="NOl-3O-jA7">
-                                <rect key="frame" x="282.00000076545979" y="25" width="26" height="26"/>
+                                <rect key="frame" x="282.00000011218293" y="25" width="26" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HgJ-qr-l45">
@@ -1633,7 +1636,7 @@
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T6v-XT-6Tf">
-                                                            <rect key="frame" x="216" y="8" width="95" height="33"/>
+                                                            <rect key="frame" x="215.9999995990288" y="8" width="95" height="33"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                             <state key="normal" backgroundImage="chat_button">
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -2281,7 +2284,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Loyalti_info" id="gZE-Ft-u6V">
-                                        <rect key="frame" x="282.00000048639288" y="24" width="26" height="26"/>
+                                        <rect key="frame" x="282.0000008862076" y="24" width="26" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="NF4-hz-wgz">
@@ -2979,7 +2982,7 @@
                                     <outlet property="delegate" destination="0dm-1E-FQN" id="vFg-Xy-hm9"/>
                                 </connections>
                             </collectionView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="6rR-bc-gmq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="6rR-bc-gmq">
                                 <rect key="frame" x="0.0" y="71" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -3113,7 +3116,7 @@
                                             <outlet property="delegate" destination="D5H-lD-MA7" id="YdG-jh-Sso"/>
                                         </connections>
                                     </collectionView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="OZI-Qg-7xq">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="91" sectionHeaderHeight="22" sectionFooterHeight="22" id="OZI-Qg-7xq">
                                         <rect key="frame" x="0.0" y="149" width="320" height="362"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

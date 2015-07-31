@@ -161,12 +161,21 @@
             
             _login_btn.userInteractionEnabled=YES;
             
+            NSLog(@">>>>>>>>>>>>> %@",result);
+            
       if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
       {
           UIAlertView *Alert = [[UIAlertView alloc]initWithTitle:nil message:@"Login Failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
           [Alert show];
           _login_btn.userInteractionEnabled=YES;
       }
+   else if ([[result objectForKey:@"auth"]isEqualToString:@"login failed"])
+            {
+                UIAlertView *Alert = [[UIAlertView alloc]initWithTitle:nil message:@"Login Failed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [Alert show];
+                _login_btn.userInteractionEnabled=YES;
+            }
+
     else
         {
             if([[result objectForKey:@"auth"] isEqualToString:@"login failed"])
@@ -188,6 +197,7 @@
                         [UserData setObject:[get_result objectForKey:@"photo"] forKey:@"user_photo_mainScreen"];
                         
                         [UserData setObject:[get_result objectForKey:@"sex"] forKey:@"user_sex"];
+                        [UserData setObject:[get_result objectForKey:@"age"] forKey:@"age"];
                         [UserData setObject:[get_result objectForKey:@"business"] forKey:@"user_business"];
                         [UserData setObject:[get_result objectForKey:@"about"] forKey:@"user_about"];
                         

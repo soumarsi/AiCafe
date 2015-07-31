@@ -62,20 +62,16 @@
     
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
     login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
-    
-    //    login_user_id=@"10";
-    
-    //NSString *urlstring=[NSString stringWithFormat:@"%@chat_view.php?send_id=%@&rec_id=%@&start=0&end=70",App_Domain_Url,login_user_id,_getuser_id];
-    
+
     NSString *urlstring=[NSString stringWithFormat:@"%@chat_view.php",App_Domain_Url];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
     
     [request setHTTPMethod:@"POST"];
     
-    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=0&end=250",login_user_id,_getuser_id];
+    data_limite=10;
     
-    
+    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=0&records=10",login_user_id,_getuser_id];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
@@ -90,7 +86,8 @@
          chat_Data_array=[[NSMutableArray alloc]init];
          chat_Data_array=[[result objectForKey:@"details"] mutableCopy];
          
-         //nslog(@"Chat Data-- %@",chat_Data_array);
+         NSLog(@">>>>>>>>>>%@",result);
+
          
          
          [_chat_table reloadData];
@@ -102,7 +99,7 @@
              
          }
      }];
-    
+
     
 }
 
@@ -131,16 +128,18 @@
         
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,274);
+            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chatbox.frame.origin.y-_chat_table.frame.origin.y);
             
             
         }
         else
         {
-            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,174);
+            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chatbox.frame.origin.y-_chat_table.frame.origin.y);
             
             
         }
+        
+        
 
         
         
@@ -163,16 +162,18 @@
         
         if ([UIScreen mainScreen].bounds.size.width>320)
         {
-            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,274);
+            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chatbox.frame.origin.y-_chat_table.frame.origin.y);
             
             
         }
         else
         {
-            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,174);
+            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chatbox.frame.origin.y-_chat_table.frame.origin.y);
             
             
         }
+        
+        
 
     }
     
@@ -313,7 +314,7 @@
     
     [request setHTTPMethod:@"POST"];
     
-    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=0&end=70",login_user_id,_getuser_id];
+    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=0&records=10",login_user_id,_getuser_id];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
@@ -340,42 +341,42 @@
     
     return YES;
 }
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
-{
-
-    
-    if ( [text isEqualToString:@"\n"] )
-    {
-        
-        if (i>0)
-        {
-            
-            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chat_table.frame.size.height-25);
-            
-            [_chat_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-            i--;
-        }
-        
-        
-        if (_chatbox.frame.size.height<150)
-        {
-            
-            [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x, _chatbox.frame.origin.y-25,_chatbox.frame.size.width, _chatbox.frame.size.height+25)];
-        }
-        else
-        {
-            
-        }
-        
-        
-    }
-    
-    
-    
-    return YES;
-}
-
-
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text;
+//{
+//
+//    
+//    if ( [text isEqualToString:@"\n"] )
+//    {
+//        
+//        if (i>0)
+//        {
+//            
+//            _chat_table.frame=CGRectMake(_chat_table.frame.origin.x, _chat_table.frame.origin.y, _chat_table.frame.size.width,_chat_table.frame.size.height-25);
+//            
+//            [_chat_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//            i--;
+//        }
+//        
+//        
+//        if (_chatbox.frame.size.height<150)
+//        {
+//            
+//            [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x, _chatbox.frame.origin.y-25,_chatbox.frame.size.width, _chatbox.frame.size.height+25)];
+//        }
+//        else
+//        {
+//            
+//        }
+//        
+//        
+//    }
+//    
+//    
+//    
+//    return YES;
+//}
+//
+//
 
 
 
@@ -757,6 +758,56 @@
     celltbl.backgroundColor=[UIColor clearColor];
     celltbl.selectionStyle=NO;
     
+    
+    if (_chat_table.contentOffset.y<0)
+    {
+        
+        RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+        
+        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+        login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
+        
+        NSString *urlstring=[NSString stringWithFormat:@"%@chat_view.php",App_Domain_Url];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        data_limite=data_limite+10;
+        
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=%d&records=10",login_user_id,_getuser_id,data_limite];
+        
+        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        
+        //nslog(@"Send Chat -- %@",postData);
+        
+        [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+         {
+             
+             chat_Data_array2=[[NSMutableArray alloc]init];
+             chat_Data_array2=[[result objectForKey:@"details"] mutableCopy];
+             
+             
+             if (!chat_Data_array2.count==0)
+                 
+             {
+                 
+                 chat_Data_array= [[chat_Data_array2 arrayByAddingObjectsFromArray:chat_Data_array]mutableCopy];
+                 
+                 [_chat_table reloadData];
+                 
+             }
+             else
+             {
+                 
+             }
+         }];
+
+    }
+    
     return celltbl;
 }
 
@@ -879,35 +930,17 @@
         NSString *goodMsg = [[NSString alloc] initWithData:msgData encoding:NSUTF8StringEncoding] ;
         
         
-        
-        
-        
         NSString *escapedString = [goodMsg stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
         
-        
-        
+
         NSLog(@"--=-==- %@", goodMsg);
-        
-        
         
         
         NSLog(@"### Url Data ......%@",escapedString);
         
         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
-        
-
-        
-        
-        
-        
-       // [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-56,_chatbox.frame.size.width,_send_button.frame.size.height)];
-        
-        //[_send_button setFrame:CGRectMake(_send_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height,_send_button.frame.size.width, _send_button.frame.size.height)];
-        
-        //[_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-56,27,56)];
-        
-        
-        NSString *urlstring=[NSString stringWithFormat:@"%@sendChatUser.php",App_Domain_Url];
+    
+        NSString *urlstring=[NSString stringWithFormat:@"%@sendSingleUser.php",App_Domain_Url];
         
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
         
@@ -930,7 +963,49 @@
              
              NSLog(@"hello....%@",result);
              _chatbox.text = nil;
-             [self viewDidLoad];
+             
+             RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+             
+             NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+             login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
+             
+             NSString *urlstring=[NSString stringWithFormat:@"%@chat_view.php",App_Domain_Url];
+             
+             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+             
+             [request setHTTPMethod:@"POST"];
+             
+             data_limite=10;
+             
+             NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=0&records=10",login_user_id,_getuser_id];
+             
+             [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+             
+             [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+             
+             
+             //nslog(@"Send Chat -- %@",postData);
+             
+             [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+              {
+                  
+                  chat_Data_array=[[NSMutableArray alloc]init];
+                  chat_Data_array=[[result objectForKey:@"details"] mutableCopy];
+                  
+                  NSLog(@">>>>>>>>>>%@",result);
+                  
+                  
+                  
+                  [_chat_table reloadData];
+                  
+                  if(chat_Data_array.count > 0){
+                      
+                      [_chat_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+                      
+                      
+                  }
+              }];
+
              
              
          }];
@@ -957,6 +1032,20 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    
+    [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_chatbox.frame.size.height-_stickerCollection.frame.size.height-2,_chatbox.frame.size.width, _chatbox.frame.size.height)];
+    
+    [_send_button setFrame:CGRectMake(_send_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height-_stickerCollection.frame.size.height-2,_send_button.frame.size.width, _send_button.frame.size.height)];
+    
+    [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height-_stickerCollection.frame.size.height-2,27,56)];
+    
+    [_smly setFrame:CGRectMake(_smly.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_smly.frame.size.height-_stickerCollection.frame.size.height-2,_smly.frame.size.width,_smly.frame.size.height)];
+    
+    self.stickerCollection.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height-_stickerCollection.frame.size.height, [UIScreen mainScreen].bounds.size.width,_stickerCollection.frame.size.height);
+    
+    [_stickerCollection setHidden:NO];
+
     
     RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
     
@@ -987,19 +1076,19 @@
          [self viewDidLoad];
          
          
-         [_chatbox resignFirstResponder];
-         
-         [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_chatbox.frame.size.height-kwheight-2,_chatbox.frame.size.width, _chatbox.frame.size.height)];
-         
-         [_send_button setFrame:CGRectMake(_send_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height-kwheight-2,_send_button.frame.size.width, _send_button.frame.size.height)];
-         
-         [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height-kwheight-2,27,56)];
-         
-         [_smly setFrame:CGRectMake(_smly.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_smly.frame.size.height-kwheight-2,_smly.frame.size.width,_smly.frame.size.height)];
-         
-         self.stickerCollection.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height-kwheight, [UIScreen mainScreen].bounds.size.width,220);
-         
-         [_stickerCollection setHidden:NO];
+//         [_chatbox resignFirstResponder];
+//         
+//         [_chatbox setFrame:CGRectMake(_chatbox.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_chatbox.frame.size.height-kwheight-2,_chatbox.frame.size.width, _chatbox.frame.size.height)];
+//         
+//         [_send_button setFrame:CGRectMake(_send_button.frame.origin.x,[UIScreen mainScreen].bounds.size.height-_send_button.frame.size.height-kwheight-2,_send_button.frame.size.width, _send_button.frame.size.height)];
+//         
+//         [_clip_button setFrame:CGRectMake(_clip_button.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_clip_button.frame.size.height-kwheight-2,27,56)];
+//         
+//         [_smly setFrame:CGRectMake(_smly.frame.origin.x, [UIScreen mainScreen].bounds.size.height-_smly.frame.size.height-kwheight-2,_smly.frame.size.width,_smly.frame.size.height)];
+//         
+//         self.stickerCollection.frame = CGRectMake(0,[UIScreen mainScreen].bounds.size.height-kwheight, [UIScreen mainScreen].bounds.size.width,220);
+//         
+//         [_stickerCollection setHidden:NO];
          
          if ([UIScreen mainScreen].bounds.size.width>320)
          {

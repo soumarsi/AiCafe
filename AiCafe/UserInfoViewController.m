@@ -51,7 +51,9 @@
     
     globalobj=[[RS_JsonClass alloc]init];
     
-    //NSString *urlstring=[NSString stringWithFormat:@"%@user_detail.php?id=%@",App_Domain_Url,getuser_id];
+   
+    NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+    NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
     
     NSString *urlstring=[NSString stringWithFormat:@"%@user_detail.php",App_Domain_Url];
     
@@ -59,7 +61,7 @@
     
     [request setHTTPMethod:@"POST"];
     
-    NSString *postData = [NSString stringWithFormat:@"id=%@",getuser_id];
+    NSString *postData = [NSString stringWithFormat:@"id=%@&user_id=%@",getuser_id,Login_user_Id];
     
     [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
@@ -76,6 +78,15 @@
          {
              user_details=[[NSMutableDictionary alloc]init];
              user_details=[[result objectForKey:@"detail"]mutableCopy];
+             
+             NSLog(@"^^^^^^^^>>>>>>>>>>>>>>  %@",[result objectForKey:@"friend"]);
+             
+             if ([[result objectForKey:@"friend"]isEqualToString:@"T"])
+             {
+                 _add_friend_button.hidden=YES;
+                 _add_friend_button2.hidden=YES;
+                 _add_friend_title.hidden=YES;
+             }
              
              NSLog(@"User Data-- %@",user_details);
              
@@ -102,6 +113,9 @@
              _about_user.text=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"about"]];
              
              _business.text=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"business"]];
+             
+             _age.text=[NSString stringWithFormat:@"Age: %@",[user_details objectForKey:@"age"]];
+
              
              
              if ([[user_details objectForKey:@"sex"] isEqualToString:@"M"])
@@ -167,11 +181,11 @@
          if([result isEqualToString:@"already send"])
          {
          
-             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Friend request already sent"
-                                                               message:Nil
-                                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-             
-             [message show];
+//             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Friend request already sent"
+//                                                               message:Nil
+//                                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//             
+//             [message show];
              
          }
          

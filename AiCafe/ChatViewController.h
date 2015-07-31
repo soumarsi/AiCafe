@@ -13,7 +13,7 @@
 
     UIImageView *chat_person_image,*chat_design;
     
-    NSMutableArray *chat_Data_array;
+    NSMutableArray *chat_Data_array,*chat_Data_array2;
     
     UIView *chatView;
     
@@ -27,6 +27,8 @@
     NSMutableAttributedString *aAttrString1;
     
     NSString *sound_check;
+    
+    int data_limite;
 }
 - (IBAction)openStickerview:(id)sender;
 @property (strong, nonatomic) IBOutlet UICollectionView *stickerCollection;
@@ -47,5 +49,6 @@
 
 @property(nonatomic,strong)NSString *getuser_id;
 - (IBAction)back_button:(id)sender;
+@property (weak, nonatomic) IBOutlet UIImageView *loader_image;
 
 @end

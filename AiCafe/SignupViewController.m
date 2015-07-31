@@ -329,6 +329,7 @@
                 [UserData setObject:[get_result objectForKey:@"photo"] forKey:@"user_photo_mainScreen"];
                 
                 [UserData setObject:[get_result objectForKey:@"sex"] forKey:@"user_sex"];
+                [UserData setObject:[get_result objectForKey:@"age"] forKey:@"age"];
                 [UserData setObject:[get_result objectForKey:@"business"] forKey:@"user_business"];
                 [UserData setObject:[get_result objectForKey:@"about"] forKey:@"user_about"];
                 
