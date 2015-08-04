@@ -453,15 +453,9 @@
             
         {
             
-            NSString *escapedString = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
+
             
-            
-            
-            const char *jsonString = [escapedString UTF8String];
-            
-            NSData *jsonData = [NSData dataWithBytes:jsonString length:strlen(jsonString)];
-            
-            NSString *goodMsg = [[NSString alloc] initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
+            NSString *goodMsg = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
 
             
@@ -597,21 +591,14 @@
             
         {
             
-            NSString *escapedString = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
             
-            
-            
-            const char *jsonString = [escapedString UTF8String];
-            
-            NSData *jsonData = [NSData dataWithBytes:jsonString length:strlen(jsonString)];
-            
-            NSString *goodMsg = [[NSString alloc] initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
+            NSString *goodMsg = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
             UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
             
             NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
             
-            NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:goodMsg attributes: arialDict];
+           aAttrString1 = [[NSMutableAttributedString alloc] initWithString:goodMsg attributes: arialDict];
             
             
             
@@ -818,16 +805,16 @@
     
     NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
     
-    NSString *msgData=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]];
-    
-    NSData *data = [msgData dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *convertedStr = [[NSString alloc] initWithData:data encoding:NSNonLossyASCIIStringEncoding];
+//    NSString *msgData=[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]];
+//    
+//    NSData *data = [msgData dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *convertedStr = [[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    NSLog(@"#### ConvertedData....%@",msgData);
+    NSLog(@"#### ConvertedData....%@",convertedStr);
     
     if (convertedStr.length==0)
     {
-         aAttrString1 = [[NSMutableAttributedString alloc] initWithString:msgData attributes: arialDict];
+         aAttrString1 = [[NSMutableAttributedString alloc] initWithString:convertedStr attributes: arialDict];
     }
     else
     {
@@ -922,9 +909,27 @@
     }
     else
     {
+<<<<<<< HEAD
         NSString *uniText = [_chatbox.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
+=======
+       
+        
+        NSString *uniText = _chatbox.text ;
+        
+        NSLog(@"### Url Data ......%@",uniText);
+        
+        RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+    
+        NSString *urlstring=[NSString stringWithFormat:@"%@sendSingleUser.php",App_Domain_Url];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+>>>>>>> origin/master
         
         
+<<<<<<< HEAD
+=======
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m&chat_type=O",login_user_id,_getuser_id,uniText];
+>>>>>>> origin/master
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", App_Domain_Url]];
         
