@@ -592,7 +592,7 @@
         {
             
             
-            NSString *goodMsg = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSString *goodMsg = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
             UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
             
@@ -909,27 +909,11 @@
     }
     else
     {
-<<<<<<< HEAD
+
         NSString *uniText = [_chatbox.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
-=======
+
        
-        
-        NSString *uniText = _chatbox.text ;
-        
-        NSLog(@"### Url Data ......%@",uniText);
-        
-        RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
-    
-        NSString *urlstring=[NSString stringWithFormat:@"%@sendSingleUser.php",App_Domain_Url];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
->>>>>>> origin/master
-        
-        
-<<<<<<< HEAD
-=======
-        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m&chat_type=O",login_user_id,_getuser_id,uniText];
->>>>>>> origin/master
+
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", App_Domain_Url]];
         

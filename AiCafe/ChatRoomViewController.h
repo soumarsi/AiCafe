@@ -12,6 +12,7 @@
 #import "stickercell.h"
 #import "UIImageView+WebCache.h"
 #import "RS_JsonClass.h"
+#import "AFHTTPClient.h"
 #define kCellsPerRow 4
 @interface ChatRoomViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {

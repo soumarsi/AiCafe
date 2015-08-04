@@ -378,9 +378,9 @@
 -(void)Load_url
 {
     
-    NSString *chattext=txtVwWriteChat.text;
+   
     
-    if ([chattext stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
+    if ([txtVwWriteChat.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
     {
         
         
@@ -389,58 +389,54 @@
     {
         
         
-        RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
-        
-        
-        NSString *uniText = [NSString stringWithUTF8String:[txtVwWriteChat.text UTF8String]];
-        
-        NSData *msgData = [uniText dataUsingEncoding:NSNonLossyASCIIStringEncoding];
-        
-        NSString *goodMsg = [[NSString alloc] initWithData:msgData encoding:NSUTF8StringEncoding] ;
+        NSString *uniText = [txtVwWriteChat.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
         
         
         
         
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", App_Domain_Url]];
         
-        NSString *escapedString = [goodMsg stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-        
-        
-        
-        NSLog(@"--=-==- %@", goodMsg);
+        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
         
         
         
-        NSLog(@"### Url Data ......%@",escapedString);
-         NSString *urlstring=[NSString stringWithFormat:@"%@sendGroupUser.php",App_Domain_Url];
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                
+                                login_user_id, @"send_id",
+                                
+                                alluserID, @"rec_id",
+                                
+                                uniText, @"message",
+                                
+                                @"m" , @"type",
+                                
+                                @"abc", @"stickername",
+                                
+                                @"G", @"chat_type",
+                                
+                                nil];
         
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+        [httpClient postPath:@"sendGroupUser.php" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSError *error;
+            
+            NSDictionary *dictgroup = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+            chat_Data_array=[[NSMutableArray alloc]init];
+            chat_Data_array=[[dictgroup objectForKey:@"details"] mutableCopy];
+            
+            NSLog(@"hello....%@",dictgroup);
+            txtVwWriteChat.text = nil;
+            [self viewDidLoad];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            
+            
+            NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+            
+        }];
         
-        [request setHTTPMethod:@"POST"];
-        
-       // NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m",login_user_id,@"20",chattext];
-        
-         NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&type=m&stickername=abc&chat_type=G",login_user_id,alluserID,escapedString];
-        
-        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-        
-        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        
-        
-        [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
-         {
-             
-             chat_Data_array=[[NSMutableArray alloc]init];
-             chat_Data_array=[[result objectForKey:@"details"] mutableCopy];
-             
-             NSLog(@"hello....%@",result);
-             txtVwWriteChat.text = nil;
-             [self viewDidLoad];
-             
-             
-         }];
-        
-    }
+          }
     
     
 }
@@ -801,15 +797,9 @@
         if (![login_user_id isEqualToString:id_string])
         {
             
-            NSString *escapedString = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
+                 NSString *goodMsg = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
-            
-            
-            const char *jsonString = [escapedString UTF8String];
-            
-            NSData *jsonData = [NSData dataWithBytes:jsonString length:strlen(jsonString)];
-            
-            NSString *goodMsg = [[NSString alloc] initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
+       
             
             UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
             
@@ -936,15 +926,7 @@
         }
         else
         {
-            NSString *escapedString = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingOccurrencesOfString:@"\\\\" withString:@"\\"];
-            
-            
-            
-            const char *jsonString = [escapedString UTF8String];
-            
-            NSData *jsonData = [NSData dataWithBytes:jsonString length:strlen(jsonString)];
-            
-            NSString *goodMsg = [[NSString alloc] initWithData:jsonData encoding:NSNonLossyASCIIStringEncoding];
+          NSString *goodMsg = [[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             
             UIFont *font1 = [UIFont fontWithName:@"OpenSans-Semibold" size:17];
             
@@ -1160,7 +1142,9 @@
     
     NSDictionary *arialDict = [NSDictionary dictionaryWithObject:font1 forKey:NSFontAttributeName];
     
-    NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"] attributes: arialDict];
+       NSString *convertedStr = [[NSString stringWithFormat:@"%@",[[chat_Data_array objectAtIndex:indexPath.row] objectForKey:@"message"]] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSMutableAttributedString *aAttrString1 = [[NSMutableAttributedString alloc] initWithString:convertedStr attributes: arialDict];
     
     
     
