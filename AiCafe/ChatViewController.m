@@ -10,6 +10,7 @@
 #import "UIImageView+WebCache.h"
 #import "RS_JsonClass.h"
 #import "stickercell.h"
+#import "AFHTTPClient.h"
 
 @interface ChatViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate>
 {
@@ -921,95 +922,145 @@
     }
     else
     {
-       
-        
-        NSString *uniText = [NSString stringWithUTF8String:[_chatbox.text UTF8String]];
-        
-        NSData *msgData = [uniText dataUsingEncoding:NSNonLossyASCIIStringEncoding];
-        
-        NSString *goodMsg = [[NSString alloc] initWithData:msgData encoding:NSUTF8StringEncoding] ;
-        
-        
-        NSString *escapedString = [goodMsg stringByReplacingOccurrencesOfString:@"\\" withString:@"\\\\"];
-        
-
-        NSLog(@"--=-==- %@", goodMsg);
-        
-        
-        NSLog(@"### Url Data ......%@",escapedString);
-        
-        RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
-    
-        NSString *urlstring=[NSString stringWithFormat:@"%@sendSingleUser.php",App_Domain_Url];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
-        
-        [request setHTTPMethod:@"POST"];
-        
-        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&message=%@&start=0&end=70&type=m&chat_type=O",login_user_id,_getuser_id,escapedString];
-        
-        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-        
-        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        NSString *uniText = [_chatbox.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
         
         
         
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", App_Domain_Url]];
         
-        [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
-         {
+        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
+        
+        
+        
+        NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
+                                
+                                login_user_id, @"send_id",
+                                
+                                _getuser_id, @"rec_id",
+                                
+                                uniText, @"message",
+                                
+                                @"m" , @"type",
+                                
+                                @"abc", @"stickername",
+                                
+                                @"O", @"chat_type",
+                                
+                                nil];
+        
+        [httpClient postPath:@"sendSingleUser.php" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            NSString *responseStr = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            
+            
+            
+            NSError *error;
+            
+            NSDictionary *responceDictionary = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:&error];
+            
+            
+            
+            chat_Data_array=[[NSMutableArray alloc]init];
+            
+            chat_Data_array=[[responceDictionary objectForKey:@"details"] mutableCopy];
+            
+            
+            
+            NSLog(@"hello....%@",responceDictionary);
+            
+            _chatbox.text = nil;
+            
+            
+            
+            RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+            
+            
+            
+            NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+            
+            login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
+            
+            
+            
+            NSString *urlstring=[NSString stringWithFormat:@"%@chat_view.php",App_Domain_Url];
+            
+            
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+            
+            
+            
+            [request setHTTPMethod:@"POST"];
+            
+            
+            
+            data_limite=10;
+            
+            
+            
+            NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=0&records=10",login_user_id,_getuser_id];
+            
+            
+            
+            [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+            
+            
+            
+            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            
+            
+            
+            
+            
+            [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
              
-             chat_Data_array=[[NSMutableArray alloc]init];
-             chat_Data_array=[[result objectForKey:@"details"] mutableCopy];
-             
-             NSLog(@"hello....%@",result);
-             _chatbox.text = nil;
-             
-             RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
-             
-             NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
-             login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
-             
-             NSString *urlstring=[NSString stringWithFormat:@"%@chat_view.php",App_Domain_Url];
-             
-             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
-             
-             [request setHTTPMethod:@"POST"];
-             
-             data_limite=10;
-             
-             NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@&start=0&records=10",login_user_id,_getuser_id];
-             
-             [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-             
-             [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-             
-             
-             //nslog(@"Send Chat -- %@",postData);
-             
-             [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
-              {
-                  
-                  chat_Data_array=[[NSMutableArray alloc]init];
-                  chat_Data_array=[[result objectForKey:@"details"] mutableCopy];
-                  
-                  NSLog(@">>>>>>>>>>%@",result);
-                  
-                  
-                  
-                  [_chat_table reloadData];
-                  
-                  if(chat_Data_array.count > 0){
-                      
-                      [_chat_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-                      
-                      
-                  }
-              }];
-
-             
-             
-         }];
-        
+             {
+                 
+                 
+                 
+                 chat_Data_array=[[NSMutableArray alloc]init];
+                 
+                 chat_Data_array=[[result objectForKey:@"details"] mutableCopy];
+                 
+                 
+                 
+                 NSLog(@">>>>>>>>>>%@",result);
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 [_chat_table reloadData];
+                 
+                 
+                 
+                 if(chat_Data_array.count > 0){
+                     
+                     
+                     
+                     [_chat_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:chat_Data_array.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+                     
+                     
+                     
+                     
+                     
+                 }
+                 
+             }];
+            
+            
+            
+            
+            
+            NSLog(@"Request Successful, response '%@'   %@", responseStr,responceDictionary);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
+            
+        }];
     }
     
     

@@ -34,6 +34,7 @@
     gestureRecognizer.delegate=self;
     [self.ChatTable addGestureRecognizer:gestureRecognizer];
     
+    
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
@@ -65,8 +66,7 @@
     
     [request setHTTPMethod:@"POST"];
 
-    
-   data_limite=10;
+    data_limite=10;
     
     NSString *postData = [NSString stringWithFormat:@"send_id=%@&start=0&records=10",login_user_id];
     
@@ -83,7 +83,6 @@
          chat_Data_array=[[result objectForKey:@"details"] mutableCopy];
          
          
-         
          NSLog(@"Chat Data-- %@",chat_Data_array);
          
          
@@ -95,6 +94,7 @@
              
          }
      }];
+    
 }
 -(void)allUserUrl
 {
@@ -361,15 +361,11 @@
     }
     
     
-    
-    
 }
+
 - (IBAction)ChatSendClick:(id)sender
 {
     keyboard=0;
-    
-    
-    
     
     if (txtVwWriteChat.text.length>0)
     {
@@ -414,9 +410,8 @@
         
         
         
-        
         NSLog(@"### Url Data ......%@",escapedString);
-         NSString *urlstring=[NSString stringWithFormat:@"%@sendChatGroup.php",App_Domain_Url];
+         NSString *urlstring=[NSString stringWithFormat:@"%@sendGroupUser.php",App_Domain_Url];
         
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
         
@@ -429,7 +424,6 @@
         [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
         
         [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-        
         
         
         

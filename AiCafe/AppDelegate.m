@@ -9,14 +9,15 @@
 #import "AppDelegate.h"
 #import <PushKit/PushKit.h>
 #import <Pusher/Pusher.h>
-@interface AppDelegate ()
+@interface AppDelegate ()<PTPusherDelegate>
 
 @end
 
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     
     [[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     
@@ -61,6 +62,8 @@
         {
            
          [[NSNotificationCenter defaultCenter] postNotificationName:@"GroupDataEdited" object:self];
+            
+            
         }
         
         
@@ -69,7 +72,7 @@
     
  ///////////////// Getting Device Token ///////////////////
     
-    NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+  //  NSString *uniqueIdentifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     
     //NSLog(@"Device unique id no is: %@",uniqueIdentifier);
     
