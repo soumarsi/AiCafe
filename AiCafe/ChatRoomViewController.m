@@ -389,7 +389,7 @@
         
         NSString *uniText = [txtVwWriteChat.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] ;
         
-        
+        NSLog(@"alluserid--- %@", alluserID);
         
         
         NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@", App_Domain_Url]];
