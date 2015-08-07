@@ -18,8 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"View did load...");
-    
     
     FriendGroupCollectionView.layer.masksToBounds = NO;
     FriendGroupCollectionView.layer.cornerRadius = 8;
@@ -264,7 +262,7 @@
     RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
     
     
-    NSString *urlstring=[NSString stringWithFormat:@"%@sendChatGroup.php",App_Domain_Url];
+    NSString *urlstring=[NSString stringWithFormat:@"%@sendGroupUser.php",App_Domain_Url];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
     
@@ -398,8 +396,6 @@
         
         AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
         
-        
-        
         NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:
                                 
                                 login_user_id, @"send_id",
@@ -429,8 +425,6 @@
             [self viewDidLoad];
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            
             
             NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
             
