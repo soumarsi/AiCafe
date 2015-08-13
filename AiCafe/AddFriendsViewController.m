@@ -12,8 +12,9 @@
 #import "RS_JsonClass.h"
 #import "UserInfoViewController.h"
 #import "ChatViewController.h"
+#import "MainScreenViewController.h"
 
-@interface AddFriendsViewController ()
+@interface AddFriendsViewController ()<UISearchBarDelegate,UITextFieldDelegate>
 
 @end
 
@@ -27,13 +28,22 @@
 {
     [super viewDidLoad];
     
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    _searchbar.text=@"";
+    [_Friends_Table reloadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
     
+    _searchbar.delegate=self;
+    _searchbar.backgroundColor=[UIColor clearColor];
+    [_searchbar setTranslucent:YES];
+    Friend_list_backup=[[NSMutableArray alloc]init];
     remove_array =[[NSMutableArray alloc]init];
     
     RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
@@ -64,7 +74,7 @@
              
              Friend_list=[[NSMutableArray alloc]init];
              Friend_list=[[result objectForKey:@"details"] mutableCopy];
-             
+             Friend_list_backup=[Friend_list mutableCopy];
              [_Friends_Table reloadData];
              
          }
@@ -80,6 +90,7 @@
 
 }
 
+
 - (void)Show_Network_Status:(NSNotification *)note
 {
     
@@ -92,17 +103,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [Friend_list count];
+
+         return [Friend_list count];
+
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    
-    cell=[[AddFriendTableViewCell alloc]init];
+        cell=[[AddFriendTableViewCell alloc]init];
 
-    /// Puting Data in tableView
+        /// Puting Data in tableView
     
-    custom_index=indexPath.row;
+        custom_index=indexPath.row;
     
     if(self.view.frame.size.width>320)
     {
@@ -285,7 +297,7 @@
         [AddFriendBtn removeFromSuperview];
         
     }
-    
+//}
      return cell;
 }
 
@@ -406,6 +418,80 @@
     
 }
 
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    Friend_list_backup=[Friend_list mutableCopy];
+    return YES;
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    Friend_list=[Friend_list_backup mutableCopy];
+    return YES;
+}
+
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:YES animated:YES];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO];
+    searchBar.text=@"";
+    [_Friends_Table reloadData];
+    
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO];
+}
+
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    NSLog(@"searchBar textDidChange");
+    
+   if(searchBar.text.length > 0)
+   {
+        NSLog(@"searchbar is");
+        
+        [searchBar setShowsCancelButton:YES];
+        
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"name beginswith[cd] %@", searchBar.text];
+        
+        
+        
+        Friend_list = [[Friend_list_backup filteredArrayUsingPredicate:pred] mutableCopy];
+        
+        
+        [_Friends_Table reloadData];
+       //[searchBar resignFirstResponder];
+       
+    }
+    else
+    {
+        [searchBar resignFirstResponder];
+        Friend_list=[Friend_list_backup mutableCopy];
+        [_Friends_Table reloadData];
+    }
+
+}
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField
+{
+
+    [self performSelector:@selector(resignFirstResponder) withObject:textField afterDelay: 0.1];
+    Friend_list=[Friend_list_backup mutableCopy];
+    [_Friends_Table reloadData];
+    return YES;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -423,6 +509,8 @@
 
 - (IBAction)back_tomainPage:(id)sender
 {
+    [_searchbar resignFirstResponder];
+
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

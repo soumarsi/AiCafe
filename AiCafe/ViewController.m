@@ -25,6 +25,7 @@
     //Debarun
     // TextField Padding ....
     
+    
     UIView *paddingTxtfieldView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 42)];
     UIView *paddingTxtfieldView2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 42)];
     _email.leftView = paddingTxtfieldView;
@@ -33,7 +34,14 @@
     _password.leftView = paddingTxtfieldView2;
     _password.leftViewMode = UITextFieldViewModeAlways;
 
+
     
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    _email.text=@"";
+    _password.text=@"";
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField

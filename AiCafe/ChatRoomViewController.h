@@ -16,7 +16,7 @@
 #define kCellsPerRow 4
 @interface ChatRoomViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
-    
+     
     UIImageView *chat_person_image,*chat_design;
     
     NSMutableArray *chat_Data_array,*Friend_list_array,*chat_Data_array2;

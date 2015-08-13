@@ -232,7 +232,7 @@
 
 - (IBAction)Sign_up_button:(id)sender
 {
-    [_name resignFirstResponder];
+    /*[_name resignFirstResponder];
     [_DOB resignFirstResponder];
     [_email resignFirstResponder];
     [_password resignFirstResponder];
@@ -257,7 +257,7 @@
         
         [_name setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
     }
-    else if ([_sex.text isEqualToString:@""])
+    if ([_sex.text isEqualToString:@""])
     {
         
         _sex.placeholder=@"Please select your gender !";
@@ -265,43 +265,59 @@
         [_sex setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
 
     }
-    else if ([_email.text isEqualToString:@""])
+    if ([_email.text isEqualToString:@""])
     {
         
         _email.placeholder=@"Please enter email !";
         
         [_email setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
     }
-
-    else if (![ self NSStringIsValidEmail:_email.text])
+    
+    else
     {
+        if (![ self NSStringIsValidEmail:_email.text])
+        {
         
-        UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Not a valid email !" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+            UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Not a valid email !" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
         
-        [loginAlert show];
+            [loginAlert show];
         
+        }
+        else if ([_email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
+        {
+            UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Not a valid email !" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+        
+            [loginAlert show];
+        }
     }
-    else if ([_email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
-    {
-        UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Not a valid email !" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-        
-        [loginAlert show];
-    }
-    else if ([_password.text isEqualToString:@""])
+    if ([_password.text isEqualToString:@""])
     {
         _password.placeholder=@"Please enter password !";
         
         [_password setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
     }
-    else if (![_password.text isEqualToString:_confirm_password.text])
+    else
     {
-        _confirm_password.text=@"";
-        _confirm_password.placeholder=@"Password does not match !";
+        if (![_password.text isEqualToString:_confirm_password.text])
+        {
+            _confirm_password.text=@"";
+            _confirm_password.placeholder=@"Password does not match !";
         
-         [_password setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+            [_password setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+        }
+    }*/
+    RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+    
+if(globalobj.connectedToNetwork==YES)
+{
+    
+    [self Check_textfield];
+    if([checkstring isEqualToString:@"NO"])
+    {
+        NSLog(@"---------------no-----------------");
+        [_mainScroll setContentOffset:CGPointMake(0,0) animated:YES];
     }
     else
-        
     {
         
 
@@ -309,7 +325,7 @@
     
     NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(chosenImage, 1.0f)];
     
-    RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+    //RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
     
     NSString *urlString=[NSString stringWithFormat:@"%@registration.php?name=%@&sex=%@&email=%@&password=%@&about=%@&business=%@&dob=%@",App_Domain_Url,_name.text,_sex.text,_email.text,_confirm_password.text,_about_you.text,_current_business.text,_DOB.text];
     
@@ -355,9 +371,108 @@
    
         
     }
+}
+   else
+   {
+       [_mainScroll setContentOffset:CGPointMake(0,0) animated:YES];
+       
+       UIAlertView *Alert = [[UIAlertView alloc]initWithTitle:nil message:@"No Internet Connection !" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+       [Alert show];
+   }
     
 }
 
+-(void)Check_textfield
+{
+    [_name resignFirstResponder];
+    [_DOB resignFirstResponder];
+    [_email resignFirstResponder];
+    [_password resignFirstResponder];
+    [_confirm_password resignFirstResponder];
+    [_current_business resignFirstResponder];
+    checkstring=@"YES";
+    UIColor *placeholder_color=[UIColor redColor];
+    
+    
+    if ([_name.text isEqualToString:@""])
+    {
+        _name.text=@"";
+        _name.placeholder=@"Please enter your name !";
+        
+        [_name setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+        checkstring=@"NO";
+        
+    }
+    else if ([_name.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
+    {
+        _name.text=@"";
+        _name.placeholder=@"Please enter your name !";
+        
+        [_name setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+        checkstring=@"NO";
+    }
+    if ([_sex.text isEqualToString:@""])
+    {
+        
+        _sex.placeholder=@"Please select your gender !";
+        
+        [_sex setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+        checkstring=@"NO";
+    }
+    if ([_email.text isEqualToString:@""])
+    {
+        
+        _email.placeholder=@"Please enter email !";
+        
+        [_email setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+        checkstring=@"NO";
+    }
+    
+    else
+    {
+        if (![ self NSStringIsValidEmail:_email.text])
+        {
+            
+            UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Not a valid email !" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+            
+            [loginAlert show];
+            checkstring=@"NO";
+            
+        }
+        else if ([_email.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length < 1)
+        {
+            UIAlertView *loginAlert=[[UIAlertView alloc]initWithTitle:nil message:@"Not a valid email !" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+            
+            [loginAlert show];
+            checkstring=@"NO";
+        }
+    }
+    if ([_password.text isEqualToString:@""])
+    {
+        _password.placeholder=@"Please enter password !";
+        
+        [_password setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+        checkstring=@"NO";
+    }
+    else
+    {
+        if (![_password.text isEqualToString:_confirm_password.text])
+        {
+            _confirm_password.text=@"";
+            _confirm_password.placeholder=@"Password does not match !";
+            
+            [_confirm_password setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+            checkstring=@"NO";
+        }
+    }
+    if([_DOB.text isEqualToString:@""])
+    {
+        _DOB.placeholder=@"Please choose your Date Of Birth !";
+        [_DOB setValue:placeholder_color forKeyPath:@"_placeholderLabel.textColor"];
+        checkstring=@"NO";
+
+    }
+}
 
 - (IBAction)select_gender:(id)sender
 {

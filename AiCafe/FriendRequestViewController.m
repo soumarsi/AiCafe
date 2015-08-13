@@ -12,6 +12,7 @@
 #import "RS_JsonClass.h"
 #import "UserInfoViewController.h"
 #import "ChatViewController.h"
+#import "MainScreenViewController.h"
 
 
 @interface FriendRequestViewController ()
@@ -32,7 +33,7 @@
     
     _Friends_Table.delegate=self;
     _Friends_Table.dataSource=self;
-    remove_array =[[NSMutableArray alloc]init];
+    //remove_array =[[NSMutableArray alloc]init];
     //details=[[NSMutableArray alloc]init];
     
     
@@ -47,7 +48,7 @@
 {
     [super viewDidAppear:YES];
 
-    
+    remove_array =[[NSMutableArray alloc]init];
     globalobj=[[RS_JsonClass alloc]init];
     
     NSString *urlstring=[NSString stringWithFormat:@"%@friend_request_pending.php?user_id=%@",App_Domain_Url,Login_user_Id];
@@ -348,5 +349,7 @@
 - (IBAction)Back_to_main:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+    
+
 }
 @end

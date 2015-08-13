@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *add_friend_title;
 @property (weak, nonatomic) IBOutlet UIButton *add_friend_button2;
 
+@property (strong, nonatomic) IBOutlet UIImageView *Plusicon;
+@property (strong, nonatomic) IBOutlet UILabel *addfriendlbl;
 
 
 @end

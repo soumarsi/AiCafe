@@ -69,13 +69,76 @@
     
     [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
      {
+         NSLog(@"----------------------------------result %@",result);
          
-         if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+         //if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+         if ([[result objectForKey:@"friend"]isEqualToString:@"P"])
          {
+             _addfriendlbl.text=@"Cancel Request";
+             _Plusicon.image=[UIImage imageNamed: @"minus_icon" ];
+             _add_friend_button2.hidden=NO;
              
+             user_details=[[NSMutableDictionary alloc]init];
+             user_details=[[result objectForKey:@"detail"]mutableCopy];
+             
+             NSLog(@"^^^^^^^^>>>>>>>>>>>>>>  %@",[result objectForKey:@"friend"]);
+             
+         /*    if ([[result objectForKey:@"friend"]isEqualToString:@"T"])
+             {
+                 _add_friend_button.hidden=YES;
+                 _add_friend_button2.hidden=YES;
+                 _add_friend_title.hidden=YES;
+                 _addfriendlbl.hidden=YES;
+                 _Plusicon.hidden=YES;
+                 
+             }*/
+             
+             NSLog(@"User Data-- %@",user_details);
+             
+             
+             if ([[user_details objectForKey:@"sex"] isEqualToString:@"M"])
+             {
+                 [_profile_pic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[user_details objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+                 
+                 
+             }
+             else
+             {
+                 [_profile_pic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[user_details objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"placeholderF"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+                 
+                 
+             }
+             
+             
+             
+             //--
+             
+             _profile_name.text=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"name"]];
+             
+             _about_user.text=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"about"]];
+             
+             _business.text=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"business"]];
+             
+             _age.text=[NSString stringWithFormat:@"Age: %@",[user_details objectForKey:@"age"]];
+             
+             
+             
+             if ([[user_details objectForKey:@"sex"] isEqualToString:@"M"])
+             {
+                 _gender.text=@"Male";
+             }
+             else
+             {
+                 _gender.text=@"Female";
+                 
+             }
          }
-         else
+         else if([[result objectForKey:@"friend"]isEqualToString:@"F"])
          {
+             _addfriendlbl.text=@"Add Friend";
+             _Plusicon.image=[UIImage imageNamed: @"Add_Friend" ];
+             _add_friend_button2.hidden=NO;
+             
              user_details=[[NSMutableDictionary alloc]init];
              user_details=[[result objectForKey:@"detail"]mutableCopy];
              
@@ -86,7 +149,68 @@
                  _add_friend_button.hidden=YES;
                  _add_friend_button2.hidden=YES;
                  _add_friend_title.hidden=YES;
+                 
              }
+             
+             NSLog(@"User Data-- %@",user_details);
+             
+             
+             if ([[user_details objectForKey:@"sex"] isEqualToString:@"M"])
+             {
+                 [_profile_pic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[user_details objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"PlaceholderM"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+                 
+                 
+             }
+             else
+             {
+                 [_profile_pic sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",Image_Domain_Url,[user_details objectForKey:@"photo_thumb"]]] placeholderImage:[UIImage imageNamed:@"placeholderF"] options:/* DISABLES CODE */ (0) == 0?SDWebImageRefreshCached : 0];
+                 
+                 
+             }
+             
+             
+             
+             //--
+             
+             _profile_name.text=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"name"]];
+             
+             _about_user.text=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"about"]];
+             
+             _business.text=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"business"]];
+             
+             _age.text=[NSString stringWithFormat:@"Age: %@",[user_details objectForKey:@"age"]];
+             
+             
+             
+             if ([[user_details objectForKey:@"sex"] isEqualToString:@"M"])
+             {
+                 _gender.text=@"Male";
+             }
+             else
+             {
+                 _gender.text=@"Female";
+                 
+             }
+             
+         }
+         else if([[result objectForKey:@"friend"]isEqualToString:@"A"])
+         {
+             user_details=[[NSMutableDictionary alloc]init];
+             user_details=[[result objectForKey:@"detail"]mutableCopy];
+             
+             NSLog(@"^^^^^^^^>>>>>>>>>>>>>>  %@",[result objectForKey:@"friend"]);
+             
+             _addfriendlbl.hidden=YES;
+             _Plusicon.hidden=YES;
+             _add_friend_button2.hidden=YES;
+             
+            /* if ([[result objectForKey:@"friend"]isEqualToString:@"T"])
+             {
+                _add_friend_button.hidden=YES;
+                 _add_friend_button2.hidden=YES;
+                _add_friend_title.hidden=YES;
+                 
+             }*/
              
              NSLog(@"User Data-- %@",user_details);
              
@@ -129,9 +253,11 @@
              }
 
          }
+         NSLog(@"---------------------------result end");
+
          
              }];
-}
+    }
 
 - (IBAction)MoveToChat:(id)sender
 {
@@ -143,69 +269,144 @@
 
 - (IBAction)MoveToAddFriend:(id)sender
 {
-    NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
-    NSString *senderid = [UserData stringForKey:@"Login_User_id"];
-    globalobj=[[RS_JsonClass alloc]init];
-    NSString *receiverid=[user_details objectForKey:@"id"];
-    //NSLog(@"sender id...%@",senderid);
-    NSString *urlstring=[NSString stringWithFormat:@"%@add_friend.php",App_Domain_Url];
+    //NSLog(@"MoveToAddFriend---------------------------------------------");
+       // [self.add_friend_button2 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    if([_addfriendlbl.text isEqualToString:@"Add Friend"])
+    {
+        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+        NSString *senderid = [UserData stringForKey:@"Login_User_id"];
+        globalobj=[[RS_JsonClass alloc]init];
+        NSString *receiverid=[user_details objectForKey:@"id"];
+        //NSLog(@"sender id...%@",senderid);
+        NSString *urlstring=[NSString stringWithFormat:@"%@add_friend.php",App_Domain_Url];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
     
-    [request setHTTPMethod:@"POST"];
+        [request setHTTPMethod:@"POST"];
     
-    NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@",senderid,receiverid];
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@",senderid,receiverid];
     
-    [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     
-    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-    [globalobj GlobalDict:request Globalstr:@"string" Withblock:^(id result, NSError *error)
-     {
-         
-         NSLog(@"Result..... %@",(NSArray *)result);
-         
-        // NSArray *checkArray=(NSArray *)result;
-         
-//         if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
-        // if(checkArray.count==0)
-         //{
-             
-             //handle array empty issue
-             
-        // }
-        // else
-         //{
-             NSString *friendstr;
-             friendstr=result;
-             NSLog(@"result-- %@",friendstr);
-         if([result isEqualToString:@"already send"])
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        [globalobj GlobalDict:request Globalstr:@"string" Withblock:^(id result, NSError *error)
          {
          
-//             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Friend request already sent"
-//                                                               message:Nil
-//                                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//             
-//             [message show];
-             
-         }
+             NSLog(@"Result..... %@",(NSArray *)result);
          
-         else if([friendstr isEqualToString:@"success"])
-         {
+             // NSArray *checkArray=(NSArray *)result;
+         
+             //         if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+             // if(checkArray.count==0)
+             //{
+             
+                //handle array empty issue
+             
+             // }
+             // else
+             //{
+                NSString *friendstr;
+                friendstr=result;
+                NSLog(@"result-- %@",friendstr);
+             if([result isEqualToString:@"already send"])
+             {
+         
+                 //             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Friend request already sent"
+                 //                                                               message:Nil
+                 //                                                              delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                 //
+                 //             [message show];
+                 
+                 
+              /*   NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+                 NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
+                 
+                 NSString *friend_id=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"id"]];
+                 
+                 NSLog(@"RSR............%@",friend_id);
+                 
+                 NSString *urlstr = [NSString stringWithFormat:@"%@friend_request_reject.php",App_Domain_Url];
+                 
+                 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
+                 
+                 [request setHTTPMethod:@"POST"];
+                 
+                 NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@mode=1",Login_user_Id,friend_id];
+                 
+                 [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+                 
+                 [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+                 
+                 [globalobj GlobalDict:request Globalstr:@"string" Withblock:^(id result, NSError *error)
+                  {
+                      
+                      
+                      alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Request is deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                      
+                      [alert show];
+                      _addfriendlbl.text=@"Add Friend";
+                      _Plusicon.image=[UIImage imageNamed:@"Add_Friend" ];
+                      
+                      // [self.navigationController popViewControllerAnimated:YES];
+                      
+                  }];*/
+             }
+         
+             else if([friendstr isEqualToString:@"success"])
+             {
          
             
-             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Friend request sent"
+                 UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Friend request sent"
                                                                message:Nil
                                                               delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
              
-             [message show];
+                 [message show];
+                 _addfriendlbl.text=@"Cancel Request";
+                 _Plusicon.image=[UIImage imageNamed: @"minus_icon" ];
          
-         }
+             }
          
          
          //}
          
        
-     }];
+         }];
+    }
+    else if([_addfriendlbl.text isEqualToString:@"Cancel Request"])
+    {
+        NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+        NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
+        
+        NSString *friend_id=[NSString stringWithFormat:@"%@",[user_details objectForKey:@"id"]];
+        
+        NSLog(@"RSR............%@",friend_id);
+        
+        NSString *urlstr = [NSString stringWithFormat:@"%@friend_request_cancel.php",App_Domain_Url];
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
+        
+        [request setHTTPMethod:@"POST"];
+        
+        NSString *postData = [NSString stringWithFormat:@"send_id=%@&rec_id=%@mode=1",Login_user_Id,friend_id];
+        
+        [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+        
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [globalobj GlobalDict:request Globalstr:@"string" Withblock:^(id result, NSError *error)
+         {
+             
+             
+             alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Request is deleted" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             
+             [alert show];
+             _addfriendlbl.text=@"Add Friend";
+             _Plusicon.image=[UIImage imageNamed:@"Add_Friend" ];
+             
+            // [self.navigationController popViewControllerAnimated:YES];
+             
+         }];
+    }
     
 }
 
@@ -305,7 +506,8 @@
              alert = [[UIAlertView alloc] initWithTitle:@"" message:@"User Removed from your Friend List" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
              
              [alert show];
-
+             
+             [self.navigationController popViewControllerAnimated:YES];
              
          }];
 

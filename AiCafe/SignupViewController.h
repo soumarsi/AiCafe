@@ -11,6 +11,7 @@
 @interface SignupViewController : UIViewController<UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 {
     UIImage *chosenImage;
+    NSString *checkstring;
 }
 
 @property (strong, nonatomic) IBOutlet UITextField *name;

@@ -20,7 +20,7 @@
 #import "FriendRequestViewController.h"
 
 
-@interface MainScreenViewController ()<Slide_menu_delegate>
+@interface MainScreenViewController ()<Slide_menu_delegate,UIAlertViewDelegate>
 {
     BOOL flag;
     NSMutableArray *Friend_list;
@@ -104,10 +104,11 @@
     
     _user_business.text=user_business_info;
     
-    obj = [[RS_JsonClass alloc]init];
+/*    obj = [[RS_JsonClass alloc]init];
     
     NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
     NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
+    NSLog(@"Login_user_Id-------------------------- %@",Login_user_Id);
     
     NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@&start=0&records=10",App_Domain_Url,Login_user_Id];
     
@@ -172,7 +173,7 @@
 
         
        
-    }];
+    }];*/
 
 }
 
@@ -193,9 +194,87 @@
         flag=NO;
     }
 
-
+    
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    obj = [[RS_JsonClass alloc]init];
+    
+    NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+    NSString *Login_user_Id = [UserData stringForKey:@"Login_User_id"];
+    NSLog(@"Login_user_Id-------------------------- %@",Login_user_Id);
+    
+    NSString *urlstr = [NSString stringWithFormat:@"%@friend_list.php?id=%@&start=0&records=10",App_Domain_Url,Login_user_Id];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstr]];
+    
+    [request setHTTPMethod:@"POST"];
+    
+    [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    
+    [obj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+     {
+         
+         if ([[result objectForKey:@"auth"]isEqualToString:@"success"])
+         {
+             _numberoffriends.hidden=NO;
+             _numberoffriends.text = [NSString stringWithFormat:@"%@  friends",[result objectForKey:@"total"]];
+         }
+         else
+         {
+             _numberoffriends.hidden=YES;
+         }
+         
+         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+         
+         NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+         NSString  *login_user_id=[NSString stringWithFormat:@"%@",[UserData objectForKey:@"Login_User_id"]];
+         
+         
+         NSString *urlstring=[NSString stringWithFormat:@"%@show_status.php",App_Domain_Url];
+         
+         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+         
+         [request setHTTPMethod:@"POST"];
+         
+         NSString *postData = [NSString stringWithFormat:@"id=%@",login_user_id];
+         
+         [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+         
+         [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+         
+         
+         [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+          {
+              
+              NSMutableDictionary *status_data=[[NSMutableDictionary alloc]init];
+              status_data=[[result objectForKey:@"settings"]mutableCopy];
+              
+              NSString *sound_check2=[NSString stringWithFormat:@"%@",[status_data objectForKey:@"sound"]];
+              
+              if ([sound_check2 isEqualToString:@"Y"])
+              {
+                  NSString *sound_check3=@"sound_on";
+                  [[NSUserDefaults standardUserDefaults] setObject:sound_check3 forKey:@"sound"];
+                  [[NSUserDefaults standardUserDefaults] synchronize];
+              }
+              else
+              {
+                  NSString *sound_check3=@"sound_off";
+                  [[NSUserDefaults standardUserDefaults] setObject:sound_check3 forKey:@"sound"];
+                  [[NSUserDefaults standardUserDefaults] synchronize];
+              }
+              
+              
+          }];
+         
+         
+         
+         
+     }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -397,7 +476,11 @@
         //MainScreenViewController *obj=[self.storyboard instantiateViewControllerWithIdentifier:@"aboutviewcontroller"];
         
         //[self PushViewController:obj WithAnimation:kCAMediaTimingFunctionEaseIn];
-        NSLog(@"##### test mode...%ld",(long)sender.tag);
+        UIAlertView *logoutalert=[[UIAlertView alloc]initWithTitle:nil message:@"Do you want to log out?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:nil, nil];
+         [logoutalert addButtonWithTitle:@"No"];
+        [logoutalert show];
+         NSLog(@"##### test mode...%ld",(long)sender.tag);
+     /*   NSLog(@"##### test mode...%ld",(long)sender.tag);
         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
         
         NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
@@ -437,7 +520,7 @@
              
              
              
-         }];
+         }];*/
         
         
     }
@@ -446,6 +529,62 @@
     
     //}];
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Yes"])
+    {
+        NSLog(@"---------------Yes was selected.---------------");
+        
+         RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
+         
+         NSUserDefaults *UserData = [[NSUserDefaults alloc]init];
+         NSString *senderid = [UserData stringForKey:@"Login_User_id"];
+         
+         NSString *urlstring=[NSString stringWithFormat:@"http://203.196.159.37/lab9/aiCafe/iosapp/logout.php"];
+         
+         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
+         
+         [request setHTTPMethod:@"POST"];
+         
+         NSString *postData = [NSString stringWithFormat:@"id=%@",senderid];
+         
+         [request setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+         
+         [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+         
+         [globalobj GlobalDict:request Globalstr:@"array" Withblock:^(id result, NSError *error)
+         {
+         
+         if ([[result objectForKey:@"auth"]isEqualToString:@"fail"])
+         {
+         
+         }
+         else
+         {
+         NSLog(@"result...%@",[result objectForKey:@"auth"]);
+         if([[result objectForKey:@"auth"] isEqualToString:@"logout success"])
+         {
+         ViewController *Pushobj=[self.storyboard instantiateViewControllerWithIdentifier:@"Login_Page"];
+         Pushobj.password.text=@"";
+         [self.navigationController pushViewController:Pushobj animated:YES];
+         
+         }
+         
+         }
+         
+         
+         
+         }];
+    }
+    else if([title isEqualToString:@"No"])
+    {
+        NSLog(@"---------------No was selected.-----------------");
+    }
+}
+
 -(void)PushViewController:(UIViewController *)viewController WithAnimation:(NSString *)AnimationType
 {
     CATransition *Transition=[CATransition animation];

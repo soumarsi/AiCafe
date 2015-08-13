@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "ChatViewController.h"
 #import "UserInfoViewController.h"
+#import "MainScreenViewController.h"
 
 
 
@@ -184,7 +185,8 @@
         online_status.image = [UIImage imageNamed:@"online"];
         [cell addSubview:online_status];
         
-        ChatBtn=[[UIButton alloc]initWithFrame:CGRectMake(220, 13, 91, 31)];
+       // ChatBtn=[[UIButton alloc]initWithFrame:CGRectMake(220, 13, 91, 31)];
+        ChatBtn=[[UIButton alloc]initWithFrame:CGRectMake(220, 30, 91, 31)];
         [ChatBtn setImage:[UIImage imageNamed:@"chat_button"] forState:UIControlStateNormal];
         [ChatBtn setTitle:[NSString stringWithFormat:@"chatbtn"] forState:UIControlStateNormal];
         ChatBtn.tag=indexPath.row;
@@ -225,7 +227,8 @@
         
         CGFloat x = self.view.frame.size.width *.65;
         
-        ChatBtn=[[UIButton alloc]initWithFrame:CGRectMake(x, 13, 115, 35)];
+        //ChatBtn=[[UIButton alloc]initWithFrame:CGRectMake(x, 13, 115, 35)];
+        ChatBtn=[[UIButton alloc]initWithFrame:CGRectMake(x, 30, 115, 35)];
         [ChatBtn setImage:[UIImage imageNamed:@"chat_button"] forState:UIControlStateNormal];
         [ChatBtn setTitle:[NSString stringWithFormat:@"chatbtn"] forState:UIControlStateNormal];
         ChatBtn.tag=indexPath.row;
@@ -278,7 +281,17 @@
 
 - (IBAction)backTapped:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    for (UIViewController* viewController in self.navigationController.viewControllers)
+    {
+        
+        if ([viewController isKindOfClass:[MainScreenViewController class]] )
+        {
+            
+            MainScreenViewController *MainScreenObj = (MainScreenViewController*)viewController;
+            [self.navigationController popToViewController:MainScreenObj animated:YES];
+        }
+    }
 }
 
 

@@ -27,10 +27,12 @@
     UILabel *descriptiohn;
     UILabel *time;
     UIImageView *user_profile_image;
+    NSMutableArray *Friend_list_backup;
 }
 @property (strong, nonatomic) IBOutlet UITableView *Friends_Table;
 
 - (IBAction)back_tomainPage:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UISearchBar *searchbar;
 
 @end

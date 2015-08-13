@@ -104,7 +104,8 @@
     
 }
 
-- (IBAction)openStickerview:(id)sender {
+- (IBAction)openStickerview:(id)sender
+{
   //  up=1;
     
    
