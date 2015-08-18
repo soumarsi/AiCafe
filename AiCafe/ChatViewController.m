@@ -1091,7 +1091,8 @@
     RS_JsonClass *globalobj=[[RS_JsonClass alloc]init];
     
     
-    NSString *urlstring=[NSString stringWithFormat:@"%@sendChatUser.php",App_Domain_Url];
+    //NSString *urlstring=[NSString stringWithFormat:@"%@sendChatUser.php",App_Domain_Url];
+    NSString *urlstring=[NSString stringWithFormat:@"%@sendSingleUser.php",App_Domain_Url];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlstring]];
     
